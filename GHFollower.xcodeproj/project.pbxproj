@@ -12,6 +12,8 @@
 		17521F3123F16C4D00D6DABF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17521F3023F16C4D00D6DABF /* ViewController.swift */; };
 		17521F3623F16C4F00D6DABF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17521F3523F16C4F00D6DABF /* Assets.xcassets */; };
 		17521F3923F16C4F00D6DABF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17521F3723F16C4F00D6DABF /* LaunchScreen.storyboard */; };
+		17E7DD9623F1727300EE5298 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9523F1727300EE5298 /* SearchViewController.swift */; };
+		17E7DD9823F172A300EE5298 /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9723F172A300EE5298 /* FavoriteListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		17521F3523F16C4F00D6DABF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17521F3823F16C4F00D6DABF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17521F3A23F16C4F00D6DABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17E7DD9523F1727300EE5298 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		17E7DD9723F172A300EE5298 /* FavoriteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				17521F2C23F16C4D00D6DABF /* AppDelegate.swift */,
 				17521F2E23F16C4D00D6DABF /* SceneDelegate.swift */,
 				17521F3023F16C4D00D6DABF /* ViewController.swift */,
+				17E7DD9523F1727300EE5298 /* SearchViewController.swift */,
+				17E7DD9723F172A300EE5298 /* FavoriteListViewController.swift */,
 				17521F3523F16C4F00D6DABF /* Assets.xcassets */,
 				17521F3723F16C4F00D6DABF /* LaunchScreen.storyboard */,
 				17521F3A23F16C4F00D6DABF /* Info.plist */,
@@ -136,6 +142,8 @@
 			files = (
 				17521F3123F16C4D00D6DABF /* ViewController.swift in Sources */,
 				17521F2D23F16C4D00D6DABF /* AppDelegate.swift in Sources */,
+				17E7DD9623F1727300EE5298 /* SearchViewController.swift in Sources */,
+				17E7DD9823F172A300EE5298 /* FavoriteListViewController.swift in Sources */,
 				17521F2F23F16C4D00D6DABF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
