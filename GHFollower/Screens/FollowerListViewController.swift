@@ -9,13 +9,35 @@
 import UIKit
 
 class FollowerListViewController: UIViewController {
-    public var username : String!
+    var username : String!
+    var collectionView : UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewController()
+        configureCollectionView()
+        getFollowers()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    private func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: .init())
+        view.addSubview(collectionView)
         
+        collectionView.backgroundColor = .systemPink
+        collectionView.register(GFFollowerCell.self, forCellWithReuseIdentifier: GFFollowerCell.reuseID)
+    }
+    
+    private func getFollowers() {
         NetworkManager.shared.getFollowers(for: username, page: 1) { (result) in
             switch result {
             case .failure(let error):
@@ -26,10 +48,5 @@ class FollowerListViewController: UIViewController {
                 print(followers)
             }
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }
