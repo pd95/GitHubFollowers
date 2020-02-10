@@ -52,8 +52,10 @@ class FollowerListViewController: UIViewController {
     }
     
     private func getFollowers(username: String, page: Int) {
+        showGFLoadingScreen()
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] (result) in
             guard let self = self else { return }
+            self.dismissGFLoadingScreen()
             
             switch result {
             case .failure(let error):
