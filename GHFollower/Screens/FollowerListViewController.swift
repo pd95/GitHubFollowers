@@ -9,13 +9,22 @@
 import UIKit
 
 class FollowerListViewController: UIViewController {
+
+    enum Section {
+        case main
+    }
+    
     var username : String!
+    var followers = [Follower]()
+    
     var collectionView : UICollectionView!
+    var dataSource : UICollectionViewDiffableDataSource<Section, Follower>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureCollectionView()
+        configureDataSource()
         getFollowers()
     }
 
@@ -32,8 +41,10 @@ class FollowerListViewController: UIViewController {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
         view.addSubview(collectionView)
+
+        collectionView.dataSource = dataSource
         
-        collectionView.backgroundColor = .systemPink
+        collectionView.backgroundColor = .systemBackground
         collectionView.register(GFFollowerCell.self, forCellWithReuseIdentifier: GFFollowerCell.reuseID)
     }
     
@@ -58,9 +69,27 @@ class FollowerListViewController: UIViewController {
                 self.presentGFAlertOnMainThread(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "OK")
 
             case .success(let followers):
-                print("Followers count = \(followers.count)")
-                print(followers)
+                self.followers = followers
+                self.updateData(followers)
             }
         }
     }
+    
+    private func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GFFollowerCell.reuseID, for: indexPath) as! GFFollowerCell
+            cell.set(follower: follower)
+            return cell
+        })
+    }
+    
+    private func updateData(_ followers: [Follower]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(followers)
+        DispatchQueue.main.async {
+            self.dataSource.apply(snapshot, animatingDifferences: true)
+        }
+    }
+    
 }
