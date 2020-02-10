@@ -36,7 +36,6 @@ class GFAvatarImageView: UIImageView {
             return
         }
 
-        print(urlString)
         guard let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self else { return }
