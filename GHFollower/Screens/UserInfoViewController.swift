@@ -43,6 +43,8 @@ class UserInfoViewController: UIViewController {
                 case .success(let user):
                     DispatchQueue.main.async {
                         self.add(childVC: GFUserInfoHeaderViewController(user: user), to: self.headerView)
+                        self.add(childVC: GFRepoItemViewController(user: user), to: self.itemViewOne)
+                        self.add(childVC: GFFollowerItemViewController(user: user), to: self.itemViewTwo)
                     }
             }
         }
@@ -66,8 +68,8 @@ class UserInfoViewController: UIViewController {
         }
         
         headerView.backgroundColor = .systemBackground
-        itemViewOne.backgroundColor = .systemPink
-        itemViewTwo.backgroundColor = .systemBlue
+        itemViewOne.backgroundColor = .systemBackground
+        itemViewTwo.backgroundColor = .systemBackground
 
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

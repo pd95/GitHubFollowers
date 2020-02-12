@@ -16,7 +16,7 @@ class GFItemInfoView: UILabel {
 
     let symbolImageView = UIImageView()
     let titleLabel = GFTitleLabel(textAlignment: .left, fontSize: 14)
-    let countLabel = GFTitleLabel(textAlignment: .left, fontSize: 14)
+    let countLabel = GFTitleLabel(textAlignment: .center, fontSize: 14)
 
     override init(frame: CGRect) {
         super.init(frame: frame)

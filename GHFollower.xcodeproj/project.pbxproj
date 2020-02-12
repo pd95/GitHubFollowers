@@ -31,6 +31,8 @@
 		177F61A423F2B74700A25B38 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61A323F2B74700A25B38 /* Constants.swift */; };
 		177F61A623F2BE8A00A25B38 /* GFItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61A523F2BE8A00A25B38 /* GFItemInfoView.swift */; };
 		177F61A823F30FF200A25B38 /* GFItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61A723F30FF200A25B38 /* GFItemInfoViewController.swift */; };
+		177F61AA23F312E300A25B38 /* GFRepoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61A923F312E300A25B38 /* GFRepoItemViewController.swift */; };
+		177F61AC23F313C500A25B38 /* GFFollowerItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61AB23F313C500A25B38 /* GFFollowerItemViewController.swift */; };
 		17E7DD9623F1727300EE5298 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9523F1727300EE5298 /* SearchViewController.swift */; };
 		17E7DD9823F172A300EE5298 /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9723F172A300EE5298 /* FavoriteListViewController.swift */; };
 		17E7DD9A23F176B000EE5298 /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9923F176B000EE5298 /* GFButton.swift */; };
@@ -63,6 +65,8 @@
 		177F61A323F2B74700A25B38 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		177F61A523F2BE8A00A25B38 /* GFItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoView.swift; sourceTree = "<group>"; };
 		177F61A723F30FF200A25B38 /* GFItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoViewController.swift; sourceTree = "<group>"; };
+		177F61A923F312E300A25B38 /* GFRepoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFRepoItemViewController.swift; sourceTree = "<group>"; };
+		177F61AB23F313C500A25B38 /* GFFollowerItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFFollowerItemViewController.swift; sourceTree = "<group>"; };
 		17E7DD9523F1727300EE5298 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		17E7DD9723F172A300EE5298 /* FavoriteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
 		17E7DD9923F176B000EE5298 /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
@@ -220,7 +224,7 @@
 			children = (
 				1709195623F1A18400560D6C /* GFAlertViewController.swift */,
 				177F619F23F2AF5800A25B38 /* GFUserInfoHeaderViewController.swift */,
-				177F61A723F30FF200A25B38 /* GFItemInfoViewController.swift */,
+				177F61AD23F314C900A25B38 /* ItemInfo */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -240,6 +244,16 @@
 				177F61A523F2BE8A00A25B38 /* GFItemInfoView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		177F61AD23F314C900A25B38 /* ItemInfo */ = {
+			isa = PBXGroup;
+			children = (
+				177F61A723F30FF200A25B38 /* GFItemInfoViewController.swift */,
+				177F61A923F312E300A25B38 /* GFRepoItemViewController.swift */,
+				177F61AB23F313C500A25B38 /* GFFollowerItemViewController.swift */,
+			);
+			path = ItemInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +332,8 @@
 				1709195923F1A76F00560D6C /* UIViewController+Ext.swift in Sources */,
 				17521F2D23F16C4D00D6DABF /* AppDelegate.swift in Sources */,
 				177F619123F1FE0F00A25B38 /* UIHelper.swift in Sources */,
+				177F61AC23F313C500A25B38 /* GFFollowerItemViewController.swift in Sources */,
+				177F61AA23F312E300A25B38 /* GFRepoItemViewController.swift in Sources */,
 				177F61A423F2B74700A25B38 /* Constants.swift in Sources */,
 				17E7DD9A23F176B000EE5298 /* GFButton.swift in Sources */,
 				17E7DD9623F1727300EE5298 /* SearchViewController.swift in Sources */,
