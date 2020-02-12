@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol GFItemInfoViewControllerDelegate: class {
+    func didTapGitHubProfile(for user: User)
+    func didTapGetFollowers(for user: User)
+}
+
 class GFItemInfoViewController: UIViewController {
     
     let stackView = UIStackView()
@@ -16,6 +21,7 @@ class GFItemInfoViewController: UIViewController {
     let actionButton = GFButton()
 
     var user: User!
+    weak var delegate: GFItemInfoViewControllerDelegate!
     
     init(user: User) {
         super.init(nibName: nil, bundle: nil)
@@ -30,6 +36,7 @@ class GFItemInfoViewController: UIViewController {
         super.viewDidLoad()
         configureBackgroundView()
         configureStackView()
+        configureActionButton()
         layoutUI()
     }
     
@@ -44,6 +51,13 @@ class GFItemInfoViewController: UIViewController {
         
         stackView.addArrangedSubview(itemInfoViewOne)
         stackView.addArrangedSubview(itemInfoViewTwo)
+    }
+    
+    private func configureActionButton() {
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func actionButtonTapped() {
     }
     
     private func layoutUI() {
