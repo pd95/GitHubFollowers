@@ -98,6 +98,7 @@ class FollowerListViewController: UIViewController {
                     self.updateData(on: self.followers)
                 }
             }
+            self.isLoadingMoreFollowers = false
         }
     }
     
@@ -141,8 +142,6 @@ class FollowerListViewController: UIViewController {
                 case .failure(let error):
                     self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
             }
-
-            self.isLoadingMoreFollowers = false
         }
     }
 }
