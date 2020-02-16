@@ -23,12 +23,19 @@ class GFFollowerCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        usernameLabel.text = nil
+    }
+    
     func set(follower: Follower) {
         usernameLabel.text = follower.login
+        avatarImageView.image = Images.placeholder
         NetworkManager.shared.downloadImage(from: follower.avatarUrl) { [weak self] image in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.avatarImageView.image = image
+                if self.usernameLabel.text == follower.login {
+                    self.avatarImageView.image = image
+                }
             }
         }
     }

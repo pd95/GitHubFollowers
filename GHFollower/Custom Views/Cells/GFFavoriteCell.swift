@@ -25,12 +25,19 @@ class GFFavoriteCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        usernameLabel.text = nil
+    }
+
     func set(favorite: Follower) {
         usernameLabel.text = favorite.login
+        avatarImageView.image = Images.placeholder
         NetworkManager.shared.downloadImage(from: favorite.avatarUrl) { [weak self] image in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.avatarImageView.image = image
+                if self.usernameLabel.text == favorite.login {
+                    self.avatarImageView.image = image
+                }
             }
         }
     }
