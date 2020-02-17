@@ -53,16 +53,10 @@ class UserInfoViewController: UIViewController {
     }
     
     private func configureUIElements(with user: User) {
-        let repoItemVC = GFRepoItemViewController(user: user)
-        repoItemVC.delegate = self
-        
-        let followerItemVC = GFFollowerItemViewController(user: user)
-        followerItemVC.delegate = self
-
-        self.add(childVC: GFUserInfoHeaderViewController(user: user), to: self.headerView)
-        self.add(childVC: repoItemVC, to: self.itemViewOne)
-        self.add(childVC: followerItemVC, to: self.itemViewTwo)
-        self.dateLabel.text = "GitHub since \(user.createdAt.convertToMonthYearFormat())"
+        add(childVC: GFUserInfoHeaderViewController(user: user), to: headerView)
+        add(childVC: GFRepoItemViewController(user: user, delegate: self), to: itemViewOne)
+        add(childVC: GFFollowerItemViewController(user: user, delegate: self), to: itemViewTwo)
+        dateLabel.text = "GitHub since \(user.createdAt.convertToMonthYearFormat())"
     }
 
     private func layoutUI() {
@@ -84,7 +78,7 @@ class UserInfoViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 180),
+            headerView.heightAnchor.constraint(equalToConstant: 210),
             
             itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
             itemViewOne.heightAnchor.constraint(equalToConstant: itemHeight),
@@ -93,7 +87,7 @@ class UserInfoViewController: UIViewController {
             itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeight),
             
             dateLabel.topAnchor.constraint(equalTo: itemViewTwo.bottomAnchor, constant: padding),
-            dateLabel.heightAnchor.constraint(equalToConstant: 18),
+            dateLabel.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
     
@@ -105,11 +99,11 @@ class UserInfoViewController: UIViewController {
     }
     
     @objc private func dismissModal() {
-        self.dismiss(animated: true)
+        dismiss(animated: true)
     }
 }
 
-extension UserInfoViewController: GFItemInfoViewControllerDelegate {
+extension UserInfoViewController: GFRepoItemInfoViewControllerDelegate {
     func didTapGitHubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
             presentGFAlertOnMainThread(title: "Invalid URL", message: "The url attached to this user is invalid", buttonTitle: "OK")
@@ -118,7 +112,9 @@ extension UserInfoViewController: GFItemInfoViewControllerDelegate {
         
         presentSafariViewController(with: url)
     }
-    
+}
+
+extension UserInfoViewController: GFFollowerItemInfoViewControllerDelegate {
     func didTapGetFollowers(for user: User) {
         guard user.followers > 0 else {
             presentGFAlertOnMainThread(title: "No followers", message: "This user has no followers. What a shame 😢.", buttonTitle: "So sad")

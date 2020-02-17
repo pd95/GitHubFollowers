@@ -28,8 +28,7 @@ class GFEmptyStateView: UIView {
     }
     
     private func configure() {
-        addSubview(logoImageView)
-        addSubview(messageLabel)
+        addSubviews(logoImageView, messageLabel)
         
         
         let messageLabelTopConstraint : NSLayoutConstraint

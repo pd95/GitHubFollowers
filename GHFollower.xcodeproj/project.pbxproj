@@ -41,6 +41,7 @@
 		17E7DD9623F1727300EE5298 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9523F1727300EE5298 /* SearchViewController.swift */; };
 		17E7DD9823F172A300EE5298 /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9723F172A300EE5298 /* FavoriteListViewController.swift */; };
 		17E7DD9A23F176B000EE5298 /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9923F176B000EE5298 /* GFButton.swift */; };
+		17EDF18323FA99C400FE7CE2 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDF18223FA99C400FE7CE2 /* UIView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		17E7DD9523F1727300EE5298 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		17E7DD9723F172A300EE5298 /* FavoriteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
 		17E7DD9923F176B000EE5298 /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
+		17EDF18223FA99C400FE7CE2 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				1709195823F1A76F00560D6C /* UIViewController+Ext.swift */,
+				17EDF18223FA99C400FE7CE2 /* UIView+Ext.swift */,
 				17DD560D23F489AF0076AADD /* Date+Ext.swift */,
 			);
 			path = Extensions;
@@ -372,6 +375,7 @@
 				178EF27C23F8A86F002EEFF1 /* GFAlertContainerView.swift in Sources */,
 				1709195323F19F7D00560D6C /* GFTitleLabel.swift in Sources */,
 				17DD560E23F489AF0076AADD /* Date+Ext.swift in Sources */,
+				17EDF18323FA99C400FE7CE2 /* UIView+Ext.swift in Sources */,
 				178EF27323F4AB39002EEFF1 /* PersistenceManager.swift in Sources */,
 				177F61A223F2AFA200A25B38 /* GFSecondaryTitleLabel.swift in Sources */,
 				177F619C23F20FB200A25B38 /* GFEmptyStateView.swift in Sources */,
