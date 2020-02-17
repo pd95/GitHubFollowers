@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoriteListViewController: UIViewController {
+class FavoriteListViewController: GFDataLoadingViewController {
     
     let tableView = UITableView()
     var favorites : [Follower] = []
@@ -43,12 +43,13 @@ class FavoriteListViewController: UIViewController {
     }
     
     func getFavorites() {
+        showLoadingView()
         PersistenceManager.retrieveFavorites { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .success(let favorites):
                     if favorites.isEmpty {
-                        self.showGFEmptyStateView(with: "No Favorites?\nAdd one on the Follower screen.", in: self.view)
+                        self.showEmptyStateView(with: "No Favorites?\nAdd one on the Follower screen.", in: self.view)
                     }
                     else {
                         self.favorites = favorites
@@ -61,6 +62,7 @@ class FavoriteListViewController: UIViewController {
                 case .failure(let error):
                     self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
             }
+            self.dismissLoadingView()
         }
     }
 }

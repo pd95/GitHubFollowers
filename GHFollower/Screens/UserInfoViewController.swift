@@ -12,7 +12,7 @@ protocol UserInfoViewControllerDelegate: class {
     func didRequestFollowers(for username: String)
 }
 
-class UserInfoViewController: UIViewController {
+class UserInfoViewController: GFDataLoadingViewController {
     
     let scrollView = UIScrollView()
     let contentView = UIView()
@@ -57,6 +57,7 @@ class UserInfoViewController: UIViewController {
     }
 
     private func getUserInfo() {
+        showLoadingView()
         NetworkManager.shared.getUserInfo(for: userName) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
@@ -66,6 +67,7 @@ class UserInfoViewController: UIViewController {
                 case .success(let user):
                     DispatchQueue.main.async { self.configureUIElements(with: user) }
             }
+            self.dismissLoadingView()
         }
     }
     

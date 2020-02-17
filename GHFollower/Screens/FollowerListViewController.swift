@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FollowerListViewController: UIViewController {
+class FollowerListViewController: GFDataLoadingViewController {
 
     enum Section {
         case main
@@ -76,10 +76,10 @@ class FollowerListViewController: UIViewController {
     }
     
     private func getFollowers(username: String, page: Int) {
-        showGFLoadingScreen()
+        showLoadingView()
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] (result) in
             guard let self = self else { return }
-            self.dismissGFLoadingScreen()
+            self.dismissLoadingView()
             
             switch result {
             case .failure(let error):
@@ -91,7 +91,7 @@ class FollowerListViewController: UIViewController {
                 if self.followers.isEmpty {
                     let message = "This user doen't have any followers. Go follow them 😃."
                     DispatchQueue.main.async {
-                        self.showGFEmptyStateView(with: message, in: self.view)
+                        self.showEmptyStateView(with: message, in: self.view)
                     }
                 }
                 else {
@@ -120,11 +120,11 @@ class FollowerListViewController: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        showGFLoadingScreen()
+        showLoadingView()
 
         NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
             guard let self = self else { return }
-            self.dismissGFLoadingScreen()
+            self.dismissLoadingView()
             
             switch result {
                 case .success(let user):
