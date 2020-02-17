@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1709194F23F187CA00560D6C /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709194E23F187CA00560D6C /* GFTextField.swift */; };
 		1709195123F1921C00560D6C /* FollowerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709195023F1921C00560D6C /* FollowerListViewController.swift */; };
 		1709195323F19F7D00560D6C /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709195223F19F7D00560D6C /* GFTitleLabel.swift */; };
 		1709195523F1A0CE00560D6C /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709195423F1A0CE00560D6C /* GFBodyLabel.swift */; };
@@ -48,7 +47,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1709194E23F187CA00560D6C /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
 		1709195023F1921C00560D6C /* FollowerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListViewController.swift; sourceTree = "<group>"; };
 		1709195223F19F7D00560D6C /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		1709195423F1A0CE00560D6C /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				177F619623F20F1E00A25B38 /* Labels */,
 				177F619723F20F2900A25B38 /* ViewControllers */,
 				177F619823F20F3B00A25B38 /* ImageViews */,
-				177F619523F20F1400A25B38 /* TextFields */,
 				177F619423F20F0900A25B38 /* Buttons */,
 				177F619A23F20FB200A25B38 /* Views */,
 				177F618B23F1EAAC00A25B38 /* Cells */,
@@ -224,14 +221,6 @@
 				17E7DD9923F176B000EE5298 /* GFButton.swift */,
 			);
 			path = Buttons;
-			sourceTree = "<group>";
-		};
-		177F619523F20F1400A25B38 /* TextFields */ = {
-			isa = PBXGroup;
-			children = (
-				1709194E23F187CA00560D6C /* GFTextField.swift */,
-			);
-			path = TextFields;
 			sourceTree = "<group>";
 		};
 		177F619623F20F1E00A25B38 /* Labels */ = {
@@ -387,7 +376,6 @@
 				17521F2F23F16C4D00D6DABF /* SceneDelegate.swift in Sources */,
 				177F61A823F30FF200A25B38 /* GFItemInfoViewController.swift in Sources */,
 				177F619E23F2A66200A25B38 /* UserInfoViewController.swift in Sources */,
-				1709194F23F187CA00560D6C /* GFTextField.swift in Sources */,
 				1709195523F1A0CE00560D6C /* GFBodyLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

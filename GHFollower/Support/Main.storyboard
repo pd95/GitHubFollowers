@@ -14,10 +14,54 @@
                     <view key="view" contentMode="scaleToFill" id="L1d-Ni-Sjh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gh-logo" translatesAutoresizingMaskIntoConstraints="NO" id="bwU-5r-y0C">
+                                <rect key="frame" x="60" y="124" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="396-H9-j1h"/>
+                                    <constraint firstAttribute="height" constant="200" id="RFx-gj-0ys"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a username" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MeW-LZ-x7H">
+                                <rect key="frame" x="50" y="372" width="220" height="50"/>
+                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="G0n-ve-oAh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2MD-Pg-jyY">
+                                <rect key="frame" x="50" y="452" width="220" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="cu0-ZT-4nE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <state key="normal" title="Get Followers">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="2MD-Pg-jyY" firstAttribute="top" secondItem="MeW-LZ-x7H" secondAttribute="bottom" constant="30" id="5Ve-as-Sqf"/>
+                            <constraint firstItem="TBj-pH-Hfk" firstAttribute="trailing" secondItem="MeW-LZ-x7H" secondAttribute="trailing" constant="50" id="7mx-lD-zer"/>
+                            <constraint firstItem="bwU-5r-y0C" firstAttribute="top" secondItem="TBj-pH-Hfk" secondAttribute="top" constant="80" id="BGq-Mn-BYQ"/>
+                            <constraint firstItem="bwU-5r-y0C" firstAttribute="centerX" secondItem="TBj-pH-Hfk" secondAttribute="centerX" id="Bgh-0y-jTg"/>
+                            <constraint firstItem="2MD-Pg-jyY" firstAttribute="leading" secondItem="TBj-pH-Hfk" secondAttribute="leading" constant="50" id="CFs-Ab-kbG"/>
+                            <constraint firstItem="MeW-LZ-x7H" firstAttribute="top" secondItem="bwU-5r-y0C" secondAttribute="bottom" constant="48" id="SfG-OH-iIM"/>
+                            <constraint firstItem="TBj-pH-Hfk" firstAttribute="trailing" secondItem="2MD-Pg-jyY" secondAttribute="trailing" constant="50" id="UQo-9W-18v"/>
+                            <constraint firstItem="MeW-LZ-x7H" firstAttribute="leading" secondItem="TBj-pH-Hfk" secondAttribute="leading" constant="50" id="tbM-g1-ie1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="TBj-pH-Hfk"/>
                     </view>
                     <navigationItem key="navigationItem" id="a9q-nS-3FT"/>
+                    <connections>
+                        <outlet property="callToActionButton" destination="2MD-Pg-jyY" id="fBn-gf-pYp"/>
+                        <outlet property="logoImageView" destination="bwU-5r-y0C" id="Pvp-QB-Ap1"/>
+                        <outlet property="usernameTextField" destination="MeW-LZ-x7H" id="Y52-QD-hwt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cOb-oE-8bZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,4 +141,7 @@
             <point key="canvasLocation" x="2276.25" y="725.70422535211264"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="gh-logo" width="554" height="554"/>
+    </resources>
 </document>
