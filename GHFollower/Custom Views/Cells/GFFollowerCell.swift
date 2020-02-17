@@ -9,10 +9,12 @@
 import UIKit
 
 class GFFollowerCell: UICollectionViewCell {
+
     static let reuseID = "GFFollowerCell"
     
     let avatarImageView = GFAvatarImageView(frame: .zero)
     let usernameLabel = GFTitleLabel(textAlignment: .center, fontSize: 16)
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,14 +32,7 @@ class GFFollowerCell: UICollectionViewCell {
     func set(follower: Follower) {
         usernameLabel.text = follower.login
         avatarImageView.image = Images.placeholder
-        NetworkManager.shared.downloadImage(from: follower.avatarUrl) { [weak self] image in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                if self.usernameLabel.text == follower.login {
-                    self.avatarImageView.image = image
-                }
-            }
-        }
+        avatarImageView.downloadImage(fromUrl: follower.avatarUrl)
     }
     
     private func configure() {

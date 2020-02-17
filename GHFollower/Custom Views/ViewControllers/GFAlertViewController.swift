@@ -18,8 +18,10 @@ class GFAlertViewController: UIViewController {
     var alertTitle: String?
     var message: String?
     var buttonTitle: String?
+
     let padding: CGFloat = 20
     
+
     init(title: String, message: String, buttonTitle: String) {
         super.init(nibName: nil, bundle: nil)
         self.alertTitle = title
@@ -33,21 +35,16 @@ class GFAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        view.addSubviews(containerView, titleLabel, actionButton, messageLabel)
+
         configureContainerView()
         configureTitleLabel()
         configureActionButton()
         configureMessageLabel()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     func configureContainerView() {
-        view.addSubview(containerView)
-        
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -57,7 +54,6 @@ class GFAlertViewController: UIViewController {
     }
     
     func configureTitleLabel() {
-        containerView.addSubview(titleLabel)
         titleLabel.text = alertTitle ?? "Something went wrong"
         
         NSLayoutConstraint.activate([
@@ -69,7 +65,6 @@ class GFAlertViewController: UIViewController {
     }
 
     func configureActionButton() {
-        containerView.addSubview(actionButton)
         actionButton.setTitle(buttonTitle ?? "OK", for: .normal)
         actionButton.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
         
@@ -82,8 +77,6 @@ class GFAlertViewController: UIViewController {
     }
     
     func configureMessageLabel() {
-        containerView.addSubview(messageLabel)
-        
         messageLabel.text = message ?? "Unable to complete request"
         messageLabel.numberOfLines = 4
         

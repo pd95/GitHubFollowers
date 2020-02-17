@@ -17,6 +17,7 @@ class GFItemInfoViewController: UIViewController {
 
     var user: User!
     
+
     init(user: User) {
         super.init(nibName: nil, bundle: nil)
         self.user = user
@@ -72,5 +73,4 @@ class GFItemInfoViewController: UIViewController {
             actionButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-
 }

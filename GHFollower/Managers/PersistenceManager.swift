@@ -13,6 +13,7 @@ enum PersistenceActionType {
 }
 
 enum PersistenceManager {
+
     static private let defaults = UserDefaults.standard
     
     enum Keys {
@@ -30,6 +31,7 @@ enum PersistenceManager {
                                 return
                             }
                             favorites.append(favorite)
+
                         case .remove:
                             favorites.removeAll { $0.login == favorite.login }
                     }

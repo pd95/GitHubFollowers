@@ -12,6 +12,7 @@ protocol UserInfoViewControllerDelegate: class {
     func didRequestFollowers(for username: String)
 }
 
+
 class UserInfoViewController: GFDataLoadingViewController {
     
     let scrollView = UIScrollView()
@@ -26,6 +27,7 @@ class UserInfoViewController: GFDataLoadingViewController {
     
     var userName : String!
     weak var delegate : UserInfoViewControllerDelegate!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +124,7 @@ class UserInfoViewController: GFDataLoadingViewController {
     }
 }
 
+
 extension UserInfoViewController: GFRepoItemInfoViewControllerDelegate {
     func didTapGitHubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
@@ -132,6 +135,7 @@ extension UserInfoViewController: GFRepoItemInfoViewControllerDelegate {
         presentSafariViewController(with: url)
     }
 }
+
 
 extension UserInfoViewController: GFFollowerItemInfoViewControllerDelegate {
     func didTapGetFollowers(for user: User) {

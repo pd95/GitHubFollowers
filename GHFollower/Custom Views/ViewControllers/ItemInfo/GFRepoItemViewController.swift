@@ -13,7 +13,9 @@ protocol GFRepoItemInfoViewControllerDelegate: class {
 }
 
 class GFRepoItemViewController: GFItemInfoViewController {
+
     weak var delegate: GFRepoItemInfoViewControllerDelegate!
+
 
     init(user: User, delegate: GFRepoItemInfoViewControllerDelegate) {
         super.init(user: user)

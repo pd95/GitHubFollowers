@@ -11,6 +11,7 @@ import UIKit
 class GFAvatarImageView: UIImageView {
     
     let placeholderImage = Images.placeholder
+    var imageUrl: String!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,5 +27,17 @@ class GFAvatarImageView: UIImageView {
         clipsToBounds = true
         image = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func downloadImage(fromUrl url: String) {
+        imageUrl = url
+        NetworkManager.shared.downloadImage(from: url) { [weak self] image in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if self.imageUrl == url {
+                    self.image = image
+                }
+            }
+        }
     }
 }
