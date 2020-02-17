@@ -44,6 +44,7 @@
 		17EDF18323FA99C400FE7CE2 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDF18223FA99C400FE7CE2 /* UIView+Ext.swift */; };
 		17EDF18523FB1D4C00FE7CE2 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDF18423FB1D4C00FE7CE2 /* UITableView+Ext.swift */; };
 		17EDF18723FB2A6D00FE7CE2 /* GFDataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EDF18623FB2A6D00FE7CE2 /* GFDataLoadingViewController.swift */; };
+		17EDF18923FB44DC00FE7CE2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 17EDF18823FB44DB00FE7CE2 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		17EDF18223FA99C400FE7CE2 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		17EDF18423FB1D4C00FE7CE2 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		17EDF18623FB2A6D00FE7CE2 /* GFDataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFDataLoadingViewController.swift; sourceTree = "<group>"; };
+		17EDF18823FB44DB00FE7CE2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 		17521F2023F16C4D00D6DABF = {
 			isa = PBXGroup;
 			children = (
+				17EDF18823FB44DB00FE7CE2 /* README.md */,
 				17521F2B23F16C4D00D6DABF /* GHFollower */,
 				17521F2A23F16C4D00D6DABF /* Products */,
 			);
@@ -346,6 +349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17EDF18923FB44DC00FE7CE2 /* README.md in Resources */,
 				17521F3923F16C4F00D6DABF /* LaunchScreen.storyboard in Resources */,
 				17521F3623F16C4F00D6DABF /* Assets.xcassets in Resources */,
 			);
