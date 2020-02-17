@@ -10,7 +10,7 @@
         <!--Search-->
         <scene sceneID="9wl-yX-X0N">
             <objects>
-                <viewController id="lW9-MP-Tb0" userLabel="Search" customClass="SearchViewController" customModule="GHFollower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Search" id="lW9-MP-Tb0" userLabel="Search" customClass="SearchViewController" customModule="GHFollower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L1d-Ni-Sjh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,7 +26,7 @@
         <!--Favorites-->
         <scene sceneID="ubi-AB-MCZ">
             <objects>
-                <viewController id="Abi-qA-KQY" userLabel="Favorites" customClass="FavoriteListViewController" customModule="GHFollower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Favorites" id="Abi-qA-KQY" userLabel="Favorites" customClass="FavoriteListViewController" customModule="GHFollower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kQF-kq-vI0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,6 +45,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="GKs-hi-JyX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Klh-Tr-zh7">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -57,11 +58,11 @@
             </objects>
             <point key="canvasLocation" x="1278.75" y="390.84507042253523"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="5Lx-dS-Thg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qBF-W3-vzg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="lFE-Hg-GOB"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="search" id="lFE-Hg-GOB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F5j-tm-4af">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -76,11 +77,11 @@
             </objects>
             <point key="canvasLocation" x="2278.125" y="55.985915492957744"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="ulg-Lm-70v">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6LC-Ib-Je4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="uKb-hb-fEE"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="" systemItem="favorites" id="uKb-hb-fEE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aqa-Xz-0QF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
