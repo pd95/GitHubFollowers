@@ -11,8 +11,8 @@ import UIKit
 class SearchViewController: UIViewController {
     
     @IBOutlet var logoImageView : UIImageView!
-    @IBOutlet var usernameTextField : UITextField!
-    @IBOutlet var callToActionButton : UIButton!
+    @IBOutlet var usernameTextField : GFTextField!
+    @IBOutlet var callToActionButton : GFButton!
     
     var isUsernameEntered: Bool {
         return !usernameTextField.text!.isEmpty
@@ -52,13 +52,9 @@ class SearchViewController: UIViewController {
         
     func configureTextField() {
         usernameTextField.delegate = self
-        usernameTextField.layer.cornerRadius = 10
-        usernameTextField.layer.borderWidth  = 2
-        usernameTextField.layer.borderColor  = UIColor.systemGray4.cgColor
     }
     
     func configureCallToActionButton() {
-        callToActionButton.layer.cornerRadius = 10
         callToActionButton.addTarget(self, action: #selector(pushFollowerListViewController), for: .touchUpInside)
     }
 }
