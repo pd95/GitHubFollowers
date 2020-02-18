@@ -10,13 +10,12 @@ import UIKit
 
 class FavoriteListViewController: GFDataLoadingViewController {
     
-    let tableView = UITableView()
+    @IBOutlet var tableView: UITableView!
     var favorites : [Follower] = []
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewController()
         configureTableView()
     }
     
@@ -25,22 +24,8 @@ class FavoriteListViewController: GFDataLoadingViewController {
         getFavorites()
     }
     
-    func configureViewController() {
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Favorites"
-    }
-    
     func configureTableView() {
-        view.addSubview(tableView)
-
-        tableView.frame = view.bounds
-        tableView.rowHeight = 80
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.removeExcessCells()
-        
-        tableView.register(GFFavoriteCell.self, forCellReuseIdentifier: GFFavoriteCell.reuseID)
     }
     
     func getFavorites() {
