@@ -16,6 +16,7 @@
 		1709196323F1BB2100560D6C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709196223F1BB2100560D6C /* User.swift */; };
 		1709196623F1BF0E00560D6C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709196523F1BF0E00560D6C /* NetworkManager.swift */; };
 		1709196923F1E44A00560D6C /* GFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709196823F1E44A00560D6C /* GFError.swift */; };
+		1726063923FBEBF3008DFCB7 /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1726063823FBEBF3008DFCB7 /* GFTextField.swift */; };
 		17521F2D23F16C4D00D6DABF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17521F2C23F16C4D00D6DABF /* AppDelegate.swift */; };
 		17521F2F23F16C4D00D6DABF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17521F2E23F16C4D00D6DABF /* SceneDelegate.swift */; };
 		17521F3623F16C4F00D6DABF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17521F3523F16C4F00D6DABF /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		1709196223F1BB2100560D6C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1709196523F1BF0E00560D6C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1709196823F1E44A00560D6C /* GFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFError.swift; sourceTree = "<group>"; };
+		1726063823FBEBF3008DFCB7 /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
 		17521F2923F16C4D00D6DABF /* GHFollower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHFollower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17521F2C23F16C4D00D6DABF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17521F2E23F16C4D00D6DABF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		1709195B23F1AA0D00560D6C /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				1726063A23FBEC04008DFCB7 /* TextFields */,
 				177F619623F20F1E00A25B38 /* Labels */,
 				177F619723F20F2900A25B38 /* ViewControllers */,
 				177F619823F20F3B00A25B38 /* ImageViews */,
@@ -172,6 +175,14 @@
 				177F61A323F2B74700A25B38 /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1726063A23FBEC04008DFCB7 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				1726063823FBEBF3008DFCB7 /* GFTextField.swift */,
+			);
+			path = TextFields;
 			sourceTree = "<group>";
 		};
 		17521F2023F16C4D00D6DABF = {
@@ -344,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1726063923FBEBF3008DFCB7 /* GFTextField.swift in Sources */,
 				177F618D23F1EAC600A25B38 /* GFAvatarImageView.swift in Sources */,
 				17EDF18523FB1D4C00FE7CE2 /* UITableView+Ext.swift in Sources */,
 				1709196323F1BB2100560D6C /* User.swift in Sources */,
