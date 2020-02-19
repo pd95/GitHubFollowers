@@ -22,18 +22,17 @@ class FollowerListViewController: GFDataLoadingViewController {
     var isSearching = false
     var isLoadingMoreFollowers = false
 
-    var collectionView : UICollectionView!
+    @IBOutlet var collectionView : UICollectionView!
     var dataSource : UICollectionViewDiffableDataSource<Section, Follower>!
 
 
     init(username: String) {
         super.init(nibName: nil, bundle: nil)
         self.username = username
-        title = username
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {
@@ -47,26 +46,16 @@ class FollowerListViewController: GFDataLoadingViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        title = username
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func configureViewController() {
-        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem = addButton
     }
     
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
-        view.addSubview(collectionView)
-
-        collectionView.delegate = self
         collectionView.dataSource = dataSource
-        
-        collectionView.backgroundColor = .systemBackground
-        collectionView.register(GFFollowerCell.self, forCellWithReuseIdentifier: GFFollowerCell.reuseID)
     }
     
     private func configureSearchController() {
@@ -127,7 +116,7 @@ class FollowerListViewController: GFDataLoadingViewController {
         }
     }
     
-    @objc func addButtonTapped() {
+    @IBAction @objc func addButtonTapped() {
         showLoadingView()
 
         NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
@@ -215,5 +204,35 @@ extension FollowerListViewController: UserInfoViewControllerDelegate {
         filteredFollowers.removeAll()
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         getFollowers(username: username, page: page)
+    }
+}
+
+
+extension FollowerListViewController : UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width                       = collectionView.bounds.width
+        let padding : CGFloat           = 12
+        let minimumItemSpacing: CGFloat = 10
+        let availableWidth              = width - padding * 2 - minimumItemSpacing * 2
+        let itemWidth                   = availableWidth / 3
+
+        return CGSize(width: itemWidth, height: itemWidth + 40)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        let padding : CGFloat = 12
+        return UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 12
     }
 }

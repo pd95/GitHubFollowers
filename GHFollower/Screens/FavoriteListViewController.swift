@@ -54,6 +54,16 @@ class FavoriteListViewController: GFDataLoadingViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showFollowers",
+            let destinationVC = segue.destination as? FollowerListViewController else {
+                return
+        }
+        if let cell = sender as? GFFavoriteCell {
+            destinationVC.username = cell.usernameLabel.text
+        }
+    }
 }
 
 extension FavoriteListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -68,12 +78,6 @@ extension FavoriteListViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let favorite = favorites[indexPath.row]
-        let destinationVC = FollowerListViewController(username: favorite.login)
-        
-        navigationController?.pushViewController(destinationVC, animated: true)
-    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
