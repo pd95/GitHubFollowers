@@ -31,6 +31,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go"/>
+                                <connections>
+                                    <outlet property="delegate" destination="lW9-MP-Tb0" id="uLX-Jh-gCW"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2MD-Pg-jyY" customClass="GFButton" customModule="GHFollower" customModuleProvider="target">
                                 <rect key="frame" x="50" y="452" width="220" height="50"/>
@@ -42,6 +45,9 @@
                                 <state key="normal" title="Get Followers">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="HnK-9S-oza" kind="show" identifier="getFollowers" id="J3v-uW-xQZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -214,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9E-fj-Ysg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4421.25" y="725.70422535211264"/>
+            <point key="canvasLocation" x="4815" y="404"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ezT-9k-cDS">
@@ -345,6 +351,9 @@
             <point key="canvasLocation" x="1218.75" y="1364.7887323943662"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="J3v-uW-xQZ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="gh-logo" width="554" height="554"/>
     </resources>

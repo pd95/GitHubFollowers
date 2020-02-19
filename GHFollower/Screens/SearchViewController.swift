@@ -22,8 +22,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureTextField()
-        configureCallToActionButton()
         createDismissKeyboardTapGesture()
     }
     
@@ -38,31 +36,31 @@ class SearchViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func pushFollowerListViewController() {
-        guard isUsernameEntered else {
-            presentGFAlertOnMainThread(title: "Empty Username", message: "Please enter a username. We need to know who to look for 😀.", buttonTitle: "OK")
-            return
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "getFollowers" {
+            if !isUsernameEntered {
+                presentGFAlertOnMainThread(title: "Empty Username", message: "Please enter a username. We need to know who to look for 😀.", buttonTitle: "OK")
+                return false
+            }
         }
-        
-        usernameTextField.resignFirstResponder()
-        
-        let followerListVC = FollowerListViewController(username: usernameTextField.text!)
-        navigationController?.pushViewController(followerListVC, animated: true)
-    }
-        
-    func configureTextField() {
-        usernameTextField.delegate = self
+        return true
     }
     
-    func configureCallToActionButton() {
-        callToActionButton.addTarget(self, action: #selector(pushFollowerListViewController), for: .touchUpInside)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "getFollowers",
+            let destinationVC = segue.destination as? FollowerListViewController {
+            destinationVC.username = usernameTextField.text
+        }
+        usernameTextField.resignFirstResponder()
     }
 }
 
 
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        pushFollowerListViewController()
+        if shouldPerformSegue(withIdentifier: "getFollowers", sender: nil) {
+            performSegue(withIdentifier: "getFollowers", sender: nil)
+        }
         return true
     }
 }
