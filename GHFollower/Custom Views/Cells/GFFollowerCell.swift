@@ -13,10 +13,11 @@ class GFFollowerCell: UICollectionViewCell {
     static let reuseID = "GFFollowerCell"
     
     @IBOutlet var avatarImageView : GFAvatarImageView!
-    @IBOutlet var usernameLabel : UILabel!
+    @IBOutlet var usernameLabel : GFTitleLabel!
 
     override func prepareForReuse() {
         usernameLabel.text = nil
+        usernameLabel.set(textAlignment: .center, fontSize: 16)
     }
     
     func set(follower: Follower) {

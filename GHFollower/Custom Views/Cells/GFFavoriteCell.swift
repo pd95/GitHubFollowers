@@ -13,10 +13,11 @@ class GFFavoriteCell: UITableViewCell {
     static let reuseID = "GFFavoriteCell"
     
     @IBOutlet var avatarImageView : GFAvatarImageView!
-    @IBOutlet var usernameLabel : UILabel! // GFTitleLabel(textAlignment: .left, fontSize: 26)
+    @IBOutlet var usernameLabel : GFTitleLabel!
 
     override func prepareForReuse() {
         usernameLabel.text = nil
+        usernameLabel.set(textAlignment: .left, fontSize: 26)
     }
 
     func set(favorite: Follower) {
