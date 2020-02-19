@@ -10,30 +10,22 @@ import UIKit
 
 class GFUserInfoHeaderViewController: UIViewController {
     
-    let avatarImageView = GFAvatarImageView(frame: .zero)
-    let usernameLabel = GFTitleLabel(textAlignment: .left, fontSize: 34)
-    let nameLabel = GFSecondaryTitleLabel(fontSize: 18)
-    let locationImageView = UIImageView()
-    let locationLabel = GFSecondaryTitleLabel(fontSize: 18)
-    let bioLabel = GFBodyLabel(textAlignment: .left)
+    @IBOutlet var avatarImageView : GFAvatarImageView!
+    @IBOutlet var usernameLabel : GFTitleLabel!
+    @IBOutlet var nameLabel : GFSecondaryTitleLabel!
+    @IBOutlet var locationLabel : GFSecondaryTitleLabel!
+    @IBOutlet var bioLabel : GFBodyLabel!
     
     var user: User!
     
-    
-    init(user: User) {
-        super.init(nibName: nil, bundle: nil)
+    func set(user: User) {
         self.user = user
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        configureUIElements()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubviews(avatarImageView, usernameLabel, nameLabel, locationImageView, locationLabel, bioLabel)
         layoutUI()
-        configureUIElements()
     }
     
     func configureUIElements() {
@@ -42,48 +34,12 @@ class GFUserInfoHeaderViewController: UIViewController {
         nameLabel.text          = user.name ?? ""
         locationLabel.text      = user.location ?? "<No location>"
         bioLabel.text           = user.bio ?? ""
-        bioLabel.numberOfLines  = 3
-        
-        locationImageView.image     = SFSymbols.location
-        locationImageView.tintColor = .secondaryLabel
     }
         
     func layoutUI() {
-        let padding : CGFloat = 20
-        let textImagePadding : CGFloat = 12
-
-        locationImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
-            avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 90),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 90),
-            
-            usernameLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor),
-            usernameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: textImagePadding),
-            usernameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            usernameLabel.heightAnchor.constraint(equalToConstant: 38),
-            
-            nameLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor, constant: 8),
-            nameLabel.leadingAnchor.constraint(equalTo: usernameLabel.leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: usernameLabel.trailingAnchor),
-            nameLabel.heightAnchor.constraint(equalToConstant: 20),
-            
-            locationImageView.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor),
-            locationImageView.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: textImagePadding),
-            locationImageView.widthAnchor.constraint(equalToConstant: 20),
-            locationImageView.heightAnchor.constraint(equalToConstant: 20),
-
-            locationLabel.centerYAnchor.constraint(equalTo: locationImageView.centerYAnchor),
-            locationLabel.leadingAnchor.constraint(equalTo: locationImageView.trailingAnchor, constant: 5),
-            locationLabel.trailingAnchor.constraint(equalTo: usernameLabel.trailingAnchor),
-            locationLabel.heightAnchor.constraint(equalToConstant: 20),
-
-            bioLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: textImagePadding),
-            bioLabel.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
-            bioLabel.trailingAnchor.constraint(equalTo: usernameLabel.trailingAnchor),
-            bioLabel.heightAnchor.constraint(equalToConstant: 90)
-        ])
+        usernameLabel.set(textAlignment: .left, fontSize: 34)
+        nameLabel.set(fontSize: 18)
+        locationLabel.set(fontSize: 18)
+        bioLabel.set(textAlignment: .left)
     }
 }

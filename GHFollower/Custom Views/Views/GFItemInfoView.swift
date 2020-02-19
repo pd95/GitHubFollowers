@@ -8,13 +8,28 @@
 
 import UIKit
 
-enum ItemInfoType {
+enum ItemInfoType: Int {
     case repos, gists, followers, following
 }
 
 
 @IBDesignable
-class GFItemInfoView: UILabel {
+class GFItemInfoView: UIView {
+    
+    var infoType: ItemInfoType = .repos
+    @IBInspectable var itemInfoType: Int {
+        get { infoType.rawValue }
+        set {
+            if let valid = ItemInfoType(rawValue: newValue) {
+                infoType = valid
+            }
+        }
+    }
+    @IBInspectable var count: Int = 0 {
+        didSet {
+            set(itemInfoType: infoType, withCount: count)
+        }
+    }
 
     let symbolImageView = UIImageView()
     let titleLabel = GFTitleLabel(textAlignment: .left, fontSize: 14)
@@ -42,6 +57,8 @@ class GFItemInfoView: UILabel {
         symbolImageView.translatesAutoresizingMaskIntoConstraints = false
         symbolImageView.contentMode = .scaleAspectFill
         symbolImageView.tintColor = .label
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        countLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             symbolImageView.topAnchor.constraint(equalTo: self.topAnchor),

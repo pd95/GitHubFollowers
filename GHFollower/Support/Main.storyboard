@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -94,7 +95,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEv-HT-PZe" customClass="GFTitleLabel" customModule="GHFollower" customModuleProvider="target">
-                                                    <rect key="frame" x="96" y="24.5" width="178" height="31.5"/>
+                                                    <rect key="frame" x="96" y="24.5" width="178" height="31"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -216,7 +217,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Dgk-c7-hCy" id="Gxz-k7-OoG"/>
-                        <segue destination="41U-zA-g3w" kind="presentation" identifier="showUser" id="TTb-xP-eJu"/>
+                        <segue destination="lGp-9V-Yx5" kind="presentation" identifier="showUser" id="TTb-xP-eJu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9E-fj-Ysg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -230,13 +231,103 @@
                     <view key="view" contentMode="scaleToFill" id="C6h-s0-jLt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="66Z-ew-uzT">
+                                <rect key="frame" x="0.0" y="56" width="320" height="492"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xu4-0x-5qt" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="620"/>
+                                        <subviews>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHA-QA-geI">
+                                                <rect key="frame" x="20" y="0.0" width="280" height="210"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="210" id="hG4-02-arc"/>
+                                                </constraints>
+                                                <connections>
+                                                    <segue destination="IVi-Hr-N9j" kind="embed" identifier="embed" id="Peu-jS-eE7"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l9N-89-5jz">
+                                                <rect key="frame" x="20" y="230" width="280" height="140"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="140" id="I4O-nh-hQw"/>
+                                                </constraints>
+                                                <connections>
+                                                    <segue destination="UHw-6J-jEg" kind="embed" identifier="embed" id="pSy-yA-oc5"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="twp-fR-fks">
+                                                <rect key="frame" x="20" y="390" width="280" height="140"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="140" id="GQ5-hc-gBZ"/>
+                                                </constraints>
+                                                <connections>
+                                                    <segue destination="JwL-SW-Cti" kind="embed" identifier="embed" id="kJF-y3-l1u"/>
+                                                </connections>
+                                            </containerView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GitHub since 20XX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcD-tq-Mar" customClass="GFBodyLabel" customModule="GHFollower" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="550" width="280" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Vfr-Jf-twd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="twp-fR-fks" secondAttribute="trailing" constant="20" id="1I3-ss-g7z"/>
+                                            <constraint firstItem="l9N-89-5jz" firstAttribute="leading" secondItem="xu4-0x-5qt" secondAttribute="leading" constant="20" id="1Is-sg-v8c"/>
+                                            <constraint firstItem="twp-fR-fks" firstAttribute="top" secondItem="l9N-89-5jz" secondAttribute="bottom" constant="20" id="4ZQ-5E-W8Y"/>
+                                            <constraint firstItem="jHA-QA-geI" firstAttribute="leading" secondItem="xu4-0x-5qt" secondAttribute="leading" constant="20" id="7Uq-l2-iH4"/>
+                                            <constraint firstItem="l9N-89-5jz" firstAttribute="leading" secondItem="xu4-0x-5qt" secondAttribute="leading" constant="20" id="Car-ZH-IMb"/>
+                                            <constraint firstAttribute="bottom" secondItem="pcD-tq-Mar" secondAttribute="bottom" constant="20" id="LaQ-k7-M53"/>
+                                            <constraint firstItem="pcD-tq-Mar" firstAttribute="top" secondItem="twp-fR-fks" secondAttribute="bottom" constant="20" id="Nw3-Ym-BHX"/>
+                                            <constraint firstItem="pcD-tq-Mar" firstAttribute="leading" secondItem="xu4-0x-5qt" secondAttribute="leading" constant="20" id="ODu-C2-uRP"/>
+                                            <constraint firstAttribute="trailing" secondItem="pcD-tq-Mar" secondAttribute="trailing" constant="20" id="Tyx-4h-mrc"/>
+                                            <constraint firstItem="l9N-89-5jz" firstAttribute="top" secondItem="jHA-QA-geI" secondAttribute="bottom" constant="20" id="fpA-Xw-nnJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="jHA-QA-geI" secondAttribute="trailing" constant="20" id="tcO-28-MIk"/>
+                                            <constraint firstAttribute="trailing" secondItem="l9N-89-5jz" secondAttribute="trailing" constant="20" id="thT-ev-XDD"/>
+                                            <constraint firstItem="twp-fR-fks" firstAttribute="leading" secondItem="xu4-0x-5qt" secondAttribute="leading" constant="20" id="uEh-F7-E5r"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xu4-0x-5qt" firstAttribute="top" secondItem="hWx-9i-CAY" secondAttribute="top" id="5Ij-Yt-mYY"/>
+                                    <constraint firstItem="xu4-0x-5qt" firstAttribute="leading" secondItem="hWx-9i-CAY" secondAttribute="leading" id="Bri-ur-u9z"/>
+                                    <constraint firstItem="xu4-0x-5qt" firstAttribute="trailing" secondItem="hWx-9i-CAY" secondAttribute="trailing" constant="320" id="PO9-Uh-Cz7"/>
+                                    <constraint firstItem="jHA-QA-geI" firstAttribute="top" secondItem="hWx-9i-CAY" secondAttribute="top" id="xVf-hc-5LP"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="hWx-9i-CAY"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="FOu-5y-ZYJ"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="66Z-ew-uzT" firstAttribute="top" secondItem="0jc-de-JBv" secondAttribute="top" id="41u-t5-9Sp"/>
+                            <constraint firstItem="66Z-ew-uzT" firstAttribute="leading" secondItem="0jc-de-JBv" secondAttribute="leading" id="7wX-MS-0gr"/>
+                            <constraint firstItem="0jc-de-JBv" firstAttribute="trailing" secondItem="66Z-ew-uzT" secondAttribute="trailing" id="AD7-gr-ueC"/>
+                            <constraint firstItem="0jc-de-JBv" firstAttribute="bottom" secondItem="66Z-ew-uzT" secondAttribute="bottom" id="s4K-Tk-WL5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0jc-de-JBv"/>
                     </view>
+                    <navigationItem key="navigationItem" id="MqH-JW-foD">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="cpJ-1D-SsF">
+                            <connections>
+                                <action selector="dismissModal" destination="41U-zA-g3w" id="U7O-Ft-G6E"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="xu4-0x-5qt" id="Zdn-Jk-ryZ"/>
+                        <outlet property="dateLabel" destination="pcD-tq-Mar" id="KdC-72-aaE"/>
+                        <outlet property="scrollView" destination="66Z-ew-uzT" id="y6a-fR-avZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSM-sL-1SB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5874" y="432"/>
+            <point key="canvasLocation" x="6868.125" y="429.92957746478874"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ezT-9k-cDS">
@@ -366,11 +457,273 @@
             </objects>
             <point key="canvasLocation" x="1218.75" y="1364.7887323943662"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uvX-Qc-t0S">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lGp-9V-Yx5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nFA-Pu-YB9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="41U-zA-g3w" kind="relationship" relationship="rootViewController" id="ZU3-cJ-5Ev"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="enB-75-X0m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5872.5" y="430.98591549295776"/>
+        </scene>
+        <!--User Info Header View Controller-->
+        <scene sceneID="TFi-LO-xz5">
+            <objects>
+                <viewController id="IVi-Hr-N9j" customClass="GFUserInfoHeaderViewController" customModule="GHFollower" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qlx-wR-way">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="210"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zuA-Uy-JF9" customClass="GFAvatarImageView" customModule="GHFollower" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="SP1-cE-E2M"/>
+                                    <constraint firstAttribute="width" constant="90" id="Zof-CL-cgY"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3P-Fa-9Pa" customClass="GFTitleLabel" customModule="GHFollower" customModuleProvider="target">
+                                <rect key="frame" x="102" y="20" width="178" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="HuD-S7-1Xe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.90000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="7bh-Bf-JNJ" customClass="GFSecondaryTitleLabel" customModule="GHFollower" customModuleProvider="target">
+                                <rect key="frame" x="102" y="55" width="178" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="SlB-W1-N0p"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin.and.ellipse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="paR-OA-8Eh">
+                                <rect key="frame" x="102" y="89.5" width="20" height="20.5"/>
+                                <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="4PH-Wv-yeY"/>
+                                    <constraint firstAttribute="width" constant="20" id="dyi-Ow-ciT"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.90000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="HSR-5E-LyC" customClass="GFSecondaryTitleLabel" customModule="GHFollower" customModuleProvider="target">
+                                <rect key="frame" x="127" y="90" width="153" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="8cF-vc-Huw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RSA-7v-wpG" customClass="GFBodyLabel" customModule="GHFollower" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="122" width="280" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="664-k9-KDw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="HSR-5E-LyC" firstAttribute="trailing" secondItem="B3P-Fa-9Pa" secondAttribute="trailing" id="4f3-tt-GhA"/>
+                            <constraint firstItem="7bh-Bf-JNJ" firstAttribute="trailing" secondItem="B3P-Fa-9Pa" secondAttribute="trailing" id="Bg8-Ug-QHQ"/>
+                            <constraint firstItem="RSA-7v-wpG" firstAttribute="top" secondItem="zuA-Uy-JF9" secondAttribute="bottom" constant="12" id="CZu-en-Het"/>
+                            <constraint firstItem="B3P-Fa-9Pa" firstAttribute="leading" secondItem="zuA-Uy-JF9" secondAttribute="trailing" constant="12" id="Cv8-XZ-akA"/>
+                            <constraint firstItem="7bh-Bf-JNJ" firstAttribute="leading" secondItem="B3P-Fa-9Pa" secondAttribute="leading" id="ESF-Lc-Ced"/>
+                            <constraint firstItem="zuA-Uy-JF9" firstAttribute="leading" secondItem="Qlx-wR-way" secondAttribute="leading" id="KQZ-v3-KXI"/>
+                            <constraint firstAttribute="trailing" secondItem="B3P-Fa-9Pa" secondAttribute="trailing" id="Rvf-KL-N4t"/>
+                            <constraint firstItem="RSA-7v-wpG" firstAttribute="leading" secondItem="zuA-Uy-JF9" secondAttribute="leading" id="Trh-51-zo3"/>
+                            <constraint firstItem="HSR-5E-LyC" firstAttribute="centerY" secondItem="paR-OA-8Eh" secondAttribute="centerY" id="ZUE-xm-Oyp"/>
+                            <constraint firstItem="zuA-Uy-JF9" firstAttribute="top" secondItem="Qlx-wR-way" secondAttribute="top" constant="20" id="a84-vZ-Ewk"/>
+                            <constraint firstItem="7bh-Bf-JNJ" firstAttribute="centerY" secondItem="zuA-Uy-JF9" secondAttribute="centerY" id="eEX-FU-gkP"/>
+                            <constraint firstItem="RSA-7v-wpG" firstAttribute="trailing" secondItem="B3P-Fa-9Pa" secondAttribute="trailing" id="myn-j2-hai"/>
+                            <constraint firstItem="paR-OA-8Eh" firstAttribute="bottom" secondItem="zuA-Uy-JF9" secondAttribute="bottom" id="q1L-OV-d2E"/>
+                            <constraint firstItem="paR-OA-8Eh" firstAttribute="leading" secondItem="7bh-Bf-JNJ" secondAttribute="leading" id="vlT-pr-QHI"/>
+                            <constraint firstItem="HSR-5E-LyC" firstAttribute="leading" secondItem="paR-OA-8Eh" secondAttribute="trailing" constant="5" id="vyw-9m-ACR"/>
+                            <constraint firstItem="B3P-Fa-9Pa" firstAttribute="top" secondItem="zuA-Uy-JF9" secondAttribute="top" id="xmp-AZ-Ur8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZW6-ob-5MZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="avatarImageView" destination="zuA-Uy-JF9" id="g8m-pd-0Lh"/>
+                        <outlet property="bioLabel" destination="RSA-7v-wpG" id="gnE-tN-8W5"/>
+                        <outlet property="locationLabel" destination="HSR-5E-LyC" id="iNg-fp-Cn3"/>
+                        <outlet property="nameLabel" destination="7bh-Bf-JNJ" id="qhh-E0-hJl"/>
+                        <outlet property="usernameLabel" destination="B3P-Fa-9Pa" id="lLU-Fe-SGX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="73R-Qe-bZc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7792.753623188406" y="306.69642857142856"/>
+        </scene>
+        <!--Repo Item View Controller-->
+        <scene sceneID="cF6-2P-6cy">
+            <objects>
+                <viewController id="UHw-6J-jEg" customClass="GFRepoItemViewController" customModule="GHFollower" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="buk-kV-dUQ">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="140"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cfT-oi-Opa">
+                                <rect key="frame" x="20" y="20" width="240" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKv-28-CfA" customClass="GFItemInfoView" customModule="GHFollower" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="121.5" height="50"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="infoTypeString" value="repos"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="count">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="itemInfoType">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSu-tR-kvm" customClass="GFItemInfoView" customModule="GHFollower" customModuleProvider="target">
+                                        <rect key="frame" x="131.5" y="0.0" width="108.5" height="50"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="infoTypeString" value="gists"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="itemInfoType">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="count">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="UcO-zz-d12"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fd-IZ-Qx7" customClass="GFButton" customModule="GHFollower" customModuleProvider="target">
+                                <rect key="frame" x="20" y="80" width="240" height="40"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="51l-VD-Ozi"/>
+                                </constraints>
+                                <state key="normal" title="GitHub Profile"/>
+                                <connections>
+                                    <action selector="actionButtonTapped" destination="UHw-6J-jEg" eventType="touchUpInside" id="2FR-co-hsp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cfT-oi-Opa" firstAttribute="top" secondItem="buk-kV-dUQ" secondAttribute="top" constant="20" id="AZ5-WQ-i6D"/>
+                            <constraint firstItem="cfT-oi-Opa" firstAttribute="leading" secondItem="0qB-Rs-Wx6" secondAttribute="leading" constant="20" id="Gmw-EE-4kb"/>
+                            <constraint firstItem="0qB-Rs-Wx6" firstAttribute="trailing" secondItem="9fd-IZ-Qx7" secondAttribute="trailing" constant="20" id="Oh2-ha-Hdu"/>
+                            <constraint firstItem="9fd-IZ-Qx7" firstAttribute="leading" secondItem="0qB-Rs-Wx6" secondAttribute="leading" constant="20" id="P5x-cB-mDO"/>
+                            <constraint firstItem="0qB-Rs-Wx6" firstAttribute="trailing" secondItem="cfT-oi-Opa" secondAttribute="trailing" constant="20" id="R53-6c-ixP"/>
+                            <constraint firstItem="0qB-Rs-Wx6" firstAttribute="bottom" secondItem="9fd-IZ-Qx7" secondAttribute="bottom" constant="20" id="tdD-kA-1hu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0qB-Rs-Wx6"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="9fd-IZ-Qx7" id="63F-5s-Z54"/>
+                        <outlet property="itemInfoViewOne" destination="dKv-28-CfA" id="wMA-Ii-ksO"/>
+                        <outlet property="itemInfoViewTwo" destination="JSu-tR-kvm" id="qeC-Jo-d01"/>
+                        <outlet property="stackView" destination="cfT-oi-Opa" id="dkR-hV-fcJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eW6-6v-xBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7792.753623188406" y="503.57142857142856"/>
+        </scene>
+        <!--Follower Item View Controller-->
+        <scene sceneID="t6o-na-fK0">
+            <objects>
+                <viewController id="JwL-SW-Cti" customClass="GFFollowerItemViewController" customModule="GHFollower" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8yJ-F4-1Rz">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="140"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QRZ-ou-Wwp">
+                                <rect key="frame" x="20" y="20" width="240" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Acq-QZ-7o9" customClass="GFItemInfoView" customModule="GHFollower" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="114" height="50"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="itemInfoType">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="count">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSY-W4-bHk" customClass="GFItemInfoView" customModule="GHFollower" customModuleProvider="target">
+                                        <rect key="frame" x="142" y="0.0" width="98" height="50"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="itemInfoType">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="count">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Qnv-lA-F9H"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bw5-V1-oqq" customClass="GFButton" customModule="GHFollower" customModuleProvider="target">
+                                <rect key="frame" x="20" y="80" width="240" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Cjl-6y-xM0"/>
+                                </constraints>
+                                <state key="normal" title="Get Followers"/>
+                                <connections>
+                                    <action selector="actionButtonTapped" destination="UHw-6J-jEg" eventType="touchUpInside" id="QPA-uW-ai6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QRZ-ou-Wwp" firstAttribute="leading" secondItem="YW1-FQ-7rM" secondAttribute="leading" constant="20" id="H4V-Ad-88R"/>
+                            <constraint firstItem="YW1-FQ-7rM" firstAttribute="bottom" secondItem="bw5-V1-oqq" secondAttribute="bottom" constant="20" id="JkO-Wf-zeA"/>
+                            <constraint firstItem="YW1-FQ-7rM" firstAttribute="trailing" secondItem="bw5-V1-oqq" secondAttribute="trailing" constant="20" id="f2d-DJ-FLw"/>
+                            <constraint firstItem="YW1-FQ-7rM" firstAttribute="trailing" secondItem="QRZ-ou-Wwp" secondAttribute="trailing" constant="20" id="m3T-32-Zpd"/>
+                            <constraint firstItem="bw5-V1-oqq" firstAttribute="leading" secondItem="YW1-FQ-7rM" secondAttribute="leading" constant="20" id="pQ7-F8-htF"/>
+                            <constraint firstItem="QRZ-ou-Wwp" firstAttribute="top" secondItem="8yJ-F4-1Rz" secondAttribute="top" constant="20" id="wco-gt-tVM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YW1-FQ-7rM"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="bw5-V1-oqq" id="vxe-Gv-eil"/>
+                        <outlet property="itemInfoViewOne" destination="Acq-QZ-7o9" id="5oH-KH-iwp"/>
+                        <outlet property="itemInfoViewTwo" destination="jSY-W4-bHk" id="s2F-kS-WXE"/>
+                        <outlet property="stackView" destination="QRZ-ou-Wwp" id="OMu-Qj-Naf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ddt-fw-D2n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7792.5" y="714.08450704225356"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="J3v-uW-xQZ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gh-logo" width="554" height="554"/>
+        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
     </resources>
 </document>

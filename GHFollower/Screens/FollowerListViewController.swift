@@ -148,7 +148,9 @@ class FollowerListViewController: GFDataLoadingViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showUser", let follower = sender as? Follower, let destinationVC = segue.destination as? UserInfoViewController {
+        if segue.identifier == "showUser", let follower = sender as? Follower,
+            let destinationNC = segue.destination as? UINavigationController,
+            let destinationVC = destinationNC.viewControllers.first as? UserInfoViewController {
             destinationVC.userName = follower.login
             destinationVC.delegate = self
         }
