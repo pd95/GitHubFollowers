@@ -66,7 +66,8 @@ class FavoriteListViewController: GFDataLoadingViewController {
     }
 }
 
-extension FavoriteListViewController: UITableViewDelegate, UITableViewDataSource {
+extension FavoriteListViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
     }
@@ -77,7 +78,6 @@ extension FavoriteListViewController: UITableViewDelegate, UITableViewDataSource
         cell.set(favorite: favorite)
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
