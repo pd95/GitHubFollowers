@@ -146,6 +146,13 @@ class FollowerListViewController: GFDataLoadingViewController {
         })
 
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showUser", let follower = sender as? Follower, let destinationVC = segue.destination as? UserInfoViewController {
+            destinationVC.userName = follower.login
+            destinationVC.delegate = self
+        }
+    }
 }
 
 
@@ -167,12 +174,7 @@ extension FollowerListViewController: UICollectionViewDelegate {
         let activeArray = isSearching ? filteredFollowers : followers
         let follower = activeArray[indexPath.item]
         
-        let destinationVC = UserInfoViewController()
-        destinationVC.userName = follower.login
-        destinationVC.delegate = self
-
-        // present modally
-        present(UINavigationController(rootViewController: destinationVC), animated: true)
+        performSegue(withIdentifier: "showUser", sender: follower)
     }
 }
 
