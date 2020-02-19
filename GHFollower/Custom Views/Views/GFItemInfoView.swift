@@ -13,6 +13,7 @@ enum ItemInfoType {
 }
 
 
+@IBDesignable
 class GFItemInfoView: UILabel {
 
     let symbolImageView = UIImageView()
@@ -26,9 +27,15 @@ class GFItemInfoView: UILabel {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        configure()
     }
     
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        configure()
+    }
+
     private func configure() {
         addSubviews(symbolImageView, titleLabel, countLabel)
         

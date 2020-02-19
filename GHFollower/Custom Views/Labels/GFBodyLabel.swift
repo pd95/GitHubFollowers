@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class GFBodyLabel: UILabel {
 
     override init(frame: CGRect) {
@@ -16,11 +17,21 @@ class GFBodyLabel: UILabel {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        configure()
     }
     
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        configure()
+    }
+
     convenience init(textAlignment: NSTextAlignment) {
         self.init(frame: .zero)
+        set(textAlignment: textAlignment)
+    }
+    
+    func set(textAlignment: NSTextAlignment) {
         self.textAlignment = textAlignment
     }
     
@@ -31,6 +42,6 @@ class GFBodyLabel: UILabel {
         adjustsFontForContentSizeCategory = true
         minimumScaleFactor                = 0.75
         lineBreakMode                     = .byWordWrapping
-        translatesAutoresizingMaskIntoConstraints = false
+//        translatesAutoresizingMaskIntoConstraints = false
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class GFSecondaryTitleLabel: UILabel {
 
     override init(frame: CGRect) {
@@ -16,12 +17,22 @@ class GFSecondaryTitleLabel: UILabel {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        configure()
     }
     
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        configure()
+    }
+
     convenience init(fontSize: CGFloat) {
         self.init(frame: .zero)
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
+        set(fontSize: fontSize)
+    }
+    
+    func set(fontSize: CGFloat) {
+        font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
     }
     
     private func configure() {
@@ -29,6 +40,6 @@ class GFSecondaryTitleLabel: UILabel {
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor        = 0.90
         lineBreakMode             = .byTruncatingTail
-        translatesAutoresizingMaskIntoConstraints = false
+//        translatesAutoresizingMaskIntoConstraints = false
     }
 }

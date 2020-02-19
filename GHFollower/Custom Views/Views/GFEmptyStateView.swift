@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class GFEmptyStateView: UIView {
 
     let messageLabel = GFTitleLabel(textAlignment: .center, fontSize: 28)
@@ -20,11 +21,21 @@ class GFEmptyStateView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        configure()
     }
     
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        configure()
+    }
+
     convenience init(message: String) {
         self.init(frame: .zero)
+        set(message: message)
+    }
+    
+    func set(message: String) {
         messageLabel.text = message
     }
     
