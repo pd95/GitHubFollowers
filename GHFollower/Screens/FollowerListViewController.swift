@@ -56,6 +56,7 @@ class FollowerListViewController: GFDataLoadingViewController {
     
     private func configureCollectionView() {
         collectionView.dataSource = dataSource
+        collectionView.collectionViewLayout = UIHelper.createThreeColumnFlowLayout(in: collectionView)
     }
     
     private func configureSearchController() {
@@ -204,35 +205,5 @@ extension FollowerListViewController: UserInfoViewControllerDelegate {
         filteredFollowers.removeAll()
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         getFollowers(username: username, page: page)
-    }
-}
-
-
-extension FollowerListViewController : UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let width                       = collectionView.bounds.width
-        let padding : CGFloat           = 12
-        let minimumItemSpacing: CGFloat = 10
-        let availableWidth              = width - padding * 2 - minimumItemSpacing * 2
-        let itemWidth                   = availableWidth / 3
-
-        return CGSize(width: itemWidth, height: itemWidth + 40)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        let padding : CGFloat = 12
-        return UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 12
     }
 }
