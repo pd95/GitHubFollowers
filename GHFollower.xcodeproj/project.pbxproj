@@ -115,10 +115,10 @@
 		1709195B23F1AA0D00560D6C /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				177F619523F20F1400A25B38 /* TextFields */,
 				177F619623F20F1E00A25B38 /* Labels */,
 				177F619723F20F2900A25B38 /* ViewControllers */,
 				177F619823F20F3B00A25B38 /* ImageViews */,
+				177F619523F20F1400A25B38 /* TextFields */,
 				177F619423F20F0900A25B38 /* Buttons */,
 				177F619A23F20FB200A25B38 /* Views */,
 				177F618B23F1EAAC00A25B38 /* Cells */,
@@ -355,7 +355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1709194F23F187CA00560D6C /* GFTextField.swift in Sources */,
 				177F618D23F1EAC600A25B38 /* GFAvatarImageView.swift in Sources */,
 				17EDF18523FB1D4C00FE7CE2 /* UITableView+Ext.swift in Sources */,
 				1709196323F1BB2100560D6C /* User.swift in Sources */,
@@ -388,6 +387,7 @@
 				17521F2F23F16C4D00D6DABF /* SceneDelegate.swift in Sources */,
 				177F61A823F30FF200A25B38 /* GFItemInfoViewController.swift in Sources */,
 				177F619E23F2A66200A25B38 /* UserInfoViewController.swift in Sources */,
+                1709194F23F187CA00560D6C /* GFTextField.swift in Sources */,
 				1709195523F1A0CE00560D6C /* GFBodyLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
