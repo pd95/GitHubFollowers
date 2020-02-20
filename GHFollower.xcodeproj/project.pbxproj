@@ -387,7 +387,7 @@
 				17521F2F23F16C4D00D6DABF /* SceneDelegate.swift in Sources */,
 				177F61A823F30FF200A25B38 /* GFItemInfoViewController.swift in Sources */,
 				177F619E23F2A66200A25B38 /* UserInfoViewController.swift in Sources */,
-                1709194F23F187CA00560D6C /* GFTextField.swift in Sources */,
+				1709194F23F187CA00560D6C /* GFTextField.swift in Sources */,
 				1709195523F1A0CE00560D6C /* GFBodyLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
