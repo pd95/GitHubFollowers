@@ -10,13 +10,12 @@ import UIKit
 
 class FavoriteListViewController: GFDataLoadingViewController {
     
-    let tableView = UITableView()
+    @IBOutlet var tableView: UITableView!
     var favorites : [Follower] = []
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewController()
         configureTableView()
     }
     
@@ -25,22 +24,8 @@ class FavoriteListViewController: GFDataLoadingViewController {
         getFavorites()
     }
     
-    func configureViewController() {
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Favorites"
-    }
-    
     func configureTableView() {
-        view.addSubview(tableView)
-
-        tableView.frame = view.bounds
-        tableView.rowHeight = 80
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.removeExcessCells()
-        
-        tableView.register(GFFavoriteCell.self, forCellReuseIdentifier: GFFavoriteCell.reuseID)
     }
     
     func getFavorites() {
@@ -69,9 +54,20 @@ class FavoriteListViewController: GFDataLoadingViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showFollowers",
+            let destinationVC = segue.destination as? FollowerListViewController else {
+                return
+        }
+        if let cell = sender as? GFFavoriteCell {
+            destinationVC.username = cell.usernameLabel.text
+        }
+    }
 }
 
-extension FavoriteListViewController: UITableViewDelegate, UITableViewDataSource {
+extension FavoriteListViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
     }
@@ -81,13 +77,6 @@ extension FavoriteListViewController: UITableViewDelegate, UITableViewDataSource
         let favorite = favorites[indexPath.row]
         cell.set(favorite: favorite)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let favorite = favorites[indexPath.row]
-        let destinationVC = FollowerListViewController(username: favorite.login)
-        
-        navigationController?.pushViewController(destinationVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

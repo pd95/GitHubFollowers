@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class GFButton: UIButton {
 
     override init(frame: CGRect) {
@@ -16,9 +17,15 @@ class GFButton: UIButton {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        configure()
     }
     
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        configure()
+    }
+
     convenience init(backgroundColor: UIColor, title: String) {
         self.init(frame: .zero)
         set(backgroundColor: backgroundColor, title: title)
@@ -33,6 +40,5 @@ class GFButton: UIButton {
         layer.cornerRadius = 10
         titleLabel?.font   = UIFont.preferredFont(forTextStyle: .headline)
         setTitleColor(.white, for: .normal)
-        translatesAutoresizingMaskIntoConstraints = false
     }
 }

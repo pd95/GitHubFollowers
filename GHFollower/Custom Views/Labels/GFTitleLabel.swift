@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class GFTitleLabel: UILabel {
 
     override init(frame: CGRect) {
@@ -16,13 +17,23 @@ class GFTitleLabel: UILabel {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        configure()
     }
     
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        configure()
+    }
+
     convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
         self.init(frame: .zero)
+        set(textAlignment: textAlignment, fontSize: fontSize)
+    }
+    
+    func set(textAlignment: NSTextAlignment, fontSize: CGFloat) {
         self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
     }
     
     private func configure() {
@@ -30,6 +41,5 @@ class GFTitleLabel: UILabel {
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor        = 0.9
         lineBreakMode             = .byTruncatingTail
-        translatesAutoresizingMaskIntoConstraints = false
     }
 }

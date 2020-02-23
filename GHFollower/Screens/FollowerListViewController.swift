@@ -22,18 +22,17 @@ class FollowerListViewController: GFDataLoadingViewController {
     var isSearching = false
     var isLoadingMoreFollowers = false
 
-    var collectionView : UICollectionView!
+    @IBOutlet var collectionView : UICollectionView!
     var dataSource : UICollectionViewDiffableDataSource<Section, Follower>!
 
 
     init(username: String) {
         super.init(nibName: nil, bundle: nil)
         self.username = username
-        title = username
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {
@@ -47,26 +46,17 @@ class FollowerListViewController: GFDataLoadingViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        title = username
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func configureViewController() {
-        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem = addButton
     }
     
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
-        view.addSubview(collectionView)
-
-        collectionView.delegate = self
         collectionView.dataSource = dataSource
-        
-        collectionView.backgroundColor = .systemBackground
-        collectionView.register(GFFollowerCell.self, forCellWithReuseIdentifier: GFFollowerCell.reuseID)
+        collectionView.collectionViewLayout = UIHelper.createThreeColumnFlowLayout(in: collectionView)
     }
     
     private func configureSearchController() {
@@ -127,7 +117,7 @@ class FollowerListViewController: GFDataLoadingViewController {
         }
     }
     
-    @objc func addButtonTapped() {
+    @IBAction @objc func addButtonTapped() {
         showLoadingView()
 
         NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
@@ -156,6 +146,15 @@ class FollowerListViewController: GFDataLoadingViewController {
         })
 
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showUser", let follower = sender as? Follower,
+            let destinationNC = segue.destination as? UINavigationController,
+            let destinationVC = destinationNC.viewControllers.first as? UserInfoViewController {
+            destinationVC.userName = follower.login
+            destinationVC.delegate = self
+        }
+    }
 }
 
 
@@ -177,12 +176,7 @@ extension FollowerListViewController: UICollectionViewDelegate {
         let activeArray = isSearching ? filteredFollowers : followers
         let follower = activeArray[indexPath.item]
         
-        let destinationVC = UserInfoViewController()
-        destinationVC.userName = follower.login
-        destinationVC.delegate = self
-
-        // present modally
-        present(UINavigationController(rootViewController: destinationVC), animated: true)
+        performSegue(withIdentifier: "showUser", sender: follower)
     }
 }
 

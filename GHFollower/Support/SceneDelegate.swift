@@ -14,18 +14,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-                
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        window?.rootViewController = GFTabBarController()
-        window?.makeKeyAndVisible()
-        
-        configureNavigationBar()
+        guard let _ = (scene as? UIWindowScene) else { return }
+
+        configureAppearance()
     }
     
-    func configureNavigationBar() {
+    func configureAppearance() {
         UINavigationBar.appearance().tintColor = .systemGreen
+        UITabBar.appearance().tintColor = .systemGreen
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
