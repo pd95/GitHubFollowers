@@ -8,10 +8,11 @@
 
 import UIKit
 
+@IBDesignable
 class GFAvatarImageView: UIImageView {
     
-    let placeholderImage = Images.placeholder
-    var imageUrl: String!
+    private let placeholderImage = Images.placeholder ?? UIImage(systemName: "person")
+    private var imageUrl: String!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
