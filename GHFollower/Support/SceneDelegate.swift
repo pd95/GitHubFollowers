@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureAppearance() {
         UINavigationBar.appearance().tintColor = .systemGreen
         UITabBar.appearance().tintColor = .systemGreen
+        UITableView.appearance().tableFooterView = UIView()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

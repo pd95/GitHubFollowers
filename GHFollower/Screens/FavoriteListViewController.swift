@@ -16,16 +16,11 @@ class FavoriteListViewController: GFDataLoadingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getFavorites()
-    }
-    
-    func configureTableView() {
-        tableView.removeExcessCells()
     }
     
     func getFavorites() {
