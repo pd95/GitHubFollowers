@@ -10,7 +10,7 @@ import UIKit
 
 class GFAlertViewController: UIViewController {
     
-    @IBOutlet var containerView : GFAlertContainerView!
+    @IBOutlet var containerView : GFContainerView!
     @IBOutlet var titleLabel : GFTitleLabel!
     @IBOutlet var messageLabel : GFBodyLabel! = GFBodyLabel(textAlignment: .center)
     @IBOutlet var actionButton : GFButton!

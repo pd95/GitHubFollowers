@@ -22,15 +22,6 @@ class GFItemInfoViewController: UIViewController {
         self.user = user
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureBackgroundView()
-    }
-    
-    private func configureBackgroundView() {
-        view.layer.cornerRadius = 18
-    }
-
     @IBAction func actionButtonTapped() {
     }
 }
