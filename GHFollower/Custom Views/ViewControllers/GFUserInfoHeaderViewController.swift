@@ -11,10 +11,10 @@ import UIKit
 class GFUserInfoHeaderViewController: UIViewController {
     
     @IBOutlet var avatarImageView : GFAvatarImageView!
-    @IBOutlet var usernameLabel : GFTitleLabel!
-    @IBOutlet var nameLabel : GFSecondaryTitleLabel!
-    @IBOutlet var locationLabel : GFSecondaryTitleLabel!
-    @IBOutlet var bioLabel : GFBodyLabel!
+    @IBOutlet var usernameLabel : UILabel!
+    @IBOutlet var nameLabel : UILabel!
+    @IBOutlet var locationLabel : UILabel!
+    @IBOutlet var bioLabel : UILabel!
     
     var user: User!
     
@@ -23,23 +23,11 @@ class GFUserInfoHeaderViewController: UIViewController {
         configureUIElements()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        layoutUI()
-    }
-    
     func configureUIElements() {
         avatarImageView.downloadImage(fromUrl: user.avatarUrl)
         usernameLabel.text      = user.login
         nameLabel.text          = user.name ?? ""
         locationLabel.text      = user.location ?? "<No location>"
         bioLabel.text           = user.bio ?? ""
-    }
-        
-    func layoutUI() {
-        usernameLabel.set(textAlignment: .left, fontSize: 34)
-        nameLabel.set(fontSize: 18)
-        locationLabel.set(fontSize: 18)
-        bioLabel.set(textAlignment: .left)
     }
 }

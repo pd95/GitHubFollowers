@@ -18,7 +18,7 @@ class UserInfoViewController: GFDataLoadingViewController {
     @IBOutlet var scrollView : UIScrollView!
     @IBOutlet var contentView : UIView!
     
-    @IBOutlet var dateLabel : GFBodyLabel!
+    @IBOutlet var dateLabel : UILabel!
 
     private var userInfoHeaderVC : GFUserInfoHeaderViewController!
     private var repoItemVC : GFRepoItemViewController!
@@ -30,8 +30,6 @@ class UserInfoViewController: GFDataLoadingViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        layoutUI()
 
         getUserInfo()
     }
@@ -58,10 +56,6 @@ class UserInfoViewController: GFDataLoadingViewController {
         dateLabel.text = "GitHub since \(user.createdAt.convertToMonthYearFormat())"
     }
 
-    private func layoutUI() {
-        dateLabel.set(textAlignment: .center)
-    }
-    
     @IBAction private func dismissModal() {
         dismiss(animated: true)
     }
