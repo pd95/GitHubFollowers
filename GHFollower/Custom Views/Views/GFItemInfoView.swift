@@ -55,26 +55,27 @@ class GFItemInfoView: UIView {
         addSubviews(symbolImageView, titleLabel, countLabel)
         
         symbolImageView.translatesAutoresizingMaskIntoConstraints = false
-        symbolImageView.contentMode = .scaleAspectFill
+        symbolImageView.contentMode = .scaleAspectFit
+        symbolImageView.preferredSymbolConfiguration = .init(textStyle: .body, scale: .small)
         symbolImageView.tintColor = .label
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         countLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        let padding : CGFloat = 4
         NSLayoutConstraint.activate([
-            symbolImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            symbolImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            symbolImageView.widthAnchor.constraint(equalToConstant: 20),
-            symbolImageView.heightAnchor.constraint(equalToConstant: 20),
+            symbolImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+            symbolImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            symbolImageView.heightAnchor.constraint(equalTo: titleLabel.heightAnchor),
+            symbolImageView.widthAnchor.constraint(equalTo: symbolImageView.heightAnchor),
+
+            symbolImageView.firstBaselineAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: symbolImageView.trailingAnchor, constant: padding),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             
-            titleLabel.centerYAnchor.constraint(equalTo: symbolImageView.centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: symbolImageView.trailingAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: 18),
-            
-            countLabel.topAnchor.constraint(equalTo: symbolImageView.bottomAnchor, constant: 4),
+            countLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: titleLabel.lastBaselineAnchor, multiplier: 1.2),
             countLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             countLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            countLabel.heightAnchor.constraint(equalToConstant: 18)
+            countLabel.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -padding),
         ])
     }
     
