@@ -6,8 +6,16 @@ accessing an API, multiple screens implemented using MVC, autolayout based UI (i
 
 Based on the "Take Home Project" course taught by [@SAllen0400](https://github.com/SAllen0400) at [teachable.com](https://seanallen.teachable.com/p/take-home).
 
-Everything up to the [Final tag](https://github.com/pd95/GitHubFollowers/releases/tag/Final) was based on Sean Allens course. 
-The [branch course-branch](https://github.com/pd95/GitHubFollowers/tree/course-branch) will be used to follow further enhancements/corrections based on Seans course. Other adaptions on master and branches are based on my other iOS findings and learnings. 
+Everything up to the [Final tag](https://github.com/pd95/GitHubFollowers/releases/tag/Final) was based on Sean Allens course.
+The [branch course-branch](https://github.com/pd95/GitHubFollowers/tree/course-branch) will be used to follow further 
+enhancements/corrections based on Seans course. Other adaptions on master and branches are based on my other iOS findings 
+and learnings.
 
-The [refactor-use-storyboard branch](https://github.com/pd95/GitHubFollowers/tree/refactor-use-storyboard) illustrates how I adapted the course code back to a storyboard based solution. All the lessons related to autolayout constraints can also be used in the WYSIWYG storyboard world. 
- 
+The [refactor-use-storyboard branch](https://github.com/pd95/GitHubFollowers/tree/refactor-use-storyboard) illustrates how I 
+adapted the course code back to a storyboard based solution. All the lessons related to autolayout constraints can also be used 
+in the WYSIWYG storyboard world.
+
+On the [master branch](https://github.com/pd95/GitHubFollowers/tree/master) I've additionally implemented dynamic text support 
+and removed height/width constraints on text based elements to support the iPhone SE. 
+The "in code" implemented views and view controllers pose a bigger proble and would need to be replaced with storyboard 
+implementations for better results. But as my next goal will be the implementaion of the UI using SwiftUI 
