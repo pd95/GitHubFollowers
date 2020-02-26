@@ -24,6 +24,7 @@ class FollowerListViewController: GFDataLoadingViewController {
 
     @IBOutlet var collectionView : UICollectionView!
     var dataSource : UICollectionViewDiffableDataSource<Section, Follower>!
+    var searchController : UISearchController!
 
 
     init(username: String) {
@@ -60,7 +61,7 @@ class FollowerListViewController: GFDataLoadingViewController {
     }
     
     private func configureSearchController() {
-        let searchController = UISearchController()
+        searchController = UISearchController()
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search for a username"
         searchController.obscuresBackgroundDuringPresentation = false
@@ -211,6 +212,10 @@ extension FollowerListViewController: UserInfoViewControllerDelegate {
         title = username
         page = 1
 
+        if isSearching {
+            isSearching = false
+            searchController.isActive = false
+        }
         followers.removeAll()
         filteredFollowers.removeAll()
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
