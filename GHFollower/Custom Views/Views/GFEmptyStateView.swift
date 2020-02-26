@@ -48,6 +48,7 @@ class GFEmptyStateView: UIView {
     private func configureMessageLabel() {
         messageLabel.numberOfLines = 3
         messageLabel.textColor = .secondaryLabel
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let labelCenteredYConstant : CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? -80 : -150
 
@@ -55,7 +56,6 @@ class GFEmptyStateView: UIView {
             messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: labelCenteredYConstant),
             messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
             messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
-            messageLabel.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -40),
         ])
     }
     
