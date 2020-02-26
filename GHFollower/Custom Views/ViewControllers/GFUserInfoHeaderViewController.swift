@@ -10,6 +10,7 @@ import UIKit
 
 class GFUserInfoHeaderViewController: UIViewController {
     
+    @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet var avatarImageView : GFAvatarImageView!
     @IBOutlet var usernameLabel : UILabel!
     @IBOutlet var nameLabel : UILabel!
@@ -29,5 +30,16 @@ class GFUserInfoHeaderViewController: UIViewController {
         nameLabel.text          = user.name ?? ""
         locationLabel.text      = user.location ?? "<No location>"
         bioLabel.text           = user.bio ?? ""
+    }
+    
+    private func calculatePreferredSize() {
+        let targetSize = CGSize(width: view.bounds.width,
+            height: UIView.layoutFittingCompressedSize.height)
+        preferredContentSize = topStackView.systemLayoutSizeFitting(targetSize)
+    }
+
+    override func viewDidLayoutSubviews() {
+      super.viewDidLayoutSubviews()
+      calculatePreferredSize()
     }
 }

@@ -20,6 +20,7 @@ class UserInfoViewController: GFDataLoadingViewController {
     
     @IBOutlet var dateLabel : UILabel!
 
+    @IBOutlet private var userInfoHeaderHeightConstraint: NSLayoutConstraint!
     private var userInfoHeaderVC : GFUserInfoHeaderViewController!
     private var repoItemVC : GFRepoItemViewController!
     private var followerItemVC : GFFollowerItemViewController!
@@ -32,6 +33,13 @@ class UserInfoViewController: GFDataLoadingViewController {
         super.viewDidLoad()
 
         getUserInfo()
+    }
+
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        super.preferredContentSizeDidChange(forChildContentContainer: container)
+        if (container as? GFUserInfoHeaderViewController) != nil {
+            userInfoHeaderHeightConstraint.constant = container.preferredContentSize.height
+        }
     }
 
     private func getUserInfo() {
