@@ -38,5 +38,6 @@ class GFButton: UIButton {
     
     private func configure() {
         setTitleColor(.white, for: .normal)
+        titleLabel?.adjustsFontForContentSizeCategory = true
     }
 }
