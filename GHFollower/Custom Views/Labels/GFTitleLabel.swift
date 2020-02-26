@@ -33,13 +33,29 @@ class GFTitleLabel: UILabel {
     
     func set(textAlignment: NSTextAlignment, fontSize: CGFloat) {
         self.textAlignment = textAlignment
-        font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        if fontSize <= 16 {
+            font = UIFont.preferredFont(forTextStyle: .headline)
+            minimumScaleFactor = 0.5
+            baselineAdjustment = .none
+        }
+        else if fontSize <= 18 {
+            font = UIFont.preferredFont(forTextStyle: .title3)
+            minimumScaleFactor = 0.75
+            baselineAdjustment = .none
+        }
+        else if fontSize <= 26 {
+            font = UIFont.preferredFont(forTextStyle: .title2)
+        }
+        else {
+            font = UIFont.preferredFont(forTextStyle: .title1)
+        }
     }
     
     private func configure() {
-        textColor                 = .label
-        adjustsFontSizeToFitWidth = true
-        minimumScaleFactor        = 0.9
-        lineBreakMode             = .byTruncatingTail
+        font = UIFont.preferredFont(forTextStyle: .title1)
+        textColor                         = .label
+        adjustsFontSizeToFitWidth         = true
+        minimumScaleFactor                = 0.9
+        lineBreakMode                     = .byWordWrapping
     }
 }
