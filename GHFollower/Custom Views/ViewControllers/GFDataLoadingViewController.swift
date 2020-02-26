@@ -14,7 +14,12 @@ class GFDataLoadingViewController: UIViewController {
 
 
     func showLoadingView() {
-        containerView = UIView(frame: view.bounds)
+        if let collectionView = view as? UICollectionView {
+            containerView = UIView(frame: collectionView.bounds)
+        }
+        else {
+            containerView = UIView(frame: view.frame)
+        }
         view.addSubview(containerView)
         
         containerView.backgroundColor = .systemBackground
@@ -35,7 +40,18 @@ class GFDataLoadingViewController: UIViewController {
         activityIndicator.startAnimating()
     }
 
+    func updateLoadingView() {
+        guard containerView != nil else { return }
+        if let collectionView = view as? UICollectionView {
+            containerView.frame = collectionView.bounds
+        }
+        else {
+            containerView.frame = view.frame
+        }
+    }
+
     func dismissLoadingView() {
+        guard containerView != nil else { return }
         DispatchQueue.main.async {
             self.containerView.removeFromSuperview()
             self.containerView = nil
