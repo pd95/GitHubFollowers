@@ -8,9 +8,35 @@
 
 import SwiftUI
 
+struct AlertContent: Identifiable {
+    let id = UUID()
+
+    let title: String
+    let message: String
+    let buttonTitle: String
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
 struct ContentView: View {
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView {
+            SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
+            FavoriteListView()
+                .tabItem {
+                    Image(systemName: "star.fill")
+                    Text("Favorites")
+                }
+        }
     }
 }
 
@@ -19,3 +45,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

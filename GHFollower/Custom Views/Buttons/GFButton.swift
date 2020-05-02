@@ -6,38 +6,29 @@
 //  Copyright © 2020 Philipp. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
-@IBDesignable
-class GFButton: UIButton {
+struct GFButton: View {
+    let title: String
+    let backgroundColor: Color
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configure()
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        configure()
-    }
+    let action: () -> Void
 
-    convenience init(backgroundColor: UIColor, title: String) {
-        self.init(frame: .zero)
-        set(backgroundColor: backgroundColor, title: title)
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(Color.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+        }
+        .background(backgroundColor)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
-    
-    func set(backgroundColor: UIColor, title: String) {
-        self.backgroundColor = backgroundColor
-        self.setTitle(title, for: .normal)
-    }
-    
-    private func configure() {
-        setTitleColor(.white, for: .normal)
-        titleLabel?.adjustsFontForContentSizeCategory = true
+}
+
+struct GFButton_Previews: PreviewProvider {
+    static var previews: some View {
+        GFButton(title: "Get Followers", backgroundColor: Color.green, action: { print("Button pressed")})
     }
 }

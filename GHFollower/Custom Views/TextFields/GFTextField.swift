@@ -6,38 +6,70 @@
 //  Copyright © 2020 Philipp. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
-@IBDesignable
-class GFTextField: UITextField {
+struct GFTextField: View {
+    typealias commitFunc = (() -> Void)
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
+    let placeholder: String
+    let onCommit: commitFunc?
+
+    @Binding var text: String
+
+    @Binding var isEditing: Bool
+
+    init(_ placeholder: String, text: Binding<String>, isEditing: Binding<Bool>, onCommit: commitFunc? = nil) {
+        self.placeholder = placeholder
+        self._text = text
+        self._isEditing = isEditing
+        self.onCommit = onCommit
     }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configure()
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        configure()
-    }
 
-    private func configure() {
-        textColor       = .label
-        tintColor       = .label
-        textAlignment   = .center
-        font            = UIFont.preferredFont(forTextStyle: .title2)
-        minimumFontSize = 12
-        adjustsFontSizeToFitWidth = true
+    var body: some View {
+        TextField(placeholder, text: $text, onCommit: {
+            self.isEditing = false
+            UIApplication.shared.endEditing()
+            self.onCommit?()
+        })
+            .multilineTextAlignment(.center)
+            .font(.custom("SFUIDisplay", size: 22))   // custom because title2 is missing in Font.TextStyle
+            .keyboardType(.asciiCapable)
+            .padding(13.5)
+            .overlay(
+                Group {
+                    if /*isEditing && */!text.isEmpty {
+                        Button(action: {
+                            self.text = ""
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(Color(.tertiaryLabel))
+                        }
+                        .padding(6)
+                        .padding(.trailing, 4)
+                        .accessibility(label: Text("Clear"))
+                        .accessibility(identifier: "clearButton")
+                    }
+                },
+                alignment: .trailing
+            )
+            .background(
+                Color(.tertiarySystemBackground)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .strokeBorder(Color(.systemGray4), lineWidth: 2)
+                )
+            )
+            .onTapGesture {
+                self.isEditing = true
+            }
+    }
+}
 
-        backgroundColor    = .tertiarySystemBackground
-        autocorrectionType = .no
-        returnKeyType      = .go
-        clearButtonMode    = .whileEditing
-        placeholder        = "Enter a username"
+struct GFTextField_Previews: PreviewProvider {
+    static var previews: some View {
+        GFTextField("Enter a username",
+                    text: .constant("Sallen0400"),
+                    isEditing: .constant(true),
+                    onCommit: { print("Enter pressed")})
     }
 }
