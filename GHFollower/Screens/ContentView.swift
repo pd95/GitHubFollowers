@@ -29,14 +29,17 @@ struct ContentView: View {
             SearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
+                        .font(Font.title)
                     Text("Search")
                 }
             FavoriteListView()
                 .tabItem {
                     Image(systemName: "star.fill")
+                        .font(Font.title)
                     Text("Favorites")
                 }
         }
+        .accentColor(.green)
     }
 }
 
