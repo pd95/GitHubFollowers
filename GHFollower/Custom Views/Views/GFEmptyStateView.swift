@@ -6,70 +6,41 @@
 //  Copyright © 2020 Philipp. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
-@IBDesignable
-class GFEmptyStateView: UIView {
+struct GFEmptyStateView: View {
+    let message: String
 
-    let messageLabel = GFTitleLabel(textAlignment: .center, fontSize: 28)
-    let logoImageView = UIImageView()
-    
+    var body: some View {
+        GeometryReader { proxy in
+            ZStack(alignment: .top) {
+                Images.emptyStateLogo
+                    .resizable()
+                    .frame(width: proxy.size.width * 1.3,
+                           height: proxy.size.width * 1.3)
+                    .offset(x: proxy.size.width * 1.3 / 5,
+                            y: proxy.size.height - proxy.size.width * 1.3 + ( DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 120 : 80)
+                )
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
+                GFTitleLabel(text: self.message,
+                             textAlignment: .center,
+                             fontSize: 28)
+                    .lineLimit(3)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal, 80)
+                    .offset(x: 0, y: proxy.size.height / 2.0 - (DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 170 : 240))
+            }
+        }
     }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configure()
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        configure()
-    }
+}
 
-    convenience init(message: String) {
-        self.init(frame: .zero)
-        set(message: message)
-    }
-    
-    func set(message: String) {
-        messageLabel.text = message
-    }
-    
-    private func configure() {
-        addSubviews(logoImageView, messageLabel)
-        configureMessageLabel()
-        configureLogoImageView()
-    }
-
-    private func configureMessageLabel() {
-        messageLabel.numberOfLines = 3
-        messageLabel.textColor = .secondaryLabel
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        let labelCenteredYConstant : CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? -80 : -150
-
-        NSLayoutConstraint.activate([
-            messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: labelCenteredYConstant),
-            messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
-            messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
-        ])
-    }
-    
-    private func configureLogoImageView() {
-        logoImageView.image = Images.emptyStateLogo
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let logoBottomConstant : CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 80 : 40
-
-        NSLayoutConstraint.activate([
-            logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
-            logoImageView.heightAnchor.constraint(equalTo:self.widthAnchor, multiplier: 1.3),
-            logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 170),
-            logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: logoBottomConstant)
-        ])
+struct GFEmptyStateView_Previews: PreviewProvider {
+    static var previews: some View {
+        TabView {
+            NavigationView {
+                GFEmptyStateView(message: "No Favorites?\nAdd one on the\n Follower screen.")
+                    .navigationBarTitle("Favorites")
+            }
+        }
     }
 }

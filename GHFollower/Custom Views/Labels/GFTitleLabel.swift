@@ -6,56 +6,31 @@
 //  Copyright © 2020 Philipp. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
-@IBDesignable
-class GFTitleLabel: UILabel {
+struct GFTitleLabel: View {
+    let text: String
+    let textAlignment: TextAlignment
+    let fontSize : CGFloat
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
+    var body: some View {
+        Text(text)
+            .font(Font.system(size: fontSize,
+                              weight: .bold))
+            .multilineTextAlignment(textAlignment)
     }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configure()
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        configure()
-    }
+}
 
-    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
-        self.init(frame: .zero)
-        set(textAlignment: textAlignment, fontSize: fontSize)
-    }
-    
-    func set(textAlignment: NSTextAlignment, fontSize: CGFloat) {
-        self.textAlignment = textAlignment
-        if fontSize <= 16 {
-            font = UIFont.preferredFont(forTextStyle: .headline)
-            minimumScaleFactor = 0.5
-            baselineAdjustment = .none
+struct GFTitleLabel_Previews: PreviewProvider {
+    static var previews: some View {
+        List {
+            GFTitleLabel(text: "Something went wrong",
+                         textAlignment: .center,
+                         fontSize: 20)
+
+            GFTitleLabel(text: "SAllen0400",
+                         textAlignment: .center,
+                         fontSize: 26)
         }
-        else if fontSize <= 18 {
-            font = UIFont.preferredFont(forTextStyle: .title3)
-            minimumScaleFactor = 0.75
-            baselineAdjustment = .none
-        }
-        else if fontSize <= 26 {
-            font = UIFont.preferredFont(forTextStyle: .title2)
-        }
-        else {
-            font = UIFont.preferredFont(forTextStyle: .title1)
-        }
-    }
-    
-    private func configure() {
-        font = UIFont.preferredFont(forTextStyle: .title1)
-        textColor                         = .label
-        adjustsFontSizeToFitWidth         = true
-        minimumScaleFactor                = 0.9
-        lineBreakMode                     = .byWordWrapping
     }
 }

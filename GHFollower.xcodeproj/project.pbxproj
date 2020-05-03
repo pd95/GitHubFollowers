@@ -17,6 +17,10 @@
 		179160C9245E28A900669E58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61A323F2B74700A25B38 /* Constants.swift */; };
 		179160CB245E369700669E58 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179160CA245E369700669E58 /* SearchView.swift */; };
 		179160CD245E375800669E58 /* FavoriteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179160CC245E375800669E58 /* FavoriteListView.swift */; };
+		179160D3245F5A2100669E58 /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709195223F19F7D00560D6C /* GFTitleLabel.swift */; };
+		179160D4245F5A2100669E58 /* GFSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61A123F2AFA200A25B38 /* GFSecondaryTitleLabel.swift */; };
+		179160D5245F5A2100669E58 /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709195423F1A0CE00560D6C /* GFBodyLabel.swift */; };
+		179160D6245F5A2100669E58 /* GFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F619B23F20FB200A25B38 /* GFEmptyStateView.swift */; };
 		17EDF18923FB44DC00FE7CE2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 17EDF18823FB44DB00FE7CE2 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -337,8 +341,12 @@
 				179160C8245E1B5300669E58 /* GFTextField.swift in Sources */,
 				179160CB245E369700669E58 /* SearchView.swift in Sources */,
 				179160C7245E1AEA00669E58 /* GFButton.swift in Sources */,
+				179160D5245F5A2100669E58 /* GFBodyLabel.swift in Sources */,
+				179160D3245F5A2100669E58 /* GFTitleLabel.swift in Sources */,
 				179160C5245E164D00669E58 /* ContentView.swift in Sources */,
+				179160D6245F5A2100669E58 /* GFEmptyStateView.swift in Sources */,
 				179160C9245E28A900669E58 /* Constants.swift in Sources */,
+				179160D4245F5A2100669E58 /* GFSecondaryTitleLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

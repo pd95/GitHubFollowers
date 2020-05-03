@@ -6,39 +6,25 @@
 //  Copyright © 2020 Philipp. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
-@IBDesignable
-class GFSecondaryTitleLabel: UILabel {
+struct GFSecondaryTitleLabel: View {
+    let text: String
+    let fontSize : CGFloat
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
+    var body: some View {
+        Text(text)
+            .font(Font.system(size: fontSize,
+                              weight: .medium))
+            .foregroundColor(.secondary)
     }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configure()
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        configure()
-    }
+}
 
-    convenience init(fontSize: CGFloat) {
-        self.init(frame: .zero)
-        set(fontSize: fontSize)
-    }
-    
-    func set(fontSize: CGFloat) {
-        font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
-    }
-    
-    private func configure() {
-        textColor                 = .secondaryLabel
-        adjustsFontSizeToFitWidth = true
-        minimumScaleFactor        = 0.90
-        lineBreakMode             = .byTruncatingTail
+struct GFSecondaryTitleLabel_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            GFSecondaryTitleLabel(text: "SAllen0400",
+                         fontSize: 18)
+        }
     }
 }

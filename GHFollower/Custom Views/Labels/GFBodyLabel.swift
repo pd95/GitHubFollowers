@@ -6,41 +6,25 @@
 //  Copyright © 2020 Philipp. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
-@IBDesignable
-class GFBodyLabel: UILabel {
+struct GFBodyLabel: View {
+    let text: String
+    let textAlignment: TextAlignment
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
+    var body: some View {
+        Text(text)
+            .font(Font.body)
+            .multilineTextAlignment(textAlignment)
+            .foregroundColor(.secondary)
     }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configure()
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        configure()
-    }
+}
 
-    convenience init(textAlignment: NSTextAlignment) {
-        self.init(frame: .zero)
-        set(textAlignment: textAlignment)
-    }
-    
-    func set(textAlignment: NSTextAlignment) {
-        self.textAlignment = textAlignment
-    }
-    
-    private func configure() {
-        textColor                         = .secondaryLabel
-        font                              = UIFont.preferredFont(forTextStyle: .body)
-        adjustsFontSizeToFitWidth         = true
-        adjustsFontForContentSizeCategory = true
-        minimumScaleFactor                = 0.75
-        lineBreakMode                     = .byWordWrapping
+struct GFBodyLabel_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            GFBodyLabel(text: "Something about me",
+                         textAlignment: .leading)
+        }
     }
 }
