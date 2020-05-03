@@ -13,7 +13,7 @@ struct FollowerListView: View {
     let username: String
 
     @State private var followers = [Follower]()
-    @State private var isLoadingMoreFollowers: Bool = false
+    @State private var isLoadingMoreFollowers: Bool = true
     @State private var hasMoreFollowers: Bool = false
     @State private var page = 1
 
@@ -44,7 +44,7 @@ struct FollowerListView: View {
         Group {
             if followers.isEmpty {
                 if isLoadingMoreFollowers {
-                    Text("Loading...")
+                    ActivityIndicator(style: .large)
                 }
                 else {
                     GFEmptyStateView(message: "This user doesn't have any followers. Go follow them 😃.")
@@ -78,11 +78,12 @@ struct FollowerListView: View {
 
                     // Add a row to fetch more content
                     if self.hasMoreFollowers {
-                        Text("Loading more...")
+                        ActivityIndicator(style: .large)
                             .onAppear() {
                                 self.page += 1
                                 self.getFollowers(username: self.username, page: self.page)
-                            }
+                        }
+                        .frame(maxWidth: .infinity)
                     }
                 }
             }
