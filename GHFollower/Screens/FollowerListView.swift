@@ -8,27 +8,6 @@
 
 import SwiftUI
 
-struct GridStack<Content: View>: View {
-    let rows: Int
-    let columns: Int
-    let content: (Int, Int) -> Content
-
-    let space : CGFloat = 18.0
-
-    var body: some View {
-        VStack(spacing: space) {
-            ForEach(0..<rows, id: \.self) { row in
-                HStack(alignment: .top, spacing: self.space) {
-                    ForEach(0..<self.columns, id: \.self) { column in
-                        self.content(row, column)
-                    }
-                }
-            }
-        }
-        .padding(space)
-    }
-}
-
 
 struct FollowerListView: View {
     let username: String
@@ -57,6 +36,10 @@ struct FollowerListView: View {
         return followers
     }
 
+    var filteredFollowersRows: Int {
+        (filteredFollowers.count + 2) / 3
+    }
+
     var body: some View {
         Group {
             if followers.isEmpty {
@@ -68,20 +51,38 @@ struct FollowerListView: View {
                 }
             }
             else {
-                VStack {
-                    ScrollView {
-                        SearchBar(placeholder: "Search for a username", searchText: $filter, isEditing: $isSearching)
-                            .padding(.horizontal)
-                        GridStack(rows: (filteredFollowers.count + 2) / 3, columns: 3) { row, col -> AnyView in
-                            if row * 3 + col < self.filteredFollowers.count {
+                List {
+                    SearchBar(placeholder: "Search for a username", searchText: $filter, isEditing: $isSearching)
+
+                    ForEach(0..<self.filteredFollowersRows, id: \.self) { row in
+                        HStack(alignment: .top, spacing: 18) {
+                            ForEach(0..<3, id: \.self) { col -> AnyView in
+                                if row * 3 + col < self.filteredFollowers.count {
+                                    return AnyView(
+                                        GFFollowerCell(follower: self.filteredFollowers[row * 3 + col])
+                                            .frame(maxWidth: .infinity)
+                                    )
+                                }
+
+                                // A rectangle to fill the available space "invisibly"
                                 return AnyView(
-                                    GFFollowerCell(follower: self.filteredFollowers[row * 3 + col])
-                                        .frame(maxWidth: .infinity)
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .strokeBorder(Color.clear)
                                 )
                             }
-                            return AnyView(RoundedRectangle(cornerRadius: 10).strokeBorder(Color.clear))
                         }
-                        .id(UUID())
+                        // Invalidate view IDs while searching
+                        .id(self.isSearching ? UUID() : nil)
+                    }
+                    .listStyle(PlainListStyle())
+
+                    // Add a row to fetch more content
+                    if self.hasMoreFollowers {
+                        Text("Loading more...")
+                            .onAppear() {
+                                self.page += 1
+                                self.getFollowers(username: self.username, page: self.page)
+                            }
                     }
                 }
             }
