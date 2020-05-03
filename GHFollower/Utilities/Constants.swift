@@ -12,6 +12,7 @@ import SwiftUI
 enum SFSymbols {
     static let search       = Image(systemName: "magnifyingglass")
     static let favorites    = Image(systemName: "star.fill")
+    static let add          = Image(systemName: "plus")
     static let location     = Image(systemName: "mappin.and.ellipse")
     static let repos        = Image(systemName: "folder")
     static let gists        = Image(systemName: "text.alignleft")

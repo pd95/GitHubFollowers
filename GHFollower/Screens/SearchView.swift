@@ -14,6 +14,7 @@ struct SearchView: View {
 
     @State private var isEditing: Bool = false
     @State private var username: String = ""
+    @State private var showingList: Bool = false
 
     var body: some View {
         NavigationView {
@@ -38,6 +39,14 @@ struct SearchView: View {
                     .padding(.horizontal, 50)
 
                 Spacer()
+
+                NavigationLink(destination: FollowerListView(username: username), isActive: $showingList) {
+                    EmptyView()
+                }
+            }
+            .onAppear {
+                self.username = "SAllen0400"
+                self.showingList = false
             }
             .onTapGesture {
                 print("Tapped")
@@ -65,6 +74,7 @@ struct SearchView: View {
         }
 
         print("Fetching followers for \(username)")
+        self.showingList.toggle()
     }
 }
 
