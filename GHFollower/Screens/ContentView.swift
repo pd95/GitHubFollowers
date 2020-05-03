@@ -24,20 +24,24 @@ extension UIApplication {
 
 struct ContentView: View {
 
+    @State private var selectedTab = 1
+
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             SearchView()
                 .tabItem {
-                    Image(systemName: "magnifyingglass")
-                        .font(Font.title)
+                    SFSymbols.search
+                        .font(.system(size: 24))
                     Text("Search")
                 }
+                .tag(0)
             FavoriteListView()
                 .tabItem {
-                    Image(systemName: "star.fill")
-                        .font(Font.title)
+                    SFSymbols.favorites
+                        .font(.system(size: 24))
                     Text("Favorites")
                 }
+                .tag(1)
         }
         .accentColor(.green)
     }

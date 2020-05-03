@@ -18,7 +18,7 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Image("gh-logo")
+                Images.ghLogo
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
