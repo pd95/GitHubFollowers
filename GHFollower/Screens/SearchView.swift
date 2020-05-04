@@ -51,7 +51,7 @@ struct SearchView: View {
             .onTapGesture {
                 UIApplication.shared.endEditing()
             }
-            .navigationBarTitle("")
+            .navigationBarTitle("Search")
             .navigationBarHidden(true)
             .alert(item: $alertContent) { (content) -> Alert in
                 Alert(title: Text(content.title),
