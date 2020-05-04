@@ -49,7 +49,6 @@ struct SearchView: View {
                 self.showingList = false
             }
             .onTapGesture {
-                print("Tapped")
                 UIApplication.shared.endEditing()
             }
             .navigationBarTitle("")
@@ -73,7 +72,6 @@ struct SearchView: View {
             UIApplication.shared.endEditing()
         }
 
-        print("Fetching followers for \(username)")
         self.showingList.toggle()
     }
 }

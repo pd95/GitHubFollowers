@@ -13,7 +13,7 @@ struct FollowerListView: View {
     let username: String
 
     @State private var followers = [Follower]()
-    @State private var isLoadingMoreFollowers: Bool = true
+    @State private var isLoading: Bool = true
     @State private var hasMoreFollowers: Bool = false
     @State private var page = 1
 
@@ -42,13 +42,8 @@ struct FollowerListView: View {
 
     var body: some View {
         Group {
-            if followers.isEmpty {
-                if isLoadingMoreFollowers {
-                    ActivityIndicator(style: .large)
-                }
-                else {
-                    GFEmptyStateView(message: "This user doesn't have any followers. Go follow them 😃.")
-                }
+            if !isLoading && followers.isEmpty {
+                GFEmptyStateView(message: "This user doesn't have any followers. Go follow them 😃.")
             }
             else {
                 List {
@@ -78,7 +73,8 @@ struct FollowerListView: View {
 
                     // Add a row to fetch more content
                     if self.hasMoreFollowers {
-                        ActivityIndicator(style: .large)
+                        Rectangle()
+                            .fill(Color.clear)
                             .onAppear() {
                                 self.page += 1
                                 self.getFollowers(username: self.username, page: self.page)
@@ -88,6 +84,17 @@ struct FollowerListView: View {
                 }
             }
         }
+        .overlay(
+            Group {
+                if isLoading {
+                    ActivityIndicator(style: .large)
+                        //.padding(40)
+                        .frame(maxWidth: 120, maxHeight: 120)
+                        .background(Color(.secondarySystemBackground).opacity(0.85))
+                        .cornerRadius(10)
+                }
+            }
+            ,alignment: .center)
         .onAppear() {
             if self.followers.isEmpty {
                 self.getFollowers(username: self.username, page: self.page)
@@ -104,21 +111,18 @@ struct FollowerListView: View {
     }
 
     private func getFollowers(username: String, page: Int) {
-//        showLoadingView()
-        isLoadingMoreFollowers = true
+        isLoading = true
 
         NetworkManager.shared.getFollowers(for: username, page: page) { (result) in
-//            self.dismissLoadingView()
 
             switch result {
                 case .failure(let error):
                     self.alertContent = AlertContent(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "OK")
 
                 case .success(let followers):
-//        let followers = Follower.examples
                     self.updateUI(with: followers)
             }
-            self.isLoadingMoreFollowers = false
+            self.isLoading = false
         }
     }
 
@@ -130,19 +134,17 @@ struct FollowerListView: View {
     }
 
     private func addButtonTapped() {
-        print("addButtonTapped")
-        //showLoadingView()
+        isLoading = true
 
         NetworkManager.shared.getUserInfo(for: username) { result in
-            //self.dismissLoadingView()
-
-            switch result {
-                case .success(let user):
-                    self.addUserToFavorites(user: user)
-                case .failure(let error):
-                    DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch result {
+                    case .success(let user):
+                        self.addUserToFavorites(user: user)
+                    case .failure(let error):
                         self.alertContent = AlertContent(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
                 }
+                self.isLoading = false
             }
         }
     }
