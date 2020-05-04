@@ -9,10 +9,78 @@
 import SwiftUI
 
 struct FavoriteListView: View {
+    @State private var favorites : [Follower] = []
+    @State private var isLoading: Bool = true
+
+    @State private var alertContent: AlertContent?
+
     var body: some View {
         NavigationView {
-            GFEmptyStateView(message: "No Favorites?\nAdd one on the\n Follower screen.")
-                .navigationBarTitle("Favorites")
+            Group {
+                if !isLoading && favorites.isEmpty {
+                    GFEmptyStateView(message: "No Favorites?\nAdd one on the\n Follower screen.")
+                        .navigationBarTitle("Favorites")
+                }
+                else {
+                    List {
+                        ForEach(favorites) { favorite in
+                            NavigationLink(destination: FollowerListView(username: favorite.login)) {
+                                GFFavoriteCell(favorite: favorite)
+                            }
+                        }
+                        .onDelete(perform: deleteFavorites)
+                    }
+                }
+            }
+            .overlay(
+                Group {
+                    if isLoading {
+                        ActivityIndicator(style: .large)
+                            .frame(maxWidth: 120, maxHeight: 120)
+                            .background(Color(.secondarySystemBackground).opacity(0.85))
+                            .cornerRadius(10)
+                    }
+                }
+                ,alignment: .center)
+            .onAppear() {
+                self.getFavorites()
+            }
+            .alert(item: $alertContent) { (content) -> Alert in
+                Alert(title: Text(content.title),
+                      message: Text(content.message),
+                      dismissButton: .cancel(Text(content.buttonTitle)))
+            }
+            .navigationBarTitle("Favorites")
+        }
+    }
+
+    func getFavorites() {
+        isLoading = true
+        PersistenceManager.retrieveFavorites { result in
+            DispatchQueue.main.async {
+                switch result {
+                    case .failure(let error):
+                        self.alertContent = AlertContent(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+                    case .success(let favorites):
+                        self.favorites = favorites
+                }
+                self.isLoading = false
+            }
+        }
+    }
+
+    func deleteFavorites(_ indexSet: IndexSet) {
+        print("deleteFavorites: \(indexSet)")
+        for index in indexSet {
+            let favorite = favorites[index]
+
+            PersistenceManager.updateWith(favorite: favorite, actionType: .remove) { error in
+                guard let error = error else {
+                    self.favorites.remove(at: index)
+                    return
+                }
+                self.alertContent = AlertContent(title: "Unable to remove", message: error.rawValue, buttonTitle: "OK")
+            }
         }
     }
 }
