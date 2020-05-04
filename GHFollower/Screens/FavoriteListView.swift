@@ -57,20 +57,17 @@ struct FavoriteListView: View {
     func getFavorites() {
         isLoading = true
         PersistenceManager.retrieveFavorites { result in
-            DispatchQueue.main.async {
-                switch result {
-                    case .failure(let error):
-                        self.alertContent = AlertContent(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
-                    case .success(let favorites):
-                        self.favorites = favorites
-                }
-                self.isLoading = false
+            switch result {
+                case .failure(let error):
+                    self.alertContent = AlertContent(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+                case .success(let favorites):
+                    self.favorites = favorites
             }
+            self.isLoading = false
         }
     }
 
     func deleteFavorites(_ indexSet: IndexSet) {
-        print("deleteFavorites: \(indexSet)")
         for index in indexSet {
             let favorite = favorites[index]
 
