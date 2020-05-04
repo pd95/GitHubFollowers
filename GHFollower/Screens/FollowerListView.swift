@@ -88,7 +88,6 @@ struct FollowerListView: View {
             Group {
                 if isLoading {
                     ActivityIndicator(style: .large)
-                        //.padding(40)
                         .frame(maxWidth: 120, maxHeight: 120)
                         .background(Color(.secondarySystemBackground).opacity(0.85))
                         .cornerRadius(10)
