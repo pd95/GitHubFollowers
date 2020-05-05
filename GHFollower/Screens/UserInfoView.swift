@@ -9,7 +9,7 @@
 import SwiftUI
 
 extension URL: Identifiable {
-    public var id: String { self.absoluteString }
+    public var id: Self { self }
 }
 
 struct UserInfoView: View {
