@@ -45,7 +45,7 @@ struct SearchView: View {
                 }
             }
             .onAppear {
-                self.username = "SAllen0400"
+                self.username = ""
                 self.showingList = false
             }
             .onTapGesture {

@@ -50,7 +50,7 @@ struct UserInfoView: View {
                     if isLoading {
                         ActivityIndicator(style: .large)
                             .frame(width: 120, height: 120)
-                            .background(Color(.secondarySystemBackground).opacity(0.85))
+                            .background(Color(.secondarySystemBackground).opacity(0.75))
                             .cornerRadius(10)
                     }
                 }
