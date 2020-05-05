@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+extension URL: Identifiable {
+    public var id: String { self.absoluteString }
+}
+
 struct UserInfoView: View {
     @Environment(\.presentationMode) var presentationMode
 
@@ -17,22 +21,25 @@ struct UserInfoView: View {
     @State private var isLoading: Bool = true
 
     @State private var alertContent: AlertContent?
+    @State private var linkURL: URL?
 
     var body: some View {
         NavigationView {
             Group {
                 if !isLoading && user != nil {
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 16) {
-                            GFUserInfoHeaderView(user: self.user)
+                    Group {
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 16) {
+                                GFUserInfoHeaderView(user: self.user)
 
-                            GFRepoItemView(user: self.user, profileAction: {})
-                            GFFollowerItemView(user: self.user, followerAction: {})
+                                GFRepoItemView(user: self.user, profileAction: didTapGitHubProfile)
+                                GFFollowerItemView(user: self.user, followerAction: {})
 
-                            GFBodyLabel(text: "GitHub since \(user.createdAt.convertToMonthYearFormat())", textAlignment: .center)
-                                .frame(maxWidth: .infinity)
+                                GFBodyLabel(text: "GitHub since \(user.createdAt.convertToMonthYearFormat())", textAlignment: .center)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .padding()
                         }
-                        .padding()
                     }
                 }
             }
@@ -46,18 +53,21 @@ struct UserInfoView: View {
                     }
                 }
                 ,alignment: .center)
-            .onAppear() {
-                self.getUserInfo()
+                .onAppear() {
+                    self.getUserInfo()
             }
             .alert(item: $alertContent) { (content) -> Alert in
                 Alert(title: Text(content.title),
                       message: Text(content.message),
                       dismissButton: .cancel(Text(content.buttonTitle)))
             }
+            .sheet(item: self.$linkURL, content: { (url) in
+                SafariView(url: url)
+            })
             .navigationBarTitle(Text(""), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: { self.presentationMode.wrappedValue.dismiss()}) {
-                    Text("Done")
-                        .bold()
+                Text("Done")
+                    .bold()
                 }
             )
         }
@@ -77,6 +87,15 @@ struct UserInfoView: View {
                 self.isLoading = false
             }
         }
+    }
+
+    func didTapGitHubProfile() {
+        guard let url = URL(string: user.htmlUrl) else {
+            alertContent = AlertContent(title: "Invalid URL", message: "The url attached to this user is invalid", buttonTitle: "OK")
+            return
+        }
+
+        linkURL = url
     }
 }
 
