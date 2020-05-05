@@ -36,7 +36,7 @@ struct FavoriteListView: View {
                 Group {
                     if isLoading {
                         ActivityIndicator(style: .large)
-                            .frame(maxWidth: 120, maxHeight: 120)
+                            .frame(width: 120, height: 120)
                             .background(Color(.secondarySystemBackground).opacity(0.85))
                             .cornerRadius(10)
                     }
