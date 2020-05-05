@@ -28,6 +28,9 @@ struct UserInfoView: View {
 
                             GFRepoItemView(user: self.user, profileAction: {})
                             GFFollowerItemView(user: self.user, followerAction: {})
+
+                            GFBodyLabel(text: "GitHub since \(user.createdAt.convertToMonthYearFormat())", textAlignment: .center)
+                                .frame(maxWidth: .infinity)
                         }
                         .padding()
                     }
