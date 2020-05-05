@@ -17,6 +17,8 @@ struct UserInfoView: View {
 
     let userName: String
 
+    @Binding var selectedUserName: String?
+
     @State private var user: User!
     @State private var isLoading: Bool = true
 
@@ -33,7 +35,7 @@ struct UserInfoView: View {
                                 GFUserInfoHeaderView(user: self.user)
 
                                 GFRepoItemView(user: self.user, profileAction: didTapGitHubProfile)
-                                GFFollowerItemView(user: self.user, followerAction: {})
+                                GFFollowerItemView(user: self.user, followerAction: didTapGetFollowers)
 
                                 GFBodyLabel(text: "GitHub since \(user.createdAt.convertToMonthYearFormat())", textAlignment: .center)
                                     .frame(maxWidth: .infinity)
@@ -98,10 +100,21 @@ struct UserInfoView: View {
 
         linkURL = url
     }
+
+    func didTapGetFollowers() {
+        guard user.followers > 0 else {
+            alertContent = AlertContent(title: "No followers", message: "This user has no followers. What a shame 😢.", buttonTitle: "So sad")
+            return
+        }
+
+        selectedUserName = user.login
+
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        UserInfoView(userName: Follower.examples[2].login)
+        UserInfoView(userName: Follower.examples[2].login, selectedUserName: .constant(""))
     }
 }

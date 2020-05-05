@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+extension String: Identifiable {
+    public var id: Self { self }
+}
 
 struct FollowerListView: View {
     let username: String
@@ -22,6 +25,17 @@ struct FollowerListView: View {
 
     @State private var alertContent: AlertContent?
     @State private var selectedFollower: Follower?
+
+    @State private var selectedUserName: String?
+    private var customNavigationBinding: Binding<Bool> {
+        Binding(get: { () -> Bool in
+            self.selectedUserName != nil
+        }, set: { (active) in
+            if !active {
+                self.selectedUserName = nil
+            }
+        })
+    }
 
     init(username: String) {
         self.username = username
@@ -47,6 +61,12 @@ struct FollowerListView: View {
                 GFEmptyStateView(message: "This user doesn't have any followers. Go follow them 😃.")
             }
             else {
+                if self.selectedUserName != nil {
+                    NavigationLink(destination: FollowerListView(username: self.selectedUserName ?? ""), isActive: customNavigationBinding) {
+                        EmptyView()
+                    }
+                }
+
                 List {
                     SearchBar(placeholder: "Search for a username", searchText: $filter, isEditing: $isSearching)
 
@@ -110,7 +130,7 @@ struct FollowerListView: View {
                   dismissButton: .cancel(Text(content.buttonTitle)))
         }
         .sheet(item: $selectedFollower, content: { (follower) in
-            UserInfoView(userName: follower.login)
+            UserInfoView(userName: follower.login, selectedUserName: self.$selectedUserName)
         })
         .navigationBarTitle(username)
         .navigationBarItems(trailing: Button(action: addButtonTapped) { SFSymbols.add }
