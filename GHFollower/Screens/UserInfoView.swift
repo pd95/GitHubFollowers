@@ -66,8 +66,9 @@ struct UserInfoView: View {
             })
             .navigationBarTitle(Text(""), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: { self.presentationMode.wrappedValue.dismiss()}) {
-                Text("Done")
-                    .bold()
+                    Text("Done")
+                        .bold()
+                        .padding(6)
                 }
             )
         }
