@@ -21,6 +21,7 @@ struct FollowerListView: View {
     @State private var isSearching: Bool = false
 
     @State private var alertContent: AlertContent?
+    @State private var selectedFollower: Follower?
 
     init(username: String) {
         self.username = username
@@ -56,6 +57,10 @@ struct FollowerListView: View {
                                     return AnyView(
                                         GFFollowerCell(follower: self.filteredFollowers[row * 3 + col])
                                             .frame(maxWidth: .infinity)
+                                            .onTapGesture {
+                                                self.selectedFollower = self.filteredFollowers[row * 3 + col]
+
+                                            }
                                     )
                                 }
 
@@ -104,6 +109,9 @@ struct FollowerListView: View {
                   message: Text(content.message),
                   dismissButton: .cancel(Text(content.buttonTitle)))
         }
+        .sheet(item: $selectedFollower, content: { (follower) in
+            UserInfoView(userName: follower.login)
+        })
         .navigationBarTitle(username)
         .navigationBarItems(trailing: Button(action: addButtonTapped) { SFSymbols.add }
             .font(.system(size: 24)))

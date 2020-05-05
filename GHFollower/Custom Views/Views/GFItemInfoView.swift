@@ -6,94 +6,63 @@
 //  Copyright © 2020 Philipp. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
-enum ItemInfoType: Int {
+enum ItemInfoType {
     case repos, gists, followers, following
 }
 
+struct GFItemInfoView: View {
 
-@IBDesignable
-class GFItemInfoView: UIView {
-    
-    var infoType: ItemInfoType = .repos
-    @IBInspectable var itemInfoType: Int {
-        get { infoType.rawValue }
-        set {
-            if let valid = ItemInfoType(rawValue: newValue) {
-                infoType = valid
+    let itemInfoType: ItemInfoType
+    let count: Int
+
+    let fontSize : CGFloat = 18
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 8) {
+            symbolImage
+                .font(.system(size: fontSize))
+                .padding(4)
+
+            VStack(alignment: .center, spacing: 8) {
+                GFTitleLabel(text: title, textAlignment: .leading, fontSize: fontSize)
+                    .layoutPriority(1)
+
+                GFTitleLabel(text: "\(count)", textAlignment: .center, fontSize: fontSize)
             }
         }
     }
-    @IBInspectable var count: Int = 0 {
-        didSet {
-            set(itemInfoType: infoType, withCount: count)
-        }
-    }
 
-    let symbolImageView = UIImageView()
-    let titleLabel = GFTitleLabel(textAlignment: .left, fontSize: 14)
-    let countLabel = GFTitleLabel(textAlignment: .center, fontSize: 14)
-
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configure()
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        configure()
-    }
-
-    private func configure() {
-        addSubviews(symbolImageView, titleLabel, countLabel)
-        
-        symbolImageView.translatesAutoresizingMaskIntoConstraints = false
-        symbolImageView.contentMode = .scaleAspectFit
-        symbolImageView.preferredSymbolConfiguration = .init(textStyle: .body, scale: .small)
-        symbolImageView.tintColor = .label
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        countLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        let padding : CGFloat = 4
-        NSLayoutConstraint.activate([
-            symbolImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
-            symbolImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            symbolImageView.heightAnchor.constraint(equalTo: titleLabel.heightAnchor),
-            symbolImageView.widthAnchor.constraint(equalTo: symbolImageView.heightAnchor),
-
-            symbolImageView.firstBaselineAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: symbolImageView.trailingAnchor, constant: padding),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            
-            countLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: titleLabel.lastBaselineAnchor, multiplier: 1.2),
-            countLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            countLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            countLabel.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -padding),
-        ])
-    }
-    
-    func set(itemInfoType: ItemInfoType, withCount count: Int) {
+    var symbolImage : Image {
         switch itemInfoType {
             case .repos:
-                symbolImageView.image = SFSymbols.repos
-                titleLabel.text = "Public Repos"
+                return SFSymbols.repos
             case .gists:
-                symbolImageView.image = SFSymbols.gists
-                titleLabel.text = "Public Gists"
+                return SFSymbols.gists
             case .followers:
-                symbolImageView.image = SFSymbols.followers
-                titleLabel.text = "Followers"
+                return SFSymbols.followers
             case .following:
-                symbolImageView.image = SFSymbols.following
-                titleLabel.text = "Following"
+                return SFSymbols.following
         }
-        countLabel.text = String(count)
+    }
+
+    var title : String {
+        switch itemInfoType {
+            case .repos:
+                return "Public Repos"
+            case .gists:
+                return "Public Gists"
+            case .followers:
+                return "Followers"
+            case .following:
+                return "Following"
+        }
+    }
+}
+
+struct GFItemInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        GFItemInfoView(itemInfoType: .repos, count: 123)
     }
 }

@@ -9,10 +9,12 @@
 import SwiftUI
 
 struct GFButton: View {
+    typealias ButtonAction = ()->Void
+
     let title: String
     let backgroundColor: Color
 
-    let action: () -> Void
+    let action: ButtonAction
 
     var body: some View {
         Button(action: action) {
