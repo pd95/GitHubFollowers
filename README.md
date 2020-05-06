@@ -19,7 +19,7 @@ adapted the course code back to a storyboard based solution. All the lessons rel
 in the WYSIWYG storyboard world.
 
 On the [master branch](https://github.com/pd95/GitHubFollowers/tree/master) I've additionally implemented dynamic text support 
-and removed height/width constraints on text based elements to support the iPhone SE. 
+and removed height/width constraints on text based elements to support the iPhone SE (1st Generation).
 The "in code" implemented views and view controllers pose a bigger problem and would need to be replaced with storyboard implementations for better results.
 
 The [rewrite-using-swiftui branch](https://github.com/pd95/GitHubFollowers/tree/rewrite-using-swiftui) illustrates how I rewrote
