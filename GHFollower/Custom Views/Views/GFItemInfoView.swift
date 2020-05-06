@@ -17,20 +17,21 @@ struct GFItemInfoView: View {
     let itemInfoType: ItemInfoType
     let count: Int
 
-    let fontSize : CGFloat = 18
+    let fontSize : CGFloat = 14
 
     var body: some View {
-        HStack(alignment: .top, spacing: 8) {
-            symbolImage
-                .font(.system(size: fontSize))
-                .padding(4)
+        VStack(alignment: .center, spacing: 4) {
+            HStack(alignment: .center, spacing: 8) {
+                symbolImage
+                .font(
+                    Font.system(size: UIFontMetrics(forTextStyle: .title1).scaledValue(for: 18))
+                )
 
-            VStack(alignment: .center, spacing: 8) {
                 GFTitleLabel(text: title, textAlignment: .leading, fontSize: fontSize)
                     .layoutPriority(1)
-
-                GFTitleLabel(text: "\(count)", textAlignment: .center, fontSize: fontSize)
             }
+
+            GFTitleLabel(text: "\(count)", textAlignment: .center, fontSize: fontSize)
         }
     }
 

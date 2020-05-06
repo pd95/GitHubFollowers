@@ -21,7 +21,7 @@ struct GFButton: View {
             Text(title)
                 .font(.headline)
                 .foregroundColor(Color.white)
-                .padding()
+                .padding(14)
                 .frame(maxWidth: .infinity)
         }
         .background(backgroundColor)

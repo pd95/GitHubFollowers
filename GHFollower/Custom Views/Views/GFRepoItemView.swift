@@ -13,8 +13,8 @@ struct GFRepoItemView: View {
     let profileAction: GFButton.ButtonAction
 
     var body: some View {
-        VStack {
-            HStack(spacing: 8) {
+        VStack(spacing: 12) {
+            HStack(spacing: 0) {
                 GFItemInfoView(itemInfoType: .repos, count: user.publicRepos)
                     .frame(maxWidth: .infinity)
 
@@ -24,7 +24,7 @@ struct GFRepoItemView: View {
 
             GFButton(title: "GitHub Profile", backgroundColor: .purple, action: profileAction)
         }
-        .padding()
+        .padding(20)
         .background(Color(.secondarySystemBackground))
         .cornerRadius(18)
     }
@@ -33,5 +33,6 @@ struct GFRepoItemView: View {
 struct GFRepoItemView_Previews: PreviewProvider {
     static var previews: some View {
         GFRepoItemView(user: User.example, profileAction: {})
+            .padding()
     }
 }

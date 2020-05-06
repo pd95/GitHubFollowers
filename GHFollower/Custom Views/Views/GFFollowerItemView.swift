@@ -13,8 +13,8 @@ struct GFFollowerItemView: View {
     let followerAction: GFButton.ButtonAction
 
     var body: some View {
-        VStack {
-            HStack(spacing: 8) {
+        VStack(spacing: 12) {
+            HStack(spacing: 0) {
                 GFItemInfoView(itemInfoType: .followers, count: user.followers)
                     .frame(maxWidth: .infinity)
 
@@ -24,7 +24,7 @@ struct GFFollowerItemView: View {
 
             GFButton(title: "Get Followers", backgroundColor: .green, action: followerAction)
         }
-        .padding()
+        .padding(20)
         .background(Color(.secondarySystemBackground))
         .cornerRadius(18)
     }
@@ -33,5 +33,6 @@ struct GFFollowerItemView: View {
 struct GFFollowerItemView_Previews: PreviewProvider {
     static var previews: some View {
         GFFollowerItemView(user: User.example, followerAction: {})
+            .padding()
     }
 }
