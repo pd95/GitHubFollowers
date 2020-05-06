@@ -32,9 +32,9 @@ struct GFTextField: View {
             self.onCommit?()
         })
             .multilineTextAlignment(.center)
-            .font(.custom("SFUIDisplay", size: 22))   // custom because title2 is missing in Font.TextStyle
+            .font(Font.system(size: UIFontMetrics(forTextStyle: .title2).scaledValue(for: 22)))
             .keyboardType(.asciiCapable)
-            .padding(13.5)
+            .padding(12)
             .overlay(
                 Group {
                     if /*isEditing && */!text.isEmpty {
