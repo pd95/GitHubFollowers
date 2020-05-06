@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GKs-hi-JyX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GKs-hi-JyX">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -80,7 +80,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TBj-pH-Hfk"/>
                     </view>
-                    <navigationItem key="navigationItem" id="a9q-nS-3FT"/>
+                    <navigationItem key="navigationItem" title="Search" id="a9q-nS-3FT"/>
                     <connections>
                         <outlet property="callToActionButton" destination="2MD-Pg-jyY" id="fBn-gf-pYp"/>
                         <outlet property="logoImageView" destination="bwU-5r-y0C" id="Pvp-QB-Ap1"/>
@@ -117,7 +117,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aub-a8-ci8" customClass="GFAvatarImageView" customModule="GHFollower" customModuleProvider="target">
-                                                    <rect key="frame" x="12" y="10" width="60" height="60"/>
+                                                    <rect key="frame" x="12" y="11.5" width="60" height="57.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="KuF-EC-DsC"/>
                                                         <constraint firstAttribute="height" constant="60" id="OiE-Hd-Abx"/>
