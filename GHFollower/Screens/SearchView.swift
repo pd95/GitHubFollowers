@@ -29,6 +29,8 @@ struct SearchView: View {
                             text: $username,
                             isEditing: $isEditing,
                             onCommit: getFollowers)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
                     .frame(height: 50)
                     .padding(.top, 40)
                     .padding(.horizontal, 50)
