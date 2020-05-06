@@ -20,8 +20,12 @@ in the WYSIWYG storyboard world.
 
 On the [master branch](https://github.com/pd95/GitHubFollowers/tree/master) I've additionally implemented dynamic text support 
 and removed height/width constraints on text based elements to support the iPhone SE. 
-The "in code" implemented views and view controllers pose a bigger proble and would need to be replaced with storyboard 
-implementations for better results. But as my next goal will be the implementaion of the UI using SwiftUI 
+The "in code" implemented views and view controllers pose a bigger problem and would need to be replaced with storyboard implementations for better results.
+
+The [rewrite-using-swiftui branch](https://github.com/pd95/GitHubFollowers/tree/rewrite-using-swiftui) illustrates how I rewrote
+the code using SwiftUI. As SwiftUI has a different approach to UI and views, a lot of code had been thrown away and the 
+view code does not resemble at all  to what existed before, but I kept the basic file separations. To be honest, if I would write the 
+app from scratch, the separation would look differently. 
 
 ![App demo](./Images/AppDemo.gif)
 
