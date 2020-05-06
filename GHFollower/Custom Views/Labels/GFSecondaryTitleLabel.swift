@@ -14,8 +14,9 @@ struct GFSecondaryTitleLabel: View {
 
     var body: some View {
         Text(text)
-            .font(Font.system(size: fontSize,
-                              weight: .medium))
+            .font(
+                Font.system(size: UIFontMetrics(forTextStyle: .title3).scaledValue(for: fontSize), weight: .medium)
+            )
             .foregroundColor(.secondary)
     }
 }

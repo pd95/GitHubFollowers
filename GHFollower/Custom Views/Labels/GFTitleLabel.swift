@@ -15,8 +15,9 @@ struct GFTitleLabel: View {
 
     var body: some View {
         Text(text)
-            .font(Font.system(size: fontSize,
-                              weight: .bold))
+            .font(
+                Font.system(size: UIFontMetrics(forTextStyle: .title1).scaledValue(for: fontSize), weight: .bold)
+            )
             .multilineTextAlignment(textAlignment)
     }
 }
