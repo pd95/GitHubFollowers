@@ -42,7 +42,7 @@ struct SearchView: View {
 
                 Spacer()
 
-                NavigationLink(destination: FollowerListView(username: username), isActive: $showingList) {
+                NavigationLink(destination: FollowerListView(username: username.trimmingCharacters(in: .whitespacesAndNewlines)), isActive: $showingList) {
                     EmptyView()
                 }
             }
@@ -64,6 +64,7 @@ struct SearchView: View {
     }
 
     func getFollowers() {
+        let username = self.username.trimmingCharacters(in: .whitespacesAndNewlines)
         if username.isEmpty {
             alertContent = AlertContent(title: "Empty Username", message: "Please enter a username. We need to know who to look for 😀.", buttonTitle: "OK")
             return
