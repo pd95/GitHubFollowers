@@ -8,14 +8,6 @@
 
 import SwiftUI
 
-struct AlertContent: Identifiable {
-    let id = UUID()
-
-    let title: String
-    let message: String
-    let buttonTitle: String
-}
-
 extension UIApplication {
     func endEditing() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

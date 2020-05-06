@@ -58,11 +58,7 @@ struct UserInfoView: View {
                 .onAppear() {
                     self.getUserInfo()
             }
-            .alert(item: $alertContent) { (content) -> Alert in
-                Alert(title: Text(content.title),
-                      message: Text(content.message),
-                      dismissButton: .cancel(Text(content.buttonTitle)))
-            }
+            .present(alert: $alertContent)
             .sheet(item: self.$linkURL, content: { (url) in
                 SafariView(url: url)
             })

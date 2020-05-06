@@ -45,11 +45,8 @@ struct FavoriteListView: View {
             .onAppear() {
                 self.getFavorites()
             }
-            .alert(item: $alertContent) { (content) -> Alert in
-                Alert(title: Text(content.title),
-                      message: Text(content.message),
-                      dismissButton: .cancel(Text(content.buttonTitle)))
-            }
+            //.preference(key: AlertPreferenceKey.self, value: alertContent)
+            .present(alert: $alertContent)
             .navigationBarTitle("Favorites")
         }
     }

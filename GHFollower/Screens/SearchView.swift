@@ -55,11 +55,7 @@ struct SearchView: View {
             }
             .navigationBarTitle("Search")
             .navigationBarHidden(true)
-            .alert(item: $alertContent) { (content) -> Alert in
-                Alert(title: Text(content.title),
-                      message: Text(content.message),
-                      dismissButton: .cancel(Text(content.buttonTitle)))
-            }
+            .present(alert: $alertContent)
         }
     }
 
