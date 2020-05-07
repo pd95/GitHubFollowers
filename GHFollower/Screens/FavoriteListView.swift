@@ -45,8 +45,7 @@ struct FavoriteListView: View {
             .onAppear() {
                 self.getFavorites()
             }
-            //.preference(key: AlertPreferenceKey.self, value: alertContent)
-            .present(alert: $alertContent)
+            .alert(content: $alertContent)
             .navigationBarTitle("Favorites")
         }
     }

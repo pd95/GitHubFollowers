@@ -55,7 +55,7 @@ struct SearchView: View {
             }
             .navigationBarTitle("Search")
             .navigationBarHidden(true)
-            .present(alert: $alertContent)
+            .alert(content: $alertContent)
         }
     }
 

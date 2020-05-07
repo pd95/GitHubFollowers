@@ -124,7 +124,7 @@ struct FollowerListView: View {
                 self.getFollowers(username: self.username, page: self.page)
             }
         }
-        .present(alert: $alertContent)
+        .alert(content: $alertContent)
         .sheet(item: $selectedFollower, content: { (follower) in
             UserInfoView(userName: follower.login, selectedUserName: self.$selectedUserName)
         })
