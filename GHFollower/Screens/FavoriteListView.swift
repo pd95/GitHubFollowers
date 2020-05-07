@@ -42,10 +42,10 @@ struct FavoriteListView: View {
                     }
                 }
                 ,alignment: .center)
+            .present(alert: $alertContent)
             .onAppear() {
                 self.getFavorites()
             }
-            .alert(content: $alertContent)
             .navigationBarTitle("Favorites")
         }
     }

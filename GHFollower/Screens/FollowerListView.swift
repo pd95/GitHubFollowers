@@ -119,12 +119,12 @@ struct FollowerListView: View {
                 }
             }
             ,alignment: .center)
+        .present(alert: $alertContent)
         .onAppear() {
             if self.followers.isEmpty {
                 self.getFollowers(username: self.username, page: self.page)
             }
         }
-        .alert(content: $alertContent)
         .sheet(item: $selectedFollower, content: { (follower) in
             UserInfoView(userName: follower.login, selectedUserName: self.$selectedUserName)
         })

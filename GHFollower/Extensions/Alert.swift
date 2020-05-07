@@ -8,12 +8,16 @@
 
 import SwiftUI
 
-struct AlertContent: Identifiable {
+struct AlertContent: Identifiable, Equatable {
     let id = UUID()
 
     let title: String
     let message: String
     let buttonTitle: String
+
+    static func == (lhs: AlertContent, rhs: AlertContent) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 extension Alert {

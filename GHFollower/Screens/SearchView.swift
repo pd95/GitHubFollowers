@@ -46,6 +46,7 @@ struct SearchView: View {
                     EmptyView()
                 }
             }
+            .present(alert: $alertContent)
             .onAppear {
                 self.username = ""
                 self.showingList = false
@@ -55,7 +56,6 @@ struct SearchView: View {
             }
             .navigationBarTitle("Search")
             .navigationBarHidden(true)
-            .alert(content: $alertContent)
         }
     }
 
