@@ -18,6 +18,9 @@
 		1709196323F1BB2100560D6C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709196223F1BB2100560D6C /* User.swift */; };
 		1709196623F1BF0E00560D6C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709196523F1BF0E00560D6C /* NetworkManager.swift */; };
 		1709196923F1E44A00560D6C /* GFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709196823F1E44A00560D6C /* GFError.swift */; };
+		173E3583272ED3F900C80178 /* GHFollowerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E3582272ED3F900C80178 /* GHFollowerTests.swift */; };
+		173E358A272EF71500C80178 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E3589272EF71500C80178 /* GitHubAPI.swift */; };
+		173E358C272EF79700C80178 /* GitHubAPI_FollowersRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E358B272EF79700C80178 /* GitHubAPI_FollowersRequestTests.swift */; };
 		17521F2D23F16C4D00D6DABF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17521F2C23F16C4D00D6DABF /* AppDelegate.swift */; };
 		17521F2F23F16C4D00D6DABF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17521F2E23F16C4D00D6DABF /* SceneDelegate.swift */; };
 		17521F3623F16C4F00D6DABF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17521F3523F16C4F00D6DABF /* Assets.xcassets */; };
@@ -47,6 +50,16 @@
 		17EDF18F23FB4BBD00FE7CE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17EDF18E23FB4BBD00FE7CE2 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		173E3584272ED3F900C80178 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17521F2123F16C4D00D6DABF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17521F2823F16C4D00D6DABF;
+			remoteInfo = GHFollower;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1703BA4324033FF600F37D3F /* GFContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFContainerView.swift; sourceTree = "<group>"; };
 		1709194E23F187CA00560D6C /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
@@ -59,6 +72,10 @@
 		1709196223F1BB2100560D6C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1709196523F1BF0E00560D6C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1709196823F1E44A00560D6C /* GFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFError.swift; sourceTree = "<group>"; };
+		173E3580272ED3F900C80178 /* GHFollowerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GHFollowerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		173E3582272ED3F900C80178 /* GHFollowerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHFollowerTests.swift; sourceTree = "<group>"; };
+		173E3589272EF71500C80178 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
+		173E358B272EF79700C80178 /* GitHubAPI_FollowersRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI_FollowersRequestTests.swift; sourceTree = "<group>"; };
 		17521F2923F16C4D00D6DABF /* GHFollower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHFollower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17521F2C23F16C4D00D6DABF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17521F2E23F16C4D00D6DABF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +108,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		173E357D272ED3F900C80178 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17521F2623F16C4D00D6DABF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -161,6 +185,7 @@
 		1709196423F1BF0300560D6C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				173E3589272EF71500C80178 /* GitHubAPI.swift */,
 				1709196523F1BF0E00560D6C /* NetworkManager.swift */,
 				178EF27223F4AB39002EEFF1 /* PersistenceManager.swift */,
 			);
@@ -177,11 +202,21 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		173E3581272ED3F900C80178 /* GHFollowerTests */ = {
+			isa = PBXGroup;
+			children = (
+				173E3582272ED3F900C80178 /* GHFollowerTests.swift */,
+				173E358B272EF79700C80178 /* GitHubAPI_FollowersRequestTests.swift */,
+			);
+			path = GHFollowerTests;
+			sourceTree = "<group>";
+		};
 		17521F2023F16C4D00D6DABF = {
 			isa = PBXGroup;
 			children = (
 				17EDF18823FB44DB00FE7CE2 /* README.md */,
 				17521F2B23F16C4D00D6DABF /* GHFollower */,
+				173E3581272ED3F900C80178 /* GHFollowerTests */,
 				17521F2A23F16C4D00D6DABF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -190,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				17521F2923F16C4D00D6DABF /* GHFollower.app */,
+				173E3580272ED3F900C80178 /* GHFollowerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -286,6 +322,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		173E357F272ED3F900C80178 /* GHFollowerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 173E3588272ED3F900C80178 /* Build configuration list for PBXNativeTarget "GHFollowerTests" */;
+			buildPhases = (
+				173E357C272ED3F900C80178 /* Sources */,
+				173E357D272ED3F900C80178 /* Frameworks */,
+				173E357E272ED3F900C80178 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				173E3585272ED3F900C80178 /* PBXTargetDependency */,
+			);
+			name = GHFollowerTests;
+			productName = GHFollowerTests;
+			productReference = 173E3580272ED3F900C80178 /* GHFollowerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		17521F2823F16C4D00D6DABF /* GHFollower */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17521F3D23F16C4F00D6DABF /* Build configuration list for PBXNativeTarget "GHFollower" */;
@@ -310,10 +364,14 @@
 		17521F2123F16C4D00D6DABF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = Philipp;
 				TargetAttributes = {
+					173E357F272ED3F900C80178 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 17521F2823F16C4D00D6DABF;
+					};
 					17521F2823F16C4D00D6DABF = {
 						CreatedOnToolsVersion = 11.4;
 					};
@@ -333,11 +391,19 @@
 			projectRoot = "";
 			targets = (
 				17521F2823F16C4D00D6DABF /* GHFollower */,
+				173E357F272ED3F900C80178 /* GHFollowerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		173E357E272ED3F900C80178 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17521F2723F16C4D00D6DABF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,6 +439,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		173E357C272ED3F900C80178 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				173E3583272ED3F900C80178 /* GHFollowerTests.swift in Sources */,
+				173E358C272EF79700C80178 /* GitHubAPI_FollowersRequestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17521F2523F16C4D00D6DABF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,11 +485,20 @@
 				177F61A823F30FF200A25B38 /* GFItemInfoViewController.swift in Sources */,
 				177F619E23F2A66200A25B38 /* UserInfoViewController.swift in Sources */,
 				1709194F23F187CA00560D6C /* GFTextField.swift in Sources */,
+				173E358A272EF71500C80178 /* GitHubAPI.swift in Sources */,
 				1709195523F1A0CE00560D6C /* GFBodyLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		173E3585272ED3F900C80178 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17521F2823F16C4D00D6DABF /* GHFollower */;
+			targetProxy = 173E3584272ED3F900C80178 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		17521F3723F16C4F00D6DABF /* LaunchScreen.storyboard */ = {
@@ -428,6 +512,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		173E3586272ED3F900C80178 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.GHFollowerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GHFollower.app/GHFollower";
+			};
+			name = Debug;
+		};
+		173E3587272ED3F900C80178 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.GHFollowerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GHFollower.app/GHFollower";
+			};
+			name = Release;
+		};
 		17521F3B23F16C4F00D6DABF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -583,6 +717,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		173E3588272ED3F900C80178 /* Build configuration list for PBXNativeTarget "GHFollowerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				173E3586272ED3F900C80178 /* Debug */,
+				173E3587272ED3F900C80178 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		17521F2423F16C4D00D6DABF /* Build configuration list for PBXProject "GHFollower" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
