@@ -10,10 +10,12 @@
 import XCTest
 
 class GitHubAPI_UserInfoRequestTests: XCTestCase {
+    let request = GitHubAPI.UserInfoRequest()
+
     func testMakingURLRequest() throws {
         let username = "sallen0400"
 
-        let urlRequest = try GitHubAPI.UserInfoRequest.makeRequest(username: username)
+        let urlRequest = try request.makeRequest(from: .init(username: username))
 
         XCTAssertEqual(urlRequest.url?.scheme, "https")
         XCTAssertEqual(urlRequest.url?.host, "api.github.com")
@@ -49,7 +51,7 @@ class GitHubAPI_UserInfoRequestTests: XCTestCase {
         }
         """.data(using: .utf8)!
 
-        let response = try GitHubAPI.UserInfoRequest.parseResponse(data: jsonData)
+        let response = try request.parseResponse(data: jsonData)
 
         XCTAssertEqual(response, User(login: login, avatarUrl: avatarURLString, name: name, location: location, bio: bio, publicRepos: publicRepos, publicGists: publicGists, htmlUrl: htmlUrl, following: following, followers: followers, createdAt: createdAt))
     }

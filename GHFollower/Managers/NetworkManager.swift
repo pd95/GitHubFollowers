@@ -17,7 +17,8 @@ class NetworkManager {
     private init() {}
 
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
-        guard let request = try? GitHubAPI.FollowersRequest.makeRequest(username: username, page: page) else {
+        let apiRequest = GitHubAPI.FollowersRequest()
+        guard let request = try? apiRequest.makeRequest(from: .init(username: username, page: page)) else {
             completed(.failure(.invalidUsername))
             return
         }
@@ -39,7 +40,7 @@ class NetworkManager {
             }
 
             do {
-                let followers = try GitHubAPI.FollowersRequest.parseResponse(data: data)
+                let followers = try apiRequest.parseResponse(data: data)
                 completed(.success(followers))
             } catch {
                 completed(.failure(.invalidData))

@@ -10,12 +10,14 @@
 import XCTest
 
 class GitHubAPI_FollowersRequestTests: XCTestCase {
+    let request = GitHubAPI.FollowersRequest()
+
     func testMakingURLRequest() throws {
         let username = "sallen0400"
         let page = 1
         let maxNumberPerPage = 10
 
-        let urlRequest = try GitHubAPI.FollowersRequest.makeRequest(username: username, page: page, maxNumberPerPage: maxNumberPerPage)
+        let urlRequest = try request.makeRequest(from: .init(username: username, page: page, maxNumberPerPage: maxNumberPerPage))
 
         XCTAssertEqual(urlRequest.url?.scheme, "https")
         XCTAssertEqual(urlRequest.url?.host, "api.github.com")
@@ -29,7 +31,7 @@ class GitHubAPI_FollowersRequestTests: XCTestCase {
         let avatarURLString = "https://github.com/images/error/octocat_happy.gif"
         let jsonData = "[{\"login\":\"\(login)\", \"avatar_url\": \"\(avatarURLString)\"}]".data(using: .utf8)!
 
-        let response = try GitHubAPI.FollowersRequest.parseResponse(data: jsonData)
+        let response = try request.parseResponse(data: jsonData)
 
         XCTAssertEqual(response, [Follower(login: login, avatarUrl: avatarURLString)])
     }
