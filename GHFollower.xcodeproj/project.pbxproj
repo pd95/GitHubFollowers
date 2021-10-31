@@ -290,10 +290,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17521F3D23F16C4F00D6DABF /* Build configuration list for PBXNativeTarget "GHFollower" */;
 			buildPhases = (
+				173E358D272EFFBD00C80178 /* SwiftFormat */,
 				17521F2523F16C4D00D6DABF /* Sources */,
 				17521F2623F16C4D00D6DABF /* Frameworks */,
 				17521F2723F16C4D00D6DABF /* Resources */,
-				173E358D272EFFBD00C80178 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -368,7 +368,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ $OTHER_SWIFT_FLAGS == *\"-D ED_SKIP_SWIFT_FORMAT\"* ]]; then\n  exit 0;\nfi\n\nif test -d \"/opt/bin\"; then\n  PATH=\"/opt/bin:${PATH}\"\nfi\nif test -d \"/usr/local/bin\"; then\n  PATH=\"/usr/local/bin:${PATH}\"\nfi\nif test -d \"/opt/homebrew/bin\"; then\n  PATH=\"/opt/homebrew/bin:${PATH}\"\nfi\n\nLOCATION=`which swiftformat`\nif test ! -f \"$LOCATION\" ; then\n  echo \"error: swiftformat not found in PATH ($PATH).\\n  (You can use homebrew to install it: 'brew install swiftformat')\"\n  exit 1\nfi\necho \"Running $LOCATION\"\n\"$LOCATION\" \"$SRCROOT\" --swiftversion 5 --indent tab --rules indent,linebreaks,trailingSpace,consecutiveBlankLines,blankLinesAtEndOfScope,blankLinesAtStartOfScope,blankLinesBetweenScopes,consecutiveSpaces,duplicateImports,elseOnSameLine,emptyBraces,redundantBreak,redundantInit,redundantLetError,redundantNilInit,redundantType,redundantVoidReturnType,spaceAroundBraces,spaceAroundBrackets,spaceAroundComments,spaceAroundGenerics,spaceAroundOperators,spaceAroundParens,spaceInsideBraces,spaceInsideBrackets,spaceInsideGenerics,spaceInsideParens,void --quiet\n";
+			shellScript = "if [[ $OTHER_SWIFT_FLAGS == *\"-D ED_SKIP_SWIFT_FORMAT\"* ]]; then\n  exit 0;\nfi\n\nif test -d \"/opt/bin\"; then\n  PATH=\"/opt/bin:${PATH}\"\nfi\nif test -d \"/usr/local/bin\"; then\n  PATH=\"/usr/local/bin:${PATH}\"\nfi\nif test -d \"/opt/homebrew/bin\"; then\n  PATH=\"/opt/homebrew/bin:${PATH}\"\nfi\n\nLOCATION=`which swiftformat`\nif test ! -f \"$LOCATION\" ; then\n  echo \"error: swiftformat not found in PATH ($PATH).\\n  (You can use homebrew to install it: 'brew install swiftformat')\"\n  exit 1\nfi\necho \"Running $LOCATION\"\n\"$LOCATION\" \"$SRCROOT\" --swiftversion 5 --indent 4\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
