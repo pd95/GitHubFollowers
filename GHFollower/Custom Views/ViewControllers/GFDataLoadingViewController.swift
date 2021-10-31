@@ -9,34 +9,31 @@
 import UIKit
 
 class GFDataLoadingViewController: UIViewController {
-
     private var containerView: UIView!
-
 
     func showLoadingView() {
         if let collectionView = view as? UICollectionView {
             containerView = UIView(frame: collectionView.bounds)
-        }
-        else {
+        } else {
             containerView = UIView(frame: view.frame)
         }
         view.addSubview(containerView)
-        
+
         containerView.backgroundColor = .systemBackground
         containerView.alpha = 0
-        
+
         UIView.animate(withDuration: 0.25, animations: { self.containerView.alpha = 0.75 })
 
         let activityIndicator = UIActivityIndicatorView(style: .large)
         containerView.addSubview(activityIndicator)
 
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             activityIndicator.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             activityIndicator.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
         ])
-        
+
         activityIndicator.startAnimating()
     }
 
@@ -44,8 +41,7 @@ class GFDataLoadingViewController: UIViewController {
         guard containerView != nil else { return }
         if let collectionView = view as? UICollectionView {
             containerView.frame = collectionView.bounds
-        }
-        else {
+        } else {
             containerView.frame = view.frame
         }
     }
@@ -57,7 +53,7 @@ class GFDataLoadingViewController: UIViewController {
             self.containerView = nil
         }
     }
-    
+
     func showEmptyStateView(with message: String, in view: UIView) {
         let emptyStateView = GFEmptyStateView(message: message)
         emptyStateView.frame = view.bounds

@@ -8,21 +8,18 @@
 
 import UIKit
 
-protocol GFFollowerItemInfoViewControllerDelegate: class {
+protocol GFFollowerItemInfoViewControllerDelegate: AnyObject {
     func didTapGetFollowers(for user: User)
 }
 
-
 class GFFollowerItemViewController: GFItemInfoViewController {
-
     weak var delegate: GFFollowerItemInfoViewControllerDelegate!
 
-    
     override func set(user: User) {
         super.set(user: user)
         configureItems()
     }
-    
+
     private func configureItems() {
         itemInfoViewOne.set(itemInfoType: .followers, withCount: user.followers)
         itemInfoViewTwo.set(itemInfoType: .following, withCount: user.following)

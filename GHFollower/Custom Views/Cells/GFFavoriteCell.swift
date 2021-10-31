@@ -9,11 +9,10 @@
 import UIKit
 
 class GFFavoriteCell: UITableViewCell {
-
     static let reuseID = "GFFavoriteCell"
-    
-    @IBOutlet var avatarImageView : GFAvatarImageView!
-    @IBOutlet var usernameLabel : UILabel!
+
+    @IBOutlet var avatarImageView: GFAvatarImageView!
+    @IBOutlet var usernameLabel: UILabel!
 
     override func prepareForReuse() {
         usernameLabel.text = nil

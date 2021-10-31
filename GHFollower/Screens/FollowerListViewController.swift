@@ -9,12 +9,11 @@
 import UIKit
 
 class FollowerListViewController: GFDataLoadingViewController {
-
     enum Section {
         case main
     }
-    
-    var username : String!
+
+    var username: String!
     var followers = [Follower]()
     var filteredFollowers = [Follower]()
     var page = 1
@@ -22,20 +21,19 @@ class FollowerListViewController: GFDataLoadingViewController {
     var isSearching = false
     var isLoadingMoreFollowers = false
 
-    @IBOutlet var collectionView : UICollectionView!
-    var dataSource : UICollectionViewDiffableDataSource<Section, Follower>!
-    var searchController : UISearchController!
-
+    @IBOutlet var collectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
+    var searchController: UISearchController!
 
     init(username: String) {
         super.init(nibName: nil, bundle: nil)
         self.username = username
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -50,16 +48,16 @@ class FollowerListViewController: GFDataLoadingViewController {
         title = username
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
+
     private func configureViewController() {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
+
     private func configureCollectionView() {
         collectionView.dataSource = dataSource
         collectionView.collectionViewLayout = UIHelper.createThreeColumnFlowLayout(in: collectionView)
     }
-    
+
     private func configureSearchController() {
         searchController = UISearchController()
         searchController.searchResultsUpdater = self
@@ -67,26 +65,26 @@ class FollowerListViewController: GFDataLoadingViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
     }
-    
+
     private func getFollowers(username: String, page: Int) {
         showLoadingView()
         isLoadingMoreFollowers = true
 
-        NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] (result) in
+        NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
             guard let self = self else { return }
             self.dismissLoadingView()
-            
+
             switch result {
-                case .failure(let error):
-                    self.presentGFAlertOnMainThread(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "OK")
-                
-                case .success(let followers):
-                    self.updateUI(with: followers)
+            case let .failure(error):
+                self.presentGFAlertOnMainThread(title: "Bad stuff happened", message: error.rawValue, buttonTitle: "OK")
+
+            case let .success(followers):
+                self.updateUI(with: followers)
             }
             self.isLoadingMoreFollowers = false
         }
     }
-    
+
     func updateUI(with followers: [Follower]) {
         hasMoreFollowers = followers.count == 100
         self.followers.append(contentsOf: followers)
@@ -95,20 +93,19 @@ class FollowerListViewController: GFDataLoadingViewController {
             DispatchQueue.main.async {
                 self.showEmptyStateView(with: message, in: self.view)
             }
-        }
-        else {
+        } else {
             updateData(on: self.followers)
         }
     }
-    
+
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { collectionView, indexPath, follower -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GFFollowerCell.reuseID, for: indexPath) as! GFFollowerCell
             cell.set(follower: follower)
             return cell
         })
     }
-    
+
     private func updateData(on followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
@@ -117,79 +114,74 @@ class FollowerListViewController: GFDataLoadingViewController {
             self.dataSource.apply(snapshot, animatingDifferences: true)
         }
     }
-    
-    @IBAction @objc func addButtonTapped() {
+
+    @IBAction func addButtonTapped() {
         showLoadingView()
 
         NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
             guard let self = self else { return }
             self.dismissLoadingView()
-            
+
             switch result {
-                case .success(let user):
-                    self.addUserToFavorites(user: user)
-                case .failure(let error):
-                    self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+            case let .success(user):
+                self.addUserToFavorites(user: user)
+            case let .failure(error):
+                self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
             }
         }
     }
-    
+
     func addUserToFavorites(user: User) {
         let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
         PersistenceManager.updateWith(favorite: favorite, actionType: .add, completed: { [weak self] error in
             guard let self = self else { return }
             if let error = error {
                 self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
-            }
-            else {
+            } else {
                 self.presentGFAlertOnMainThread(title: "Success!", message: "You have successfully favorited this user 🎉.", buttonTitle: "Hooray")
             }
         })
-
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showUser", let follower = sender as? Follower,
-            let destinationNC = segue.destination as? UINavigationController,
-            let destinationVC = destinationNC.viewControllers.first as? UserInfoViewController {
+           let destinationNC = segue.destination as? UINavigationController,
+           let destinationVC = destinationNC.viewControllers.first as? UserInfoViewController
+        {
             destinationVC.userName = follower.login
             destinationVC.delegate = self
         }
     }
 }
 
-
 extension FollowerListViewController: UICollectionViewDelegate {
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate _: Bool) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.size.height
-        
+
         if offsetY > contentHeight - height {
             guard hasMoreFollowers, !isLoadingMoreFollowers else { return }
             page += 1
             getFollowers(username: username, page: page)
         }
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+    func scrollViewDidScroll(_: UIScrollView) {
         if isLoadingMoreFollowers {
             updateLoadingView()
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray = isSearching ? filteredFollowers : followers
         let follower = activeArray[indexPath.item]
-        
+
         performSegue(withIdentifier: "showUser", sender: follower)
     }
 }
 
-
 extension FollowerListViewController: UISearchResultsUpdating {
-
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text?.lowercased(), !filter.isEmpty else {
             isSearching = false
@@ -205,9 +197,7 @@ extension FollowerListViewController: UISearchResultsUpdating {
     }
 }
 
-
 extension FollowerListViewController: UserInfoViewControllerDelegate {
-    
     func didRequestFollowers(for username: String) {
         self.username = username
         title = username

@@ -6,17 +6,17 @@
 //  Copyright © 2020 Philipp. All rights reserved.
 //
 
-import UIKit
 import SafariServices
+import UIKit
 
 extension UIViewController {
-
     func presentGFAlertOnMainThread(title: String, message: String, buttonTitle: String) {
         DispatchQueue.main.async {
             // let alertVC = GFAlertViewController(title: title, message: message, buttonTitle: buttonTitle)
-            guard let alertVC = self.storyboard?.instantiateViewController(identifier: "Alert") as? GFAlertViewController /*, creator: { coder in
-                return GFAlertViewController(title: title, message: message, buttonTitle: buttonTitle)
-            })*/ else {
+            guard let alertVC = self.storyboard?.instantiateViewController(identifier: "Alert") as? GFAlertViewController /* , creator: { coder in
+                 return GFAlertViewController(title: title, message: message, buttonTitle: buttonTitle)
+             }) */
+            else {
                 fatalError("Failed to load Alert from storyboard.")
             }
 
@@ -26,7 +26,7 @@ extension UIViewController {
             self.present(alertVC, animated: true)
         }
     }
-    
+
     func presentSafariViewController(with url: URL) {
         let safariVC = SFSafariViewController(url: url)
         safariVC.preferredControlTintColor = .systemGreen

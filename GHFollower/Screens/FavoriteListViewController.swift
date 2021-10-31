@@ -9,39 +9,36 @@
 import UIKit
 
 class FavoriteListViewController: GFDataLoadingViewController {
-    
     @IBOutlet var tableView: UITableView!
-    var favorites : [Follower] = []
-
+    var favorites: [Follower] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getFavorites()
     }
-    
+
     func getFavorites() {
         showLoadingView()
         PersistenceManager.retrieveFavorites { [weak self] result in
             guard let self = self else { return }
             switch result {
-                case .success(let favorites):
-                    self.updateUI(with: favorites)
-                case .failure(let error):
-                    self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+            case let .success(favorites):
+                self.updateUI(with: favorites)
+            case let .failure(error):
+                self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
             }
             self.dismissLoadingView()
         }
     }
-    
+
     func updateUI(with favorites: [Follower]) {
         if favorites.isEmpty {
             showEmptyStateView(with: "No Favorites?\nAdd one on the Follower screen.", in: view)
-        }
-        else {
+        } else {
             self.favorites = favorites
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -49,11 +46,12 @@ class FavoriteListViewController: GFDataLoadingViewController {
             }
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showFollowers",
-            let destinationVC = segue.destination as? FollowerListViewController else {
-                return
+              let destinationVC = segue.destination as? FollowerListViewController
+        else {
+            return
         }
         if let cell = sender as? GFFavoriteCell {
             destinationVC.username = cell.usernameLabel.text
@@ -62,19 +60,18 @@ class FavoriteListViewController: GFDataLoadingViewController {
 }
 
 extension FavoriteListViewController: UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return favorites.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GFFavoriteCell.reuseID) as! GFFavoriteCell
         let favorite = favorites[indexPath.row]
         cell.set(favorite: favorite)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+    func tableView(_: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
 
         let favorite = favorites[indexPath.row]

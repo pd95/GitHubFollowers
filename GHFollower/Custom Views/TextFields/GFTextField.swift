@@ -10,34 +10,33 @@ import UIKit
 
 @IBDesignable
 class GFTextField: UITextField {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
     }
-    
+
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         configure()
     }
 
     private func configure() {
-        textColor       = .label
-        tintColor       = .label
-        textAlignment   = .center
-        font            = UIFont.preferredFont(forTextStyle: .title2)
+        textColor = .label
+        tintColor = .label
+        textAlignment = .center
+        font = UIFont.preferredFont(forTextStyle: .title2)
         minimumFontSize = 12
         adjustsFontSizeToFitWidth = true
 
-        backgroundColor    = .tertiarySystemBackground
+        backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
-        returnKeyType      = .go
-        clearButtonMode    = .whileEditing
-        placeholder        = "Enter a username"
+        returnKeyType = .go
+        clearButtonMode = .whileEditing
+        placeholder = "Enter a username"
     }
 }

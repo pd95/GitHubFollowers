@@ -9,34 +9,32 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-    
-    @IBOutlet var logoImageView : UIImageView!
-    @IBOutlet var usernameTextField : GFTextField!
-    @IBOutlet var callToActionButton : GFButton!
-    
+    @IBOutlet var logoImageView: UIImageView!
+    @IBOutlet var usernameTextField: GFTextField!
+    @IBOutlet var callToActionButton: GFButton!
+
     var isUsernameEntered: Bool {
         return !usernameTextField.text!.isEmpty
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         createDismissKeyboardTapGesture()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         usernameTextField.text = ""
     }
-    
+
     func createDismissKeyboardTapGesture() {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender _: Any?) -> Bool {
         if identifier == "getFollowers" {
             if !isUsernameEntered {
                 presentGFAlertOnMainThread(title: "Empty Username", message: "Please enter a username. We need to know who to look for 😀.", buttonTitle: "OK")
@@ -45,19 +43,19 @@ class SearchViewController: UIViewController {
         }
         return true
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "getFollowers",
-            let destinationVC = segue.destination as? FollowerListViewController {
+           let destinationVC = segue.destination as? FollowerListViewController
+        {
             destinationVC.username = usernameTextField.text
         }
         usernameTextField.resignFirstResponder()
     }
 }
 
-
 extension SearchViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_: UITextField) -> Bool {
         if shouldPerformSegue(withIdentifier: "getFollowers", sender: nil) {
             performSegue(withIdentifier: "getFollowers", sender: nil)
         }

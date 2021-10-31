@@ -9,5 +9,4 @@
 import UIKit
 
 @IBDesignable
-class GFContainerView: UIView {
-}
+class GFContainerView: UIView {}

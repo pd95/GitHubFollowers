@@ -9,19 +9,16 @@
 import UIKit
 
 class GFItemInfoViewController: UIViewController {
-    
-    @IBOutlet var stackView : UIStackView!
-    @IBOutlet var itemInfoViewOne : GFItemInfoView!
-    @IBOutlet var itemInfoViewTwo : GFItemInfoView!
-    @IBOutlet var actionButton : GFButton!
+    @IBOutlet var stackView: UIStackView!
+    @IBOutlet var itemInfoViewOne: GFItemInfoView!
+    @IBOutlet var itemInfoViewTwo: GFItemInfoView!
+    @IBOutlet var actionButton: GFButton!
 
     var user: User!
-    
 
     func set(user: User) {
         self.user = user
     }
-    
-    @IBAction func actionButtonTapped() {
-    }
+
+    @IBAction func actionButtonTapped() {}
 }

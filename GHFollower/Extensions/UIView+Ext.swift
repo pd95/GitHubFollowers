@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIView {
-
     @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -34,7 +33,7 @@ extension UIView {
             if let color = layer.borderColor {
                 return UIColor(cgColor: color)
             }
-            
+
             return nil
         }
         set {
@@ -45,7 +44,7 @@ extension UIView {
     func addSubviews(_ views: UIView...) {
         views.forEach(addSubview)
     }
-    
+
     func pinToEdges(of superview: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
 

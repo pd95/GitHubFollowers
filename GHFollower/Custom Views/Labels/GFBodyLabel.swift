@@ -10,17 +10,16 @@ import UIKit
 
 @IBDesignable
 class GFBodyLabel: UILabel {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
     }
-    
+
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         configure()
@@ -30,17 +29,17 @@ class GFBodyLabel: UILabel {
         self.init(frame: .zero)
         set(textAlignment: textAlignment)
     }
-    
+
     func set(textAlignment: NSTextAlignment) {
         self.textAlignment = textAlignment
     }
-    
+
     private func configure() {
-        textColor                         = .secondaryLabel
-        font                              = UIFont.preferredFont(forTextStyle: .body)
-        adjustsFontSizeToFitWidth         = true
+        textColor = .secondaryLabel
+        font = UIFont.preferredFont(forTextStyle: .body)
+        adjustsFontSizeToFitWidth = true
         adjustsFontForContentSizeCategory = true
-        minimumScaleFactor                = 0.75
-        lineBreakMode                     = .byWordWrapping
+        minimumScaleFactor = 0.75
+        lineBreakMode = .byWordWrapping
     }
 }

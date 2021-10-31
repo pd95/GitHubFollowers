@@ -9,16 +9,15 @@
 import UIKit
 
 class GFFollowerCell: UICollectionViewCell {
-
     static let reuseID = "GFFollowerCell"
-    
-    @IBOutlet var avatarImageView : GFAvatarImageView!
-    @IBOutlet var usernameLabel : UILabel!
+
+    @IBOutlet var avatarImageView: GFAvatarImageView!
+    @IBOutlet var usernameLabel: UILabel!
 
     override func prepareForReuse() {
         usernameLabel.text = nil
     }
-    
+
     func set(follower: Follower) {
         usernameLabel.text = follower.login
         avatarImageView.image = Images.placeholder

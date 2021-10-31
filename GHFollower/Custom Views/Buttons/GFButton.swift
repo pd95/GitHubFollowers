@@ -10,17 +10,16 @@ import UIKit
 
 @IBDesignable
 class GFButton: UIButton {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
     }
-    
+
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         configure()
@@ -30,12 +29,12 @@ class GFButton: UIButton {
         self.init(frame: .zero)
         set(backgroundColor: backgroundColor, title: title)
     }
-    
+
     func set(backgroundColor: UIColor, title: String) {
         self.backgroundColor = backgroundColor
-        self.setTitle(title, for: .normal)
+        setTitle(title, for: .normal)
     }
-    
+
     private func configure() {
         setTitleColor(.white, for: .normal)
         titleLabel?.adjustsFontForContentSizeCategory = true

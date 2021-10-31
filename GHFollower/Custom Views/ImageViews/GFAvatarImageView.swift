@@ -10,7 +10,6 @@ import UIKit
 
 @IBDesignable
 class GFAvatarImageView: UIImageView {
-    
     private let placeholderImage = Images.placeholder ?? UIImage(systemName: "person")
     private var imageUrl: String!
 
@@ -18,12 +17,12 @@ class GFAvatarImageView: UIImageView {
         super.init(frame: frame)
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
     }
-    
+
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         configure()
@@ -32,7 +31,7 @@ class GFAvatarImageView: UIImageView {
     private func configure() {
         image = placeholderImage
     }
-    
+
     func downloadImage(fromUrl url: String) {
         imageUrl = url
         NetworkManager.shared.downloadImage(from: url) { [weak self] image in
