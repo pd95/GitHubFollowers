@@ -34,7 +34,10 @@ extension GitHubAPI {
                 URLQueryItem(name: "page", value: String(data.page)),
             ]
 
-            return URLRequest(url: components.url!)
+            guard let url = components.url else {
+                throw GFError.invalidUsername
+            }
+            return URLRequest(url: url)
         }
 
         func parseResponse(data: Data) throws -> [Follower] {
@@ -51,7 +54,9 @@ extension GitHubAPI {
         }
 
         func makeRequest(from data: Parameter) throws -> URLRequest {
-            let url = URL(string: "\(baseURL)/users/\(data.username)")!
+            guard let url = URL(string: "\(baseURL)/users/\(data.username)") else {
+                throw GFError.invalidUsername
+            }
 
             return URLRequest(url: url)
         }
