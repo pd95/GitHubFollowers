@@ -28,7 +28,9 @@ extension GitHubAPI {
         }
 
         func makeRequest(from data: Parameter) throws -> URLRequest {
-            var components = URLComponents(string: "\(baseURL)/users/\(data.username)/followers")!
+            guard var components = URLComponents(string: "\(baseURL)/users/\(data.username)/followers") else {
+                throw GFError.invalidUsername
+            }
             components.queryItems = [
                 URLQueryItem(name: "per_page", value: String(data.maxNumberPerPage)),
                 URLQueryItem(name: "page", value: String(data.page)),
