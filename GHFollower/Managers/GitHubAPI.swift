@@ -14,6 +14,7 @@ enum GitHubAPI {
     static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
         return decoder
     }()
 }
@@ -32,6 +33,18 @@ extension GitHubAPI {
 
         static func parseResponse(data: Data) throws -> [Follower] {
             return try GitHubAPI.decoder.decode([Follower].self, from: data)
+        }
+    }
+
+    enum UserInfoRequest {
+        static func makeRequest(username: String) throws -> URLRequest {
+            let url = URL(string: "\(baseURL)/users/\(username)")!
+
+            return URLRequest(url: url)
+        }
+
+        static func parseResponse(data: Data) throws -> User {
+            return try GitHubAPI.decoder.decode(User.self, from: data)
         }
     }
 }

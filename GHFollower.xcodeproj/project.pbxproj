@@ -37,6 +37,7 @@
 		177F61A823F30FF200A25B38 /* GFItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61A723F30FF200A25B38 /* GFItemInfoViewController.swift */; };
 		177F61AA23F312E300A25B38 /* GFRepoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61A923F312E300A25B38 /* GFRepoItemViewController.swift */; };
 		177F61AC23F313C500A25B38 /* GFFollowerItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61AB23F313C500A25B38 /* GFFollowerItemViewController.swift */; };
+		17854D66272F0B3400C224BD /* GitHubAPI_UserInfoRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17854D65272F0B3300C224BD /* GitHubAPI_UserInfoRequestTests.swift */; };
 		178EF27323F4AB39002EEFF1 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EF27223F4AB39002EEFF1 /* PersistenceManager.swift */; };
 		178EF27723F88D48002EEFF1 /* GFFavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EF27623F88D48002EEFF1 /* GFFavoriteCell.swift */; };
 		17DD560E23F489AF0076AADD /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DD560D23F489AF0076AADD /* Date+Ext.swift */; };
@@ -94,6 +95,7 @@
 		177F61A723F30FF200A25B38 /* GFItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoViewController.swift; sourceTree = "<group>"; };
 		177F61A923F312E300A25B38 /* GFRepoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFRepoItemViewController.swift; sourceTree = "<group>"; };
 		177F61AB23F313C500A25B38 /* GFFollowerItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFFollowerItemViewController.swift; sourceTree = "<group>"; };
+		17854D65272F0B3300C224BD /* GitHubAPI_UserInfoRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI_UserInfoRequestTests.swift; sourceTree = "<group>"; };
 		178EF27223F4AB39002EEFF1 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		178EF27623F88D48002EEFF1 /* GFFavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFFavoriteCell.swift; sourceTree = "<group>"; };
 		17DD560D23F489AF0076AADD /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				173E3582272ED3F900C80178 /* GHFollowerTests.swift */,
 				173E358B272EF79700C80178 /* GitHubAPI_FollowersRequestTests.swift */,
+				17854D65272F0B3300C224BD /* GitHubAPI_UserInfoRequestTests.swift */,
 			);
 			path = GHFollowerTests;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17854D66272F0B3400C224BD /* GitHubAPI_UserInfoRequestTests.swift in Sources */,
 				173E3583272ED3F900C80178 /* GHFollowerTests.swift in Sources */,
 				173E358C272EF79700C80178 /* GitHubAPI_FollowersRequestTests.swift in Sources */,
 			);
