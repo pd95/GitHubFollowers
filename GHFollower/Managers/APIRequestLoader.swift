@@ -23,7 +23,8 @@ class APIRequestLoader<T: APIRequest> {
     ) {
         do {
             let urlRequest = try apiRequest.makeRequest(from: requestData)
-            urlSession.dataTask(with: urlRequest) { data, response, error in
+            urlSession.dataTask(with: urlRequest) { [weak self] data, response, error in
+                guard let self = self else { return }
                 if let _ = error {
                     return completionHandler(.failure(.unableToComplete))
                 }
