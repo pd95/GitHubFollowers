@@ -10,7 +10,8 @@
 import XCTest
 
 class GitHubAPI_UserInfoRequestTests: XCTestCase {
-    let request = GitHubAPI.UserInfoRequest()
+    private typealias APIRequestToTest = GitHubAPI.UserInfoRequest
+    private let request = APIRequestToTest()
 
     func test_MakingValidURLRequest() throws {
         let username = "sallen0400"
@@ -58,8 +59,8 @@ class GitHubAPI_UserInfoRequestTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<GitHubAPI.UserInfoRequest> {
-        let request = GitHubAPI.UserInfoRequest()
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<APIRequestToTest> {
+        let request = APIRequestToTest()
 
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]

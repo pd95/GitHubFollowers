@@ -10,6 +10,8 @@
 import XCTest
 
 class GitHubAPI_APIRequestLoaderTests: XCTestCase {
+    private typealias APIRequestToTest = DummyRequest
+
     private struct DummyRequest: APIRequest {
         typealias RequestDataType = URL
         typealias ResponseDataType = [String]
@@ -73,8 +75,8 @@ class GitHubAPI_APIRequestLoaderTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<DummyRequest> {
-        let request = DummyRequest()
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<APIRequestToTest> {
+        let request = APIRequestToTest()
 
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
@@ -88,7 +90,7 @@ class GitHubAPI_APIRequestLoaderTests: XCTestCase {
     private func resultValuesFor(
         data: Data?, response: URLResponse?, error: Error?,
         file: StaticString = #filePath, line: UInt = #line
-    ) -> DummyRequest.ResponseDataType? {
+    ) -> APIRequestToTest.ResponseDataType? {
         let result = resultFor(data: data, response: response, error: error, file: file, line: line)
 
         switch result {
@@ -118,7 +120,7 @@ class GitHubAPI_APIRequestLoaderTests: XCTestCase {
     private func resultFor(
         data: Data?, response: URLResponse?, error: Error?,
         file: StaticString = #filePath, line: UInt = #line
-    ) -> Result<DummyRequest.ResponseDataType, GFError> {
+    ) -> Result<APIRequestToTest.ResponseDataType, GFError> {
         let sut = makeSUT(file: file, line: line)
         let exp = expectation(description: "Wait for completion")
 
@@ -130,7 +132,7 @@ class GitHubAPI_APIRequestLoaderTests: XCTestCase {
             return (response ?? .init(), data ?? .init())
         }
 
-        var receivedResult: Result<DummyRequest.ResponseDataType, GFError>!
+        var receivedResult: Result<APIRequestToTest.ResponseDataType, GFError>!
         sut.loadAPIRequest(requestData: anyURL()) { result in
             receivedResult = result
             exp.fulfill()
