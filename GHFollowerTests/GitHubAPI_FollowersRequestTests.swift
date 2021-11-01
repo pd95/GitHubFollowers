@@ -12,7 +12,7 @@ import XCTest
 class GitHubAPI_FollowersRequestTests: XCTestCase {
     let request = GitHubAPI.FollowersRequest()
 
-    func testMakingURLRequest() throws {
+    func test_MakingValidURLRequest() throws {
         let username = "sallen0400"
         let page = 1
         let maxNumberPerPage = 10
@@ -26,7 +26,14 @@ class GitHubAPI_FollowersRequestTests: XCTestCase {
         XCTAssertTrue(urlRequest.url?.query?.contains("per_page=\(maxNumberPerPage)") ?? false)
     }
 
-    func testParsingResponse() throws {
+    func test_MakingURLRequestWithInvalidURLCharacterInUsername() throws {
+        let invalidCharacters = [" ", "%", "😉"]
+        for character in invalidCharacters {
+            XCTAssertThrowsError(try request.makeRequest(from: .init(username: "username\(character)", page: 1)))
+        }
+    }
+
+    func test_ParsingValidResponse() throws {
         let login = "octocat"
         let avatarURLString = "https://github.com/images/error/octocat_happy.gif"
         let jsonData = "[{\"login\":\"\(login)\", \"avatar_url\": \"\(avatarURLString)\"}]".data(using: .utf8)!

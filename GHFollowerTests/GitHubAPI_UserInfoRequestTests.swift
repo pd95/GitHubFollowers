@@ -12,7 +12,7 @@ import XCTest
 class GitHubAPI_UserInfoRequestTests: XCTestCase {
     let request = GitHubAPI.UserInfoRequest()
 
-    func testMakingURLRequest() throws {
+    func test_MakingValidURLRequest() throws {
         let username = "sallen0400"
 
         let urlRequest = try request.makeRequest(from: .init(username: username))
@@ -22,7 +22,14 @@ class GitHubAPI_UserInfoRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest.url?.path, "/users/\(username)")
     }
 
-    func testParsingResponse() throws {
+    func test_MakingURLRequestWithInvalidURLCharacterInUsername() throws {
+        let invalidCharacters = [" ", "%", "😉"]
+        for character in invalidCharacters {
+            XCTAssertThrowsError(try request.makeRequest(from: .init(username: "username\(character)")))
+        }
+    }
+
+    func test_ParsingValidResponse() throws {
         let login = "octocat"
         let avatarURLString = "https://avatars.githubusercontent.com/u/583231?v=4"
         let name: String? = "The Octocat"
