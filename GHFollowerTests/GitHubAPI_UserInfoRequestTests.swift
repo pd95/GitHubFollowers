@@ -43,14 +43,14 @@ class GitHubAPI_UserInfoRequestTests: XCTestCase {
         let (user, json) = anyUser(login: login)
         let jsonData = makeUserJSON(json)
 
-        let sut = makeSUT()
+        let loader = makeLoader()
         MockURLProtocol.requestHandler = { request in
             XCTAssertEqual(request.url?.pathComponents.contains(login), true)
             return (HTTPURLResponse(), jsonData)
         }
 
         let expectation = XCTestExpectation(description: "response")
-        sut.loadAPIRequest(requestData: .init(username: login)) { result in
+        loader.loadAPIRequest(requestData: .init(username: login)) { result in
             XCTAssertEqual(result, .success(user))
             expectation.fulfill()
         }
@@ -59,9 +59,7 @@ class GitHubAPI_UserInfoRequestTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<APIRequestToTest> {
-        let request = APIRequestToTest()
-
+    private func makeLoader(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<APIRequestToTest> {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
         let urlSession = URLSession(configuration: configuration)

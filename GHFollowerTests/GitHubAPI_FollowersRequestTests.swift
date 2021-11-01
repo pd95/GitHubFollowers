@@ -48,14 +48,14 @@ class GitHubAPI_FollowersRequestTests: XCTestCase {
         let (followers, json) = anyFollowers()
         let jsonData = makeFollowerJSON(json)
 
-        let sut = makeSUT()
+        let loader = makeLoader()
         MockURLProtocol.requestHandler = { request in
             XCTAssertEqual(request.url?.pathComponents.contains(username), true)
             return (HTTPURLResponse(), jsonData)
         }
 
         let expectation = XCTestExpectation(description: "response")
-        sut.loadAPIRequest(requestData: .init(username: username, page: 1, maxNumberPerPage: 10)) { result in
+        loader.loadAPIRequest(requestData: .init(username: username, page: 1, maxNumberPerPage: 10)) { result in
             XCTAssertEqual(result, .success(followers))
             expectation.fulfill()
         }
@@ -64,9 +64,7 @@ class GitHubAPI_FollowersRequestTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<APIRequestToTest> {
-        let request = APIRequestToTest()
-
+    private func makeLoader(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<APIRequestToTest> {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
         let urlSession = URLSession(configuration: configuration)
