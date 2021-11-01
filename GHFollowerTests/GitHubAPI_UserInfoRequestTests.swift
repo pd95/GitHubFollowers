@@ -66,9 +66,7 @@ class GitHubAPI_UserInfoRequestTests: XCTestCase {
         let urlSession = URLSession(configuration: configuration)
 
         let loader = APIRequestLoader(apiRequest: request, urlSession: urlSession)
-        addTeardownBlock { [weak loader] in
-            XCTAssertNil(loader, "Loader should have been deallocated. Potential memory leak", file: file, line: line)
-        }
+        trackForMemoryLeaks(loader, file: file, line: line)
         return loader
     }
 

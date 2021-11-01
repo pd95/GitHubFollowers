@@ -29,6 +29,7 @@
 		17714549272F2E8800251060 /* APIRequestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17714548272F2E8800251060 /* APIRequestLoader.swift */; };
 		1771454D272FC0FC00251060 /* GitHubAPI_APIRequestLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771454C272FC0FC00251060 /* GitHubAPI_APIRequestLoaderTests.swift */; };
 		1771454F272FD70100251060 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771454E272FD70100251060 /* MockURLProtocol.swift */; };
+		1771457F2730A93E00251060 /* XCTestCase-MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771457E2730A93E00251060 /* XCTestCase-MemoryLeakTracking.swift */; };
 		177F618D23F1EAC600A25B38 /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F618C23F1EAC600A25B38 /* GFAvatarImageView.swift */; };
 		177F618F23F1EC0000A25B38 /* GFFollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F618923F1EA4A00A25B38 /* GFFollowerCell.swift */; };
 		177F619123F1FE0F00A25B38 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F619023F1FE0F00A25B38 /* UIHelper.swift */; };
@@ -91,6 +92,7 @@
 		17714548272F2E8800251060 /* APIRequestLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestLoader.swift; sourceTree = "<group>"; };
 		1771454C272FC0FC00251060 /* GitHubAPI_APIRequestLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI_APIRequestLoaderTests.swift; sourceTree = "<group>"; };
 		1771454E272FD70100251060 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		1771457E2730A93E00251060 /* XCTestCase-MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase-MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		177F618923F1EA4A00A25B38 /* GFFollowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFFollowerCell.swift; sourceTree = "<group>"; };
 		177F618C23F1EAC600A25B38 /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
 		177F619023F1FE0F00A25B38 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				1771454E272FD70100251060 /* MockURLProtocol.swift */,
+				1771457E2730A93E00251060 /* XCTestCase-MemoryLeakTracking.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				17854D66272F0B3400C224BD /* GitHubAPI_UserInfoRequestTests.swift in Sources */,
 				173E3583272ED3F900C80178 /* GHFollowerTests.swift in Sources */,
 				1771454F272FD70100251060 /* MockURLProtocol.swift in Sources */,
+				1771457F2730A93E00251060 /* XCTestCase-MemoryLeakTracking.swift in Sources */,
 				1771454D272FC0FC00251060 /* GitHubAPI_APIRequestLoaderTests.swift in Sources */,
 				173E358C272EF79700C80178 /* GitHubAPI_FollowersRequestTests.swift in Sources */,
 			);
