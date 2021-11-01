@@ -34,12 +34,69 @@ class GitHubAPI_FollowersRequestTests: XCTestCase {
     }
 
     func test_ParsingValidResponse() throws {
-        let login = "octocat"
-        let avatarURLString = "https://github.com/images/error/octocat_happy.gif"
-        let jsonData = "[{\"login\":\"\(login)\", \"avatar_url\": \"\(avatarURLString)\"}]".data(using: .utf8)!
+        let (followers, json) = anyFollowers()
+        let jsonData = makeFollowerJSON(json)
 
         let response = try request.parseResponse(data: jsonData)
 
-        XCTAssertEqual(response, [Follower(login: login, avatarUrl: avatarURLString)])
+        XCTAssertEqual(response, followers)
+    }
+
+    func test_APILoaderLoadsFollowersSuccessfully() {
+        let username = "octocat"
+        let (followers, json) = anyFollowers()
+        let jsonData = makeFollowerJSON(json)
+
+        let sut = makeSUT()
+        MockURLProtocol.requestHandler = { request in
+            XCTAssertEqual(request.url?.pathComponents.contains(username), true)
+            return (HTTPURLResponse(), jsonData)
+        }
+
+        let expectation = XCTestExpectation(description: "response")
+        sut.loadAPIRequest(requestData: .init(username: username, page: 1, maxNumberPerPage: 10)) { result in
+            XCTAssertEqual(result, .success(followers))
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+    }
+
+    // MARK: - Helpers
+
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<GitHubAPI.FollowersRequest> {
+        let request = GitHubAPI.FollowersRequest()
+
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [MockURLProtocol.self]
+        let urlSession = URLSession(configuration: configuration)
+
+        let loader = APIRequestLoader(apiRequest: request, urlSession: urlSession)
+        addTeardownBlock { [weak loader] in
+            XCTAssertNil(loader, "Loader should have been deallocated. Potential memory leak", file: file, line: line)
+        }
+        return loader
+    }
+
+    private func anyFollowers() -> (follower: [Follower], json: [[String: Any]]) {
+        let (follower, json) = makeFollower(login: "octocat", avatarUrl: "https://avatars.githubusercontent.com/u/583231?v=4")
+        return ([follower], [json])
+    }
+
+    private func makeFollower(login: String, avatarUrl: String) -> (follower: Follower, json: [String: Any]) {
+        let follower = Follower(
+            login: login, avatarUrl: avatarUrl
+        )
+
+        let followerDict: [String: Any?] = [
+            "login": login,
+            "avatar_url": avatarUrl,
+        ]
+        let json = followerDict.compactMapValues { $0 }
+
+        return (follower, json)
+    }
+
+    private func makeFollowerJSON(_ followers: [[String: Any]]) -> Data {
+        return try! JSONSerialization.data(withJSONObject: followers)
     }
 }
