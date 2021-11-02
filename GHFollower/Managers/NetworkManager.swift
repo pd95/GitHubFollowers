@@ -17,13 +17,19 @@ class NetworkManager {
     private init() {}
 
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
-        let loader = APIRequestLoader(apiRequest: GitHubAPI.FollowersRequest())
-        loader.loadAPIRequest(requestData: .init(username: username, page: page), completionHandler: completed)
+        var loader = Optional.some(APIRequestLoader(apiRequest: GitHubAPI.FollowersRequest()))
+        loader?.loadAPIRequest(requestData: .init(username: username, page: page)) { result in
+            completed(result)
+            loader = nil
+        }
     }
 
     func getUserInfo(for username: String, completed: @escaping (Result<User, GFError>) -> Void) {
-        let loader = APIRequestLoader(apiRequest: GitHubAPI.UserInfoRequest())
-        loader.loadAPIRequest(requestData: .init(username: username), completionHandler: completed)
+        var loader = Optional.some(APIRequestLoader(apiRequest: GitHubAPI.UserInfoRequest()))
+        loader?.loadAPIRequest(requestData: .init(username: username)) { result in
+            completed(result)
+            loader = nil
+        }
     }
 
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
