@@ -1,5 +1,5 @@
 //
-//  GitHubAPI_FollowersRequestTests.swift
+//  FollowersRequestTests.swift
 //  GitHubAPITests
 //
 //  Created by Philipp on 31.10.21.
@@ -9,7 +9,7 @@
 import GitHubAPI
 import XCTest
 
-class GitHubAPI_FollowersRequestTests: XCTestCase {
+class FollowersRequestTests: XCTestCase {
     private typealias APIRequestToTest = FollowersRequest
     private let request = APIRequestToTest()
 

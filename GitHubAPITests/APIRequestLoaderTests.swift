@@ -1,5 +1,5 @@
 //
-//  GitHubAPI_APIRequestLoaderTests.swift
+//  APIRequestLoaderTests.swift
 //  GitHubAPITests
 //
 //  Created by Philipp on 01.11.21.
@@ -9,7 +9,7 @@
 import GitHubAPI
 import XCTest
 
-class GitHubAPI_APIRequestLoaderTests: XCTestCase {
+class APIRequestLoaderTests: XCTestCase {
     private typealias APIRequestToTest = DummyRequest
 
     private struct DummyRequest: APIRequest {

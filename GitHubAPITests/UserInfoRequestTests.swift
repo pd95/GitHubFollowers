@@ -1,5 +1,5 @@
 //
-//  GitHubAPI_UserInfoRequestTests.swift
+//  UserInfoRequestTests.swift
 //  GitHubAPITests
 //
 //  Created by Philipp on 31.10.21.
@@ -9,7 +9,7 @@
 import GitHubAPI
 import XCTest
 
-class GitHubAPI_UserInfoRequestTests: XCTestCase {
+class UserInfoRequestTests: XCTestCase {
     private typealias APIRequestToTest = UserInfoRequest
     private let request = APIRequestToTest()
 
