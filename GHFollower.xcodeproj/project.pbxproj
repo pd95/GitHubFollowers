@@ -40,6 +40,7 @@
 		177145E3273138DB00251060 /* GitHubAPI-Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177145E2273138DB00251060 /* GitHubAPI-Converter.swift */; };
 		177145E42731399300251060 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177145DB2731352800251060 /* User.swift */; };
 		177145E52731399300251060 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177145DC2731352800251060 /* Follower.swift */; };
+		177145E6273190AE00251060 /* XCTestCase-MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771457E2730A93E00251060 /* XCTestCase-MemoryLeakTracking.swift */; };
 		177F618D23F1EAC600A25B38 /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F618C23F1EAC600A25B38 /* GFAvatarImageView.swift */; };
 		177F618F23F1EC0000A25B38 /* GFFollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F618923F1EA4A00A25B38 /* GFFollowerCell.swift */; };
 		177F619123F1FE0F00A25B38 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F619023F1FE0F00A25B38 /* UIHelper.swift */; };
@@ -633,6 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				173E3583272ED3F900C80178 /* GHFollowerTests.swift in Sources */,
+				177145E6273190AE00251060 /* XCTestCase-MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

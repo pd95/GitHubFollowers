@@ -10,15 +10,19 @@ import GitHubAPI
 import UIKit
 
 class NetworkManager {
-    static let shared = NetworkManager()
+    static var shared = NetworkManager()
 
     private let baseURL = "https://api.github.com/users/"
     private let cache = NSCache<NSString, UIImage>()
 
-    private init() {}
+    private let urlSession: URLSession
+
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
 
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
-        var loader = Optional.some(APIRequestLoader(apiRequest: FollowersRequest()))
+        var loader = Optional.some(APIRequestLoader(apiRequest: FollowersRequest(), urlSession: urlSession))
         loader?.loadAPIRequest(requestData: .init(username: username, page: page)) { result in
             switch result {
             case let .success(followers):
@@ -31,7 +35,7 @@ class NetworkManager {
     }
 
     func getUserInfo(for username: String, completed: @escaping (Result<User, GFError>) -> Void) {
-        var loader = Optional.some(APIRequestLoader(apiRequest: UserInfoRequest()))
+        var loader = Optional.some(APIRequestLoader(apiRequest: UserInfoRequest(), urlSession: urlSession))
         loader?.loadAPIRequest(requestData: .init(username: username)) { result in
             switch result {
             case let .success(ghUser):
@@ -56,7 +60,7 @@ class NetworkManager {
             return
         }
 
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        let task = urlSession.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self,
                   error == nil,
                   let response = response as? HTTPURLResponse, response.statusCode == 200,
