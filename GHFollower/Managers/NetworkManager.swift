@@ -6,6 +6,7 @@
 //  Copyright © 2020 Philipp. All rights reserved.
 //
 
+import GitHubAPI
 import UIKit
 
 class NetworkManager {
@@ -17,17 +18,27 @@ class NetworkManager {
     private init() {}
 
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
-        var loader = Optional.some(APIRequestLoader(apiRequest: Globals.FollowersRequest()))
+        var loader = Optional.some(APIRequestLoader(apiRequest: FollowersRequest()))
         loader?.loadAPIRequest(requestData: .init(username: username, page: page)) { result in
-            completed(result)
+            switch result {
+            case let .success(followers):
+                completed(.success(followers.map(\.follower)))
+            case let .failure(error):
+                completed(.failure(error.gfError))
+            }
             loader = nil
         }
     }
 
     func getUserInfo(for username: String, completed: @escaping (Result<User, GFError>) -> Void) {
-        var loader = Optional.some(APIRequestLoader(apiRequest: Globals.UserInfoRequest()))
+        var loader = Optional.some(APIRequestLoader(apiRequest: UserInfoRequest()))
         loader?.loadAPIRequest(requestData: .init(username: username)) { result in
-            completed(result)
+            switch result {
+            case let .success(ghUser):
+                completed(.success(ghUser.user))
+            case let .failure(error):
+                completed(.failure(error.gfError))
+            }
             loader = nil
         }
     }

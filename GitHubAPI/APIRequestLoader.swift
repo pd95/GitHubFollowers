@@ -8,18 +8,18 @@
 
 import Foundation
 
-class APIRequestLoader<T: APIRequest> {
+public class APIRequestLoader<T: APIRequest> {
     let apiRequest: T
     let urlSession: URLSession
 
-    init(apiRequest: T, urlSession: URLSession = .shared) {
+    public init(apiRequest: T, urlSession: URLSession = .shared) {
         self.apiRequest = apiRequest
         self.urlSession = urlSession
     }
 
-    func loadAPIRequest(
+    public func loadAPIRequest(
         requestData: T.RequestDataType,
-        completionHandler: @escaping (Result<T.ResponseDataType, GFError>) -> Void
+        completionHandler: @escaping (Result<T.ResponseDataType, GHError>) -> Void
     ) {
         do {
             let urlRequest = try apiRequest.makeRequest(from: requestData)
@@ -40,7 +40,7 @@ class APIRequestLoader<T: APIRequest> {
 
                 completionHandler(.success(parsedResponse))
             }.resume()
-        } catch let error as GFError {
+        } catch let error as GHError {
             return completionHandler(.failure(error))
         } catch {
             return completionHandler(.failure(.unableToComplete))

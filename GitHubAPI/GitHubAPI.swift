@@ -1,6 +1,6 @@
 //
 //  GitHubAPI.swift
-//  GHFollower
+//  GitHubAPI
 //
 //  Created by Philipp on 31.10.21.
 //  Copyright © 2021 Philipp. All rights reserved.

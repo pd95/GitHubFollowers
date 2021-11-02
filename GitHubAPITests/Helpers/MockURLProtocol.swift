@@ -1,6 +1,6 @@
 //
 //  MockURLProtocol.swift
-//  GHFollowerTests
+//  GitHubAPITests
 //
 //  Created by Philipp on 01.11.21.
 //  Copyright © 2021 Philipp. All rights reserved.

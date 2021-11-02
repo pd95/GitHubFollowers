@@ -1,16 +1,16 @@
 //
 //  GitHubAPI_FollowersRequestTests.swift
-//  GHFollowerTests
+//  GitHubAPITests
 //
 //  Created by Philipp on 31.10.21.
 //  Copyright © 2021 Philipp. All rights reserved.
 //
 
-@testable import GitHubAPI
+import GitHubAPI
 import XCTest
 
 class GitHubAPI_FollowersRequestTests: XCTestCase {
-    private typealias APIRequestToTest = Globals.FollowersRequest
+    private typealias APIRequestToTest = FollowersRequest
     private let request = APIRequestToTest()
 
     func test_MakingValidURLRequest() throws {
@@ -74,13 +74,13 @@ class GitHubAPI_FollowersRequestTests: XCTestCase {
         return loader
     }
 
-    private func anyFollowers() -> (follower: [Follower], json: [[String: Any]]) {
+    private func anyFollowers() -> (follower: [GHFollower], json: [[String: Any]]) {
         let (follower, json) = makeFollower(login: "octocat", avatarUrl: "https://avatars.githubusercontent.com/u/583231?v=4")
         return ([follower], [json])
     }
 
-    private func makeFollower(login: String, avatarUrl: String) -> (follower: Follower, json: [String: Any]) {
-        let follower = Follower(
+    private func makeFollower(login: String, avatarUrl: String) -> (follower: GHFollower, json: [String: Any]) {
+        let follower = GHFollower(
             login: login, avatarUrl: avatarUrl
         )
 

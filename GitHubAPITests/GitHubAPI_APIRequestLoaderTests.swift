@@ -1,12 +1,12 @@
 //
 //  GitHubAPI_APIRequestLoaderTests.swift
-//  GHFollowerTests
+//  GitHubAPITests
 //
 //  Created by Philipp on 01.11.21.
 //  Copyright © 2021 Philipp. All rights reserved.
 //
 
-@testable import GitHubAPI
+import GitHubAPI
 import XCTest
 
 class GitHubAPI_APIRequestLoaderTests: XCTestCase {
@@ -48,7 +48,7 @@ class GitHubAPI_APIRequestLoaderTests: XCTestCase {
         let receivedError = resultErrorFor(data: nil, response: nil, error: requestError)
 
         XCTAssertNotNil(receivedError)
-        XCTAssertEqual(receivedError as? GFError, GFError.unableToComplete)
+        XCTAssertEqual(receivedError as? GHError, GHError.unableToComplete)
     }
 
     func test_loadAPIRequest_failsOnAllInvalidRepresentationCases() {
@@ -120,7 +120,7 @@ class GitHubAPI_APIRequestLoaderTests: XCTestCase {
     private func resultFor(
         data: Data?, response: URLResponse?, error: Error?,
         file: StaticString = #filePath, line: UInt = #line
-    ) -> Result<APIRequestToTest.ResponseDataType, GFError> {
+    ) -> Result<APIRequestToTest.ResponseDataType, GHError> {
         let sut = makeSUT(file: file, line: line)
         let exp = expectation(description: "Wait for completion")
 
@@ -132,7 +132,7 @@ class GitHubAPI_APIRequestLoaderTests: XCTestCase {
             return (response ?? .init(), data ?? .init())
         }
 
-        var receivedResult: Result<APIRequestToTest.ResponseDataType, GFError>!
+        var receivedResult: Result<APIRequestToTest.ResponseDataType, GHError>!
         sut.loadAPIRequest(requestData: anyURL()) { result in
             receivedResult = result
             exp.fulfill()

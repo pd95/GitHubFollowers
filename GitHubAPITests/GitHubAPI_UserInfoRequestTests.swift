@@ -1,16 +1,16 @@
 //
 //  GitHubAPI_UserInfoRequestTests.swift
-//  GHFollowerTests
+//  GitHubAPITests
 //
 //  Created by Philipp on 31.10.21.
 //  Copyright © 2021 Philipp. All rights reserved.
 //
 
-@testable import GitHubAPI
+import GitHubAPI
 import XCTest
 
 class GitHubAPI_UserInfoRequestTests: XCTestCase {
-    private typealias APIRequestToTest = Globals.UserInfoRequest
+    private typealias APIRequestToTest = UserInfoRequest
     private let request = APIRequestToTest()
 
     func test_MakingValidURLRequest() throws {
@@ -51,7 +51,12 @@ class GitHubAPI_UserInfoRequestTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "response")
         loader.loadAPIRequest(requestData: .init(username: login)) { result in
-            XCTAssertEqual(result, .success(user))
+            switch result {
+            case let .success(receivedUser):
+                XCTAssertEqual(receivedUser, user)
+            default:
+                XCTFail("Expected success but got \(result) instead.")
+            }
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)
@@ -69,7 +74,7 @@ class GitHubAPI_UserInfoRequestTests: XCTestCase {
         return loader
     }
 
-    private func anyUser(login: String = "octocat") -> (user: User, json: [String: Any]) {
+    private func anyUser(login: String = "octocat") -> (user: GHUser, json: [String: Any]) {
         let avatarUrl = "https://avatars.githubusercontent.com/u/583231?v=4"
         let name: String? = "The Octocat"
         let location: String? = "San Francisco"
@@ -92,8 +97,8 @@ class GitHubAPI_UserInfoRequestTests: XCTestCase {
         login: String, avatarUrl: String, name: String? = nil, location: String? = nil, bio: String? = nil,
         publicRepos: Int, publicGists: Int, htmlUrl: String, following: Int, followers: Int,
         createdAt: Date
-    ) -> (user: User, json: [String: Any]) {
-        let user = User(
+    ) -> (user: GHUser, json: [String: Any]) {
+        let user = GHUser(
             login: login, avatarUrl: avatarUrl, name: name, location: location, bio: bio,
             publicRepos: publicRepos, publicGists: publicGists, htmlUrl: htmlUrl,
             following: following, followers: followers, createdAt: createdAt
