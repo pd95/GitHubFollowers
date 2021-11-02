@@ -6,7 +6,7 @@
 //  Copyright © 2021 Philipp. All rights reserved.
 //
 
-@testable import GHFollower
+@testable import GitHubAPI
 import XCTest
 
 class GitHubAPI_APIRequestLoaderTests: XCTestCase {

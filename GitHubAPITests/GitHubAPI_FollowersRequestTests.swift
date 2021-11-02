@@ -6,11 +6,11 @@
 //  Copyright © 2021 Philipp. All rights reserved.
 //
 
-@testable import GHFollower
+@testable import GitHubAPI
 import XCTest
 
 class GitHubAPI_FollowersRequestTests: XCTestCase {
-    private typealias APIRequestToTest = GitHubAPI.FollowersRequest
+    private typealias APIRequestToTest = Globals.FollowersRequest
     private let request = APIRequestToTest()
 
     func test_MakingValidURLRequest() throws {

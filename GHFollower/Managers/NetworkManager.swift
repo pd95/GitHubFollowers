@@ -17,7 +17,7 @@ class NetworkManager {
     private init() {}
 
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
-        var loader = Optional.some(APIRequestLoader(apiRequest: GitHubAPI.FollowersRequest()))
+        var loader = Optional.some(APIRequestLoader(apiRequest: Globals.FollowersRequest()))
         loader?.loadAPIRequest(requestData: .init(username: username, page: page)) { result in
             completed(result)
             loader = nil
@@ -25,7 +25,7 @@ class NetworkManager {
     }
 
     func getUserInfo(for username: String, completed: @escaping (Result<User, GFError>) -> Void) {
-        var loader = Optional.some(APIRequestLoader(apiRequest: GitHubAPI.UserInfoRequest()))
+        var loader = Optional.some(APIRequestLoader(apiRequest: Globals.UserInfoRequest()))
         loader?.loadAPIRequest(requestData: .init(username: username)) { result in
             completed(result)
             loader = nil

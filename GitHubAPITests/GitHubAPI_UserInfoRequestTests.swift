@@ -6,11 +6,11 @@
 //  Copyright © 2021 Philipp. All rights reserved.
 //
 
-@testable import GHFollower
+@testable import GitHubAPI
 import XCTest
 
 class GitHubAPI_UserInfoRequestTests: XCTestCase {
-    private typealias APIRequestToTest = GitHubAPI.UserInfoRequest
+    private typealias APIRequestToTest = Globals.UserInfoRequest
     private let request = APIRequestToTest()
 
     func test_MakingValidURLRequest() throws {

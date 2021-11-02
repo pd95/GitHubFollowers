@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum GitHubAPI {
+enum Globals {
     static let baseURL = "https://api.github.com"
 
     static var decoder: JSONDecoder = {

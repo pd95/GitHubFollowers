@@ -16,7 +16,7 @@ protocol APIRequest {
     func parseResponse(data: Data) throws -> ResponseDataType
 }
 
-extension GitHubAPI {
+extension Globals {
     struct FollowersRequest: APIRequest {
         typealias RequestDataType = Parameter
         typealias ResponseDataType = [Follower]
@@ -43,7 +43,7 @@ extension GitHubAPI {
         }
 
         func parseResponse(data: Data) throws -> [Follower] {
-            return try GitHubAPI.decoder.decode(ResponseDataType.self, from: data)
+            return try Globals.decoder.decode(ResponseDataType.self, from: data)
         }
     }
 
@@ -64,7 +64,7 @@ extension GitHubAPI {
         }
 
         func parseResponse(data: Data) throws -> User {
-            return try GitHubAPI.decoder.decode(ResponseDataType.self, from: data)
+            return try Globals.decoder.decode(ResponseDataType.self, from: data)
         }
     }
 }
