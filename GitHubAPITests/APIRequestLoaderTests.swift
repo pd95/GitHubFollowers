@@ -43,6 +43,15 @@ class APIRequestLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
+    func test_loadAPIRequest_failsOnOnNon200HTTPResponse() throws {
+        let statusCodesToTest = [199, 201, 300, 400, 500]
+
+        statusCodesToTest.forEach { code in
+            let error = resultErrorFor(data: nil, response: HTTPURLResponse(statusCode: code), error: nil)
+            XCTAssertEqual(error as! GHError, GHError.invalidResponse, "Expected error for HTTP status code \(code)")
+        }
+    }
+
     func test_loadAPIRequest_failsOnRequestError() {
         let requestError = anyNSError()
         let receivedError = resultErrorFor(data: nil, response: nil, error: requestError)
@@ -140,18 +149,6 @@ class APIRequestLoaderTests: XCTestCase {
 
         wait(for: [exp], timeout: 1.0)
         return receivedResult
-    }
-
-    private func anyURL() -> URL {
-        URL(string: "http://localhost")!
-    }
-
-    private func anyNSError() -> NSError {
-        NSError(domain: "anyError", code: 0)
-    }
-
-    private func anyData() -> Data {
-        "[\"Hello\"]".data(using: .utf8)!
     }
 
     private func nonHTTPURLResponse() -> URLResponse {
