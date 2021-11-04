@@ -13,11 +13,14 @@ class APIRequestLoaderTests: XCTestCase {
     private typealias APIRequestToTest = DummyRequest
 
     private struct DummyRequest: APIRequest {
-        typealias RequestDataType = URL
+        typealias RequestDataType = (url: URL, error: Error?)
         typealias ResponseDataType = [String]
 
-        func makeRequest(from url: URL) throws -> URLRequest {
-            URLRequest(url: url)
+        func makeRequest(from input: (url: URL, error: Error?)) throws -> URLRequest {
+            if let error = input.error {
+                throw error
+            }
+            return URLRequest(url: input.url)
         }
 
         func parseResponse(data: Data) throws -> [String] {
@@ -38,7 +41,7 @@ class APIRequestLoaderTests: XCTestCase {
             return (HTTPURLResponse(), Data())
         }
 
-        sut.loadAPIRequest(requestData: url) { _ in }
+        sut.loadAPIRequest(requestData: (url, nil)) { _ in }
 
         wait(for: [exp], timeout: 1.0)
     }
@@ -142,7 +145,7 @@ class APIRequestLoaderTests: XCTestCase {
         }
 
         var receivedResult: Result<APIRequestToTest.ResponseDataType, GHError>!
-        sut.loadAPIRequest(requestData: anyURL()) { result in
+        sut.loadAPIRequest(requestData: (anyURL(), nil)) { result in
             receivedResult = result
             exp.fulfill()
         }
