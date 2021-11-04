@@ -46,6 +46,30 @@ class APIRequestLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
+    func test_loadAPIRequest_mayFailOnMakeRequest() throws {
+        MockURLProtocol.requestHandler = { _ in
+            (HTTPURLResponse(), Data())
+        }
+
+        let testErrors: [Error] = [GHError.invalidRequestParameter, anyNSError()]
+
+        // Input should fail with given error in `makeRequest`
+        for error in testErrors {
+            let sut = makeSUT()
+            let exp = expectation(description: "Wait for completion")
+            sut.loadAPIRequest(requestData: (anyURL(), error)) { result in
+                switch result {
+                case .success:
+                    XCTFail("Expected failure for error during makeRequest")
+                case .failure(let receivedError):
+                    XCTAssertNotNil(receivedError)
+                }
+                exp.fulfill()
+            }
+            wait(for: [exp], timeout: 1.0)
+        }
+    }
+
     func test_loadAPIRequest_failsOnOnNon200HTTPResponse() throws {
         let statusCodesToTest = [199, 201, 300, 400, 500]
 
