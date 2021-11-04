@@ -47,8 +47,8 @@ class APIRequestLoaderTests: XCTestCase {
         let statusCodesToTest = [199, 201, 300, 400, 500]
 
         statusCodesToTest.forEach { code in
-            let error = resultErrorFor(data: nil, response: HTTPURLResponse(statusCode: code), error: nil)
-            XCTAssertEqual(error as! GHError, GHError.invalidResponse, "Expected error for HTTP status code \(code)")
+            let error = resultErrorFor(data: anyData(), response: HTTPURLResponse(statusCode: code), error: nil)
+            XCTAssertNotNil(error, "Expected error for HTTP status code \(code)")
         }
     }
 
