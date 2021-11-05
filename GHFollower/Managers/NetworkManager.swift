@@ -22,7 +22,7 @@ class NetworkManager {
     }
 
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
-        var loader = Optional.some(APIRequestLoader(apiRequest: FollowersRequest(), urlSession: urlSession))
+        var loader = Optional(APIRequestLoader(apiRequest: FollowersRequest(), urlSession: urlSession))
         loader?.loadAPIRequest(requestData: .init(username: username, page: page)) { result in
             switch result {
             case let .success(followers):
@@ -35,7 +35,7 @@ class NetworkManager {
     }
 
     func getUserInfo(for username: String, completed: @escaping (Result<User, GFError>) -> Void) {
-        var loader = Optional.some(APIRequestLoader(apiRequest: UserInfoRequest(), urlSession: urlSession))
+        var loader = Optional(APIRequestLoader(apiRequest: UserInfoRequest(), urlSession: urlSession))
         loader?.loadAPIRequest(requestData: .init(username: username)) { result in
             switch result {
             case let .success(ghUser):
