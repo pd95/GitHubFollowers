@@ -12,7 +12,6 @@ public protocol APIRequest {
     associatedtype RequestDataType
     associatedtype ResponseDataType
 
-    init()
     func makeRequest(from data: RequestDataType) throws -> URLRequest
     func parseResponse(data: Data) throws -> ResponseDataType
 }
