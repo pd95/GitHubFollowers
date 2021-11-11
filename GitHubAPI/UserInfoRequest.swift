@@ -16,9 +16,9 @@ public struct UserInfoRequest: APIRequest {
         let username: String
         var baseURL: URL
 
-        public init(username: String, baseURL: URL? = nil) {
+        public init(username: String, baseURL: URL) {
             self.username = username
-            self.baseURL = baseURL ?? GitHubAPI.default.baseURL
+            self.baseURL = baseURL
         }
     }
 

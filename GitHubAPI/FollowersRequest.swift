@@ -18,11 +18,11 @@ public struct FollowersRequest: APIRequest {
         var maxNumberPerPage: Int
         var baseURL: URL
 
-        public init(username: String, page: Int, maxNumberPerPage: Int = 100, baseURL: URL? = nil) {
+        public init(username: String, page: Int, maxNumberPerPage: Int = 100, baseURL: URL) {
             self.username = username
             self.page = page
             self.maxNumberPerPage = maxNumberPerPage
-            self.baseURL = baseURL ?? GitHubAPI.default.baseURL
+            self.baseURL = baseURL
         }
     }
 

@@ -16,7 +16,7 @@ class UserInfoRequestTests: XCTestCase {
     func test_MakingValidURLRequest() throws {
         let username = "sallen0400"
 
-        let urlRequest = try request.makeRequest(from: .init(username: username))
+        let urlRequest = try request.makeRequest(from: makeRequestParameter(username: username))
 
         XCTAssertEqual(urlRequest.url?.scheme, "https")
         XCTAssertEqual(urlRequest.url?.host, "api.github.com")
@@ -26,7 +26,7 @@ class UserInfoRequestTests: XCTestCase {
     func test_MakingURLRequestWithInvalidURLCharacterInUsername() throws {
         let invalidCharacters = [" ", "%", "😉"]
         for character in invalidCharacters {
-            XCTAssertNotNil(try? request.makeRequest(from: .init(username: "username\(character)")))
+            XCTAssertNotNil(try? request.makeRequest(from: makeRequestParameter(username: "username\(character)")))
         }
     }
 
@@ -50,7 +50,7 @@ class UserInfoRequestTests: XCTestCase {
         }
 
         let expectation = XCTestExpectation(description: "response")
-        loader.loadAPIRequest(requestData: .init(username: login)) { result in
+        loader.loadAPIRequest(requestData: makeRequestParameter(username: login)) { result in
             switch result {
             case let .success(receivedUser):
                 XCTAssertEqual(receivedUser, user)
@@ -63,6 +63,10 @@ class UserInfoRequestTests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    private func makeRequestParameter(username: String, baseURL: URL = URL(string: "https://api.github.com")!) -> APIRequestToTest.Parameter {
+        APIRequestToTest.Parameter(username: username, baseURL: baseURL)
+    }
 
     private func makeLoader(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<APIRequestToTest> {
         let configuration = URLSessionConfiguration.ephemeral

@@ -18,7 +18,7 @@ class FollowersRequestTests: XCTestCase {
         let page = 1
         let maxNumberPerPage = 10
 
-        let urlRequest = try request.makeRequest(from: .init(username: username, page: page, maxNumberPerPage: maxNumberPerPage))
+        let urlRequest = try request.makeRequest(from: makeRequestParameter(username: username, page: page, maxNumberPerPage: maxNumberPerPage))
 
         XCTAssertEqual(urlRequest.url?.scheme, "https")
         XCTAssertEqual(urlRequest.url?.host, "api.github.com")
@@ -30,7 +30,7 @@ class FollowersRequestTests: XCTestCase {
     func test_MakingURLRequestWithInvalidURLCharacterInUsername() throws {
         let invalidCharacters = [" ", "%", "😉"]
         for character in invalidCharacters {
-            XCTAssertNotNil(try? request.makeRequest(from: .init(username: "username\(character)", page: 1)))
+            XCTAssertNotNil(try? request.makeRequest(from: makeRequestParameter(username: "username\(character)", page: 1)))
         }
     }
 
@@ -55,7 +55,7 @@ class FollowersRequestTests: XCTestCase {
         }
 
         let expectation = XCTestExpectation(description: "response")
-        loader.loadAPIRequest(requestData: .init(username: username, page: 1, maxNumberPerPage: 10)) { result in
+        loader.loadAPIRequest(requestData: makeRequestParameter(username: username, page: 1, maxNumberPerPage: 10)) { result in
             XCTAssertEqual(result, .success(followers))
             expectation.fulfill()
         }
@@ -63,6 +63,10 @@ class FollowersRequestTests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    private func makeRequestParameter(username: String, page: Int = 1, maxNumberPerPage: Int = 10, baseURL: URL = URL(string: "https://api.github.com")!) -> APIRequestToTest.Parameter {
+        APIRequestToTest.Parameter(username: username, page: page, maxNumberPerPage: maxNumberPerPage, baseURL: baseURL)
+    }
 
     private func makeLoader(file: StaticString = #filePath, line: UInt = #line) -> APIRequestLoader<APIRequestToTest> {
         let configuration = URLSessionConfiguration.ephemeral
