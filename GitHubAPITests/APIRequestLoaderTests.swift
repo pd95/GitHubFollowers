@@ -61,7 +61,7 @@ class APIRequestLoaderTests: XCTestCase {
                 switch result {
                 case .success:
                     XCTFail("Expected failure for error during makeRequest")
-                case .failure(let receivedError):
+                case let .failure(receivedError):
                     XCTAssertNotNil(receivedError)
                 }
                 exp.fulfill()

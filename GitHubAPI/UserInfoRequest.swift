@@ -23,7 +23,10 @@ public struct UserInfoRequest: APIRequest {
     public init() {}
 
     public func makeRequest(from data: Parameter) throws -> URLRequest {
-        guard let url = URL(string: "\(GitHubAPI.baseURL.absoluteString)/users/\(data.username)") else {
+        var components = URLComponents()
+        components.path = "/users/\(data.username)"
+
+        guard let url = components.url(relativeTo: GitHubAPI.baseURL) else {
             throw GHError.invalidRequestParameter
         }
 

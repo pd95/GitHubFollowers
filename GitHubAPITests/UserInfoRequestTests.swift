@@ -26,7 +26,7 @@ class UserInfoRequestTests: XCTestCase {
     func test_MakingURLRequestWithInvalidURLCharacterInUsername() throws {
         let invalidCharacters = [" ", "%", "😉"]
         for character in invalidCharacters {
-            XCTAssertThrowsError(try request.makeRequest(from: .init(username: "username\(character)")))
+            XCTAssertNotNil(try? request.makeRequest(from: .init(username: "username\(character)")))
         }
     }
 

@@ -27,15 +27,14 @@ public struct FollowersRequest: APIRequest {
     public init() {}
 
     public func makeRequest(from data: Parameter) throws -> URLRequest {
-        guard var components = URLComponents(string: "\(GitHubAPI.baseURL.absoluteString)/users/\(data.username)/followers") else {
-            throw GHError.invalidRequestParameter
-        }
+        var components = URLComponents()
+        components.path = "/users/\(data.username)/followers"
         components.queryItems = [
             URLQueryItem(name: "per_page", value: String(data.maxNumberPerPage)),
             URLQueryItem(name: "page", value: String(data.page)),
         ]
 
-        guard let url = components.url else {
+        guard let url = components.url(relativeTo: GitHubAPI.baseURL) else {
             throw GHError.invalidRequestParameter
         }
         return URLRequest(url: url)
