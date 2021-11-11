@@ -56,6 +56,7 @@
 		177F61AC23F313C500A25B38 /* GFFollowerItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177F61AB23F313C500A25B38 /* GFFollowerItemViewController.swift */; };
 		178EF27323F4AB39002EEFF1 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EF27223F4AB39002EEFF1 /* PersistenceManager.swift */; };
 		178EF27723F88D48002EEFF1 /* GFFavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EF27623F88D48002EEFF1 /* GFFavoriteCell.swift */; };
+		17D9EEB7273D6D9400627CAF /* GitHubAPI_E2E_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D9EEB6273D6D9400627CAF /* GitHubAPI_E2E_Tests.swift */; };
 		17DD560E23F489AF0076AADD /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DD560D23F489AF0076AADD /* Date+Ext.swift */; };
 		17E7DD9623F1727300EE5298 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9523F1727300EE5298 /* SearchViewController.swift */; };
 		17E7DD9823F172A300EE5298 /* FavoriteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7DD9723F172A300EE5298 /* FavoriteListViewController.swift */; };
@@ -156,6 +157,7 @@
 		17854D65272F0B3300C224BD /* UserInfoRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRequestTests.swift; sourceTree = "<group>"; };
 		178EF27223F4AB39002EEFF1 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		178EF27623F88D48002EEFF1 /* GFFavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFFavoriteCell.swift; sourceTree = "<group>"; };
+		17D9EEB6273D6D9400627CAF /* GitHubAPI_E2E_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI_E2E_Tests.swift; sourceTree = "<group>"; };
 		17DD560D23F489AF0076AADD /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		17E7DD9523F1727300EE5298 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		17E7DD9723F172A300EE5298 /* FavoriteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewController.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 		177145B12731299B00251060 /* GitHubAPITests */ = {
 			isa = PBXGroup;
 			children = (
+				17D9EEB6273D6D9400627CAF /* GitHubAPI_E2E_Tests.swift */,
 				173E358B272EF79700C80178 /* FollowersRequestTests.swift */,
 				17854D65272F0B3300C224BD /* UserInfoRequestTests.swift */,
 				1771454C272FC0FC00251060 /* APIRequestLoaderTests.swift */,
@@ -707,6 +710,7 @@
 				177145C527312A9200251060 /* XCTestCase-MemoryLeakTracking.swift in Sources */,
 				177145BC273129A800251060 /* UserInfoRequestTests.swift in Sources */,
 				177145C427312A8E00251060 /* MockURLProtocol.swift in Sources */,
+				17D9EEB7273D6D9400627CAF /* GitHubAPI_E2E_Tests.swift in Sources */,
 				174674832734636F00F0E2B4 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
