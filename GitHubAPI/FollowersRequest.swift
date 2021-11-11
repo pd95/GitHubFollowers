@@ -22,7 +22,7 @@ public struct FollowersRequest: APIRequest {
             self.username = username
             self.page = page
             self.maxNumberPerPage = maxNumberPerPage
-            self.baseURL = baseURL ?? GitHubAPI.baseURL
+            self.baseURL = baseURL ?? GitHubAPI.default.baseURL
         }
     }
 

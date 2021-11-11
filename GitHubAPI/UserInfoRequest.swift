@@ -18,7 +18,7 @@ public struct UserInfoRequest: APIRequest {
 
         public init(username: String, baseURL: URL? = nil) {
             self.username = username
-            self.baseURL = baseURL ?? GitHubAPI.baseURL
+            self.baseURL = baseURL ?? GitHubAPI.default.baseURL
         }
     }
 

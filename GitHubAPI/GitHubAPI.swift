@@ -9,7 +9,13 @@
 import Foundation
 
 struct GitHubAPI {
-    static let baseURL = URL(string: "https://api.github.com")!
+    static let `default` = GitHubAPI()
+
+    var baseURL: URL
+
+    public init(baseURL: URL = URL(string: "https://api.github.com")!) {
+        self.baseURL = baseURL
+    }
 
     static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
