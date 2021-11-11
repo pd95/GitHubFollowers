@@ -27,7 +27,7 @@ public struct FollowersRequest: APIRequest {
     public init() {}
 
     public func makeRequest(from data: Parameter) throws -> URLRequest {
-        guard var components = URLComponents(string: "\(Globals.baseURL)/users/\(data.username)/followers") else {
+        guard var components = URLComponents(string: "\(GitHubAPI.baseURL.absoluteString)/users/\(data.username)/followers") else {
             throw GHError.invalidRequestParameter
         }
         components.queryItems = [
@@ -42,6 +42,6 @@ public struct FollowersRequest: APIRequest {
     }
 
     public func parseResponse(data: Data) throws -> ResponseDataType {
-        return try Globals.decoder.decode(ResponseDataType.self, from: data)
+        return try GitHubAPI.decoder.decode(ResponseDataType.self, from: data)
     }
 }

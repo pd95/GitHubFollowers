@@ -23,7 +23,7 @@ public struct UserInfoRequest: APIRequest {
     public init() {}
 
     public func makeRequest(from data: Parameter) throws -> URLRequest {
-        guard let url = URL(string: "\(Globals.baseURL)/users/\(data.username)") else {
+        guard let url = URL(string: "\(GitHubAPI.baseURL.absoluteString)/users/\(data.username)") else {
             throw GHError.invalidRequestParameter
         }
 
@@ -31,6 +31,6 @@ public struct UserInfoRequest: APIRequest {
     }
 
     public func parseResponse(data: Data) throws -> ResponseDataType {
-        return try Globals.decoder.decode(ResponseDataType.self, from: data)
+        return try GitHubAPI.decoder.decode(ResponseDataType.self, from: data)
     }
 }

@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum Globals {
-    static let baseURL = "https://api.github.com"
+struct GitHubAPI {
+    static let baseURL: URL = URL(string: "https://api.github.com")!
 
     static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
