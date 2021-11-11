@@ -14,9 +14,11 @@ public struct UserInfoRequest: APIRequest {
 
     public struct Parameter {
         let username: String
+        var baseURL: URL
 
-        public init(username: String) {
+        public init(username: String, baseURL: URL? = nil) {
             self.username = username
+            self.baseURL = baseURL ?? GitHubAPI.baseURL
         }
     }
 
@@ -26,7 +28,7 @@ public struct UserInfoRequest: APIRequest {
         var components = URLComponents()
         components.path = "/users/\(data.username)"
 
-        guard let url = components.url(relativeTo: GitHubAPI.baseURL) else {
+        guard let url = components.url(relativeTo: data.baseURL) else {
             throw GHError.invalidRequestParameter
         }
 

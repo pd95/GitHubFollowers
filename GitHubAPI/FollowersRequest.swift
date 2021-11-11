@@ -16,11 +16,13 @@ public struct FollowersRequest: APIRequest {
         let username: String
         let page: Int
         var maxNumberPerPage: Int
+        var baseURL: URL
 
-        public init(username: String, page: Int, maxNumberPerPage: Int = 100) {
+        public init(username: String, page: Int, maxNumberPerPage: Int = 100, baseURL: URL? = nil) {
             self.username = username
             self.page = page
             self.maxNumberPerPage = maxNumberPerPage
+            self.baseURL = baseURL ?? GitHubAPI.baseURL
         }
     }
 
@@ -34,7 +36,7 @@ public struct FollowersRequest: APIRequest {
             URLQueryItem(name: "page", value: String(data.page)),
         ]
 
-        guard let url = components.url(relativeTo: GitHubAPI.baseURL) else {
+        guard let url = components.url(relativeTo: data.baseURL) else {
             throw GHError.invalidRequestParameter
         }
         return URLRequest(url: url)
