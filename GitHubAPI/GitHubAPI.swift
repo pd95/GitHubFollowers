@@ -11,8 +11,8 @@ import Foundation
 public struct GitHubAPI {
     public static let `default` = GitHubAPI()
 
-    private var urlSession: URLSession
-    var baseURL: URL
+    private let urlSession: URLSession
+    private let baseURL: URL
 
     public init(urlSession: URLSession = .shared, baseURL: URL = URL(string: "https://api.github.com")!) {
         self.urlSession = urlSession
