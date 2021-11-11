@@ -12,38 +12,35 @@ import UIKit
 class NetworkManager {
     static var shared = NetworkManager()
 
-    private let baseURL = "https://api.github.com/users/"
     private let cache = NSCache<NSString, UIImage>()
 
     private let urlSession: URLSession
+    private let api: GitHubAPI
 
     init(urlSession: URLSession = .shared) {
         self.urlSession = urlSession
+        api = GitHubAPI(urlSession: urlSession)
     }
 
     func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
-        var loader = Optional(APIRequestLoader(apiRequest: FollowersRequest(), urlSession: urlSession))
-        loader?.loadAPIRequest(requestData: .init(username: username, page: page)) { result in
+        api.getFollowers(for: username, page: page) { result in
             switch result {
             case let .success(followers):
-                completed(.success(followers.map(\.follower)))
+                completed(.success(followers.toModel()))
             case let .failure(error):
-                completed(.failure(error.gfError))
+                completed(.failure(error.toModel()))
             }
-            loader = nil
         }
     }
 
     func getUserInfo(for username: String, completed: @escaping (Result<User, GFError>) -> Void) {
-        var loader = Optional(APIRequestLoader(apiRequest: UserInfoRequest(), urlSession: urlSession))
-        loader?.loadAPIRequest(requestData: .init(username: username)) { result in
+        api.getUserInfo(for: username) { result in
             switch result {
-            case let .success(ghUser):
-                completed(.success(ghUser.user))
+            case let .success(user):
+                completed(.success(user.toModel()))
             case let .failure(error):
-                completed(.failure(error.gfError))
+                completed(.failure(error.toModel()))
             }
-            loader = nil
         }
     }
 

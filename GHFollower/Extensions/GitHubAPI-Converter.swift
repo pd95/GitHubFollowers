@@ -9,20 +9,20 @@
 import GitHubAPI
 
 extension GHUser {
-    var user: User {
+    func toModel() -> User {
         User(login: login, avatarUrl: avatarUrl, name: name, location: location, bio: bio,
              publicRepos: publicRepos, publicGists: publicGists, htmlUrl: htmlUrl, following: following, followers: followers, createdAt: createdAt)
     }
 }
 
-extension GHFollower {
-    var follower: Follower {
-        Follower(login: login, avatarUrl: avatarUrl)
+extension Array where Element == GHFollower {
+    func toModel() -> [Follower] {
+        map { Follower(login: $0.login, avatarUrl: $0.avatarUrl) }
     }
 }
 
 extension GHError {
-    var gfError: GFError {
+    func toModel() -> GFError {
         switch self {
         case .invalidRequestParameter:
             return .invalidUsername
